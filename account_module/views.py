@@ -120,3 +120,24 @@ class LogoutView(View):
         logout(request)
         return redirect(reverse('login_page'))
 
+
+
+
+class ForgetPasswordView(View):
+    def get(self, request):
+        forget_pass_form = forms.ForgotPasswordForm()
+        context = {'forget_pass_form': forget_pass_form}
+        return render(request, 'forget_password.html', context)
+
+    def post(self, request):
+        forget_pass_form = forms.ForgotPasswordForm(request.POST)
+        if forget_pass_form.is_valid():
+            user_email = forget_pass_form.cleaned_data.get('email')
+            user = models.User.objects.filter(email__iexact=user_email).first()
+            if user is not None:
+                send_email(' reset password', user.email, {'user': user}, 'email_part/forgot_password.html')
+                return redirect(reverse('home_pgae'))
+
+        context = {'forget_pass_form': forget_pass_form}
+        return render(request, 'forget_password.html', context)
+
