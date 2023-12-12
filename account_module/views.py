@@ -1,11 +1,11 @@
-from django.shortcuts import render,redirect,reverse,Http404
+from django.shortcuts import render,redirect,reverse,Http404,get_object_or_404
 from django.views import View
 from . import forms
 from . import models
 from django.utils.crypto import get_random_string
 from .utils.email_service import send_email
 from django.contrib.auth import login, logout
-
+from main_module.models import Products
 # Create your views here.
 
 class signup(View):
@@ -178,4 +178,26 @@ class ResetPasswordView(View):
         }
 
         return render(request, 'reset_password.html', context)
+
+
+
+
+def favorit(request,pk):
+    if request.user.is_authenticated:
+            post = get_object_or_404(Products, id=pk)
+            fav = False
+            if post.favorit.filter(id=request.user.id).exists():
+                post.favorit.remove(request.user)
+                fav = False
+                return redirect('profile')
+            else:
+                post.favorit.add(request.user)
+                fav = True
+
+                return redirect('profile')
+    else:
+
+        return redirect('login_page')
+
+
 
