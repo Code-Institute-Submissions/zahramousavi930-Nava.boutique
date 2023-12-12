@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from django.views.generic import DetailView,TemplateView
 from . import models
+from . import forms
 # Create your views here.
 
 
@@ -38,3 +39,15 @@ def newsteller(request):
     else:
         return redirect('home_pgae')
 
+
+
+
+class Products(DetailView):
+    template_name = 'products.html'
+    model = models.Products
+    def get_context_data(self, **kwargs):
+        context = super(Products, self).get_context_data()
+        context['selected_product']=models.Products.objects.filter(slug__exact=self.kwargs['slug']).first()
+        context['comment_form']=forms.comments
+        context['comments']=models.add_comments.objects.filter(product_id=self.kwargs['pk'])
+        return context
