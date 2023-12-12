@@ -4,7 +4,7 @@ from . import forms
 from . import models
 from django.utils.crypto import get_random_string
 from .utils.email_service import send_email
-
+from django.contrib.auth import login, logout
 
 # Create your views here.
 
@@ -113,3 +113,10 @@ class LoginView(View):
         }
 
         return render(request, 'login.html', context)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('login_page'))
+
