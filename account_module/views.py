@@ -156,6 +156,10 @@ class ForgetPasswordView(View):
         if forget_pass_form.is_valid():
             user_email = forget_pass_form.cleaned_data.get('email')
             user = models.User.objects.filter(email__iexact=user_email).first()
+
+            if user is None:
+                forget_pass_form.add_error('email', 'email is not correct.')
+
             if user is not None:
                 send_email(' reset password', user.email, {'user': user}, 'email_part/forgot_password.html')
                 return redirect(reverse('home_pgae'))
@@ -204,21 +208,6 @@ class ResetPasswordView(View):
 
 
 def favorit(request,pk):
-    # if request.user.is_authenticated:
-    #     post=get_object_or_404(Products ,id=pk)
-    #     print(post.favorit)
-    #     if post.favorit.filter(products__favorit=request.user.id).exists():
-    #         post.favorit.add(request.user)
-    #         return JsonResponse({
-    #             'status': 'add',
-    #             'message': 'add to favorit'
-    #         })
-    #     else:
-    #         post.favorit.remove(request.user)
-    #         return JsonResponse({
-    #             'status': 'remove',
-    #             'message': 'remove from favorit'
-    #         })
 
     if request.user.is_authenticated:
             post = get_object_or_404(Products, id=pk)
@@ -271,8 +260,9 @@ def modify_order_detail(request):
     body = json.loads(body_unicode)
     pk = body['pk']
 
-
+    print(pk)
     m = models.OrderDetail.objects.filter(product_id=pk, order__userr_id=request.user.id)
+    print(m)
     m.delete()
     return JsonResponse({
         'status':'del',

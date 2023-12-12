@@ -165,7 +165,7 @@ function modify_order(pk){
 
 
     }
-    console.log(pk)
+
     fetch('modify_order_detail',{
  method: 'post',
         credentials: 'include',
