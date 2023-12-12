@@ -109,3 +109,15 @@ class category(TemplateView):
 
 
         return context
+
+
+
+
+class contact_with_us(TemplateView):
+    template_name = 'contac_with_us.html'
+
+    def get_context_data(self, **kwargs):
+        context=super(contact_with_us, self).get_context_data()
+        context['footer']=models.contact_with_us.objects.get()
+        context['contact_form']=forms.contact_form
+        return context

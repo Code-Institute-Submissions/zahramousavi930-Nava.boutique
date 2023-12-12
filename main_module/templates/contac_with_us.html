@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+contact with us
+{% endblock %}
+
+{% block contect %}
+
+    <div class="container my-5">
+        <h1 class="my-2" >{{ footer.email }}</h1>
+        <h1 class="my-2">{{ footer.phone_number }}</h1>
+        <p class="my-2" >{{ footer.about_us }}</p>
+    </div>
+
+
+<form class="container my-5"   method="post" action="{% url 'save_contact' %}">
+{% csrf_token %}
+  <div class="mb-3">
+      {% render_field contact_form.name class+="form-control" placeholder+='name' %}
+
+
+  </div>
+  <div class="mb-3">
+       {% render_field contact_form.email class+="form-control" placeholder+='email' %}
+  </div>
+  <div class="mb-3 form-check">
+    {% render_field contact_form.text class+="form-control" placeholder+='text' %}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
