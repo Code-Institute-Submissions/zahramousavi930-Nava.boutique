@@ -56,3 +56,13 @@ class add_comments(models.Model):
     def __str__(self):
         return str(self.user)
 
+
+
+
+class contact_with_us(models.Model):
+    email=models.CharField(max_length=200)
+    phone_number=models.CharField(max_length=200)
+    about_us=models.TextField(max_length=600)
+
+    def __str__(self):
+        return self.email
