@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from . import models
 # Create your views here.
@@ -17,4 +17,24 @@ class Home_page(TemplateView):
         print(self.request.user.id)
         return context
 
+
+
+def newsteller(request):
+
+    if request.POST:
+        email =request.POST.get('newstelleremail')
+        try:
+            new_email=models.News_teller(
+                email=email
+            )
+            new_email.save()
+
+
+            return redirect('home_pgae')
+
+        except:
+            return redirect('home_pgae')
+
+    else:
+        return redirect('home_pgae')
 
