@@ -260,9 +260,9 @@ def modify_order_detail(request):
     body = json.loads(body_unicode)
     pk = body['pk']
 
-    print(pk)
+
     m = models.OrderDetail.objects.filter(product_id=pk, order__userr_id=request.user.id)
-    print(m)
+   
     m.delete()
     return JsonResponse({
         'status':'del',

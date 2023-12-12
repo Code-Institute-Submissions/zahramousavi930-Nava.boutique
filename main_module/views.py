@@ -16,7 +16,7 @@ class Home_page(TemplateView):
         context=super(Home_page, self).get_context_data()
         context['products']=models.Products.objects.all()[:6]
         context['category']=models.Category.objects.all()
-        print(self.request.user.id)
+
         return context
 
 
