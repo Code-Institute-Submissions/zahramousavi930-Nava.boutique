@@ -100,3 +100,18 @@ class Order(models.Model):
 
         return total_amount
 
+
+
+
+class OrderDetail(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey( Products, on_delete=models.CASCADE,null=True)
+    final_price = models.IntegerField(null=True, blank=True)
+    count = models.IntegerField()
+
+    def get_total_price(self):
+        return self.count * self.product.price
+
+
+    def __str__(self):
+        return str(self.order)
