@@ -145,3 +145,44 @@ def save_contact_us(request):
             return redirect('home_pgae')
 
     return redirect('home_pgae')
+
+
+
+
+
+def addtocart(request):
+    data = json.loads(request.body.decode("utf-8"))
+    pk = data['pk']
+
+
+    if request.user.is_authenticated:
+        product = models.Products.objects.filter(id=pk).first()
+        if product is not None:
+             current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=request.user.id)
+             current_order_detail = current_order.orderdetail_set.filter(product_id=pk).first()
+             if current_order_detail is not None:
+                 current_order_detail.count += 1
+                 current_order_detail.save()
+             else:
+                new_detail =models.OrderDetail(order_id=current_order.id, product_id=pk, count=1)
+                new_detail.save()
+
+             return JsonResponse({
+                'status': 'success',
+                'message':' order add to cart',
+
+            })
+        else:
+            return JsonResponse({
+                'status': 'not_found',
+                'message': 'product dose not exists',
+
+            })
+    else:
+        return JsonResponse({
+            'status': 'not_auth',
+            'message': 'please login then order!',
+
+        })
+
+
