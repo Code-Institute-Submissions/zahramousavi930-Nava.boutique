@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'NovaBoutique.wsgi.application'
-
+AUTH_USER_MODEL = 'account_module.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
