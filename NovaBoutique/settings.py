@@ -33,9 +33,7 @@ SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com',
-'https://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/',
-'http://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com']
+ALLOWED_HOSTS = {'*'}
 
 
 # Application definition
@@ -47,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'account_module',
     'main_module',
     'widget_tweaks',
