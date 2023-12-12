@@ -121,3 +121,27 @@ class contact_with_us(TemplateView):
         context['footer']=models.contact_with_us.objects.get()
         context['contact_form']=forms.contact_form
         return context
+
+
+
+
+def save_contact_us(request):
+
+    if request.POST:
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        text=request.POST.get('text')
+
+        try:
+            new_contact=models.contact(
+                name=name,
+                email=email,
+                text=text
+            )
+            new_contact.save()
+            return redirect('home_pgae')
+
+        except:
+            return redirect('home_pgae')
+
+    return redirect('home_pgae')
