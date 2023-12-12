@@ -1,0 +1,191 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block contect %}
+
+
+
+        <!-- top slider -->
+      <section class="m-4 m-lg-5">
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+
+              <img src="{% static 'assets/img/1.jpg' %}" class="img-fluid" alt="shop images" />
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'assets/img/2.jpg' %}" class="img-fluid" alt="shop images" />
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'assets/img/3.jpg' %}" class="img-fluid" alt="shop images" />
+            </div>
+            <div class="carousel-item">
+              <img src="{% static 'assets/img/4.jpg' %}" class="img-fluid" alt="shop images" />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+
+
+
+      <!-- scroll coolections -->
+      <section id="my-scroll" class="scroll">
+      {% for fooo in category %}
+      <div class="scroll-container text-center">
+
+          <a href="{% url 'category_product' fooo.id %}" class="text-decoration-none link-dark">
+
+            <img src="{{ fooo.image.url }}" alt="{{ fooo.categoryy }}" />
+            <h5 class="user-select-none my-2">{{ fooo.categoryy }}</h5>
+          </a>
+        </div>
+      {% endfor %}
+
+
+
+      </section>
+
+
+      <!-- fisrt photo -->
+      <div class="photo-container my-4">
+        <div class="shadow"></div>
+
+        <img src="{% static 'assets/images/2.jpg' %}" alt="">
+      </div>
+
+
+      <!-- most popular sell -->
+      <section class="more-sell">
+        <div
+          class="detial-data d-flex justify-content-between align-items-center m-1"
+        >
+          <p class="h3 text-danger my-1 mx-2 "> products</p>
+          <a href="{% url 'all_products_pgae' %}" class="see-all text-decoration-none pointer-event mx-2"> see all ></a>
+        </div>
+
+        <div class="cards-container">
+            {% for product in products %}
+                {% if product.discount <= 0 %}
+             <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
+            <img
+              src="{{ product.image.url }}"
+              class="card-img-top"
+              alt="{{product.name}}"
+            />
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <div class=" d-flex align-items-center justify-content-between">
+                <h6 class=" text-primary ">$ {{ product.price }}</h6>
+
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
+            </div>
+          </div>
+                {% endif %}
+            {% endfor %}
+
+
+
+        </div>
+      </section>
+
+
+      <!-- second photo of discount -->
+      <div class="photo-container my-4">
+        <div class="shadow"></div>
+
+        <img src="{% static 'assets/images/6-r.jpg' %}" class="size-img" alt="">
+      </div>
+
+
+      <!-- discount product -->
+      <section class="discounts-products my-5">
+        <div
+          class="detial-data d-flex justify-content-between align-items-center m-1"
+        >
+          <p class="h3 text-danger my-1 mx-2"> discounters</p>
+
+        </div>
+        <div class="discount-container">
+            {% for product in products %}
+                {% if product.discount > 0 %}
+
+               <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              <div class="real-container">
+                <div class=" d-flex flex-row-reverse align-items-center justify-content-between">
+                  <h6 class="card-subtitle fw-lighter text-secondary text-decoration-line-through d-inline">${{ product.price }}</h6>
+
+                </div>
+                <h6 class=" text-success discount-price ">${{ product.discount_price }}</h6>
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.id %}" class="btn btn-danger  ">see</a>
+            </div>
+            <div class="discount-number">
+              <p>{{ product.discount }}%</p>
+            </div>
+          </div>
+                {% endif %}
+
+            {% endfor %}
+
+
+
+        </div>
+      </section>
+
+{% endblock %}
