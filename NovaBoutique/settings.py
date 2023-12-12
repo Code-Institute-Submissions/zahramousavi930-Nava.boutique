@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ['ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com',
 INSTALLED_APPS = [
     'django.contrib.admin',
     'whitenoise',
+    'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'account_module',
     'main_module',
     'widget_tweaks',
+    'cloudinary',
 
     
 ]
@@ -67,6 +69,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'NovaBoutique.urls'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dggry4oz1',
+    'API_KEY': '619785319395311',
+    'API_SECRET': 'tCzuwcSoxBJ8zP1xoSt1INUakto'
+}
 
 TEMPLATES = [
     {
@@ -146,7 +155,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+
+
 STATIC_ROOT =  os.path.join(BASE_DIR,'staticfiles')
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # email
