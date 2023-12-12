@@ -51,3 +51,33 @@ class Products(DetailView):
         context['comment_form']=forms.comments
         context['comments']=models.add_comments.objects.filter(product_id=self.kwargs['pk'])
         return context
+
+
+
+
+
+def add_comments_part(request):
+    data = json.loads(request.body.decode("utf-8"))
+    id = data['id']
+    text = data['text']
+    email = data['email']
+
+
+
+    if request.user.is_authenticated:
+        new_comments=models.add_comments(
+            email=email,
+            text=text,
+            user_id=request.user.id,
+            product_id=id
+        )
+        new_comments.save()
+        return JsonResponse({
+            'status': 'ok',
+            'message': 'refresh page to see your comment.'
+        })
+    else:
+        return JsonResponse({
+            'status': 'no',
+            'message':'first login!'
+        })
