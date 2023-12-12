@@ -1,0 +1,62 @@
+
+    <footer class="footer">
+        <div class="container">
+            <div class=" d-flex justify-content-between align-items-center ">
+
+
+                    <div class="single_footer">
+                        <h4> Metanoya shop</h4>
+                        <ul>
+
+                            <li class="my-3">
+                              <p>
+                                if you need help <br> you can connect us with facebook
+                              </p>
+                            </li>
+                            <li class="my-3">
+                              <button class="btn btn-danger">facebook</button>
+                            </li>
+
+                              <li class="my-3">
+                                  <p>or</p>
+                              <a href="{% url 'contact_with_us' %}" class="btn btn-danger">contact with us</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+<div class="m-3">
+
+
+                <form class="form-control" method="post" action="{% url 'news_teller'%}">
+                    {% csrf_token %}
+                    <div class="row g-3 align-items-center">
+                  <div class="col-auto">
+                    <label for="input6" class="col-form-label">join our news teller</label>
+                  </div>
+                  <div class="col-auto">
+                    <input type="email" id="input7" class="form-control" placeholder="email" name="newstelleremail">
+                  </div>
+                        <button class="btn btn-success">submit</button>
+                </form>
+              </div>
+
+                 <form class="form-control " method="post" action="{% url 'remove_news_teller'%}">
+                    {% csrf_token %}
+                    <div class="row g-3 align-items-center">
+                  <div class="col-auto">
+                       <label for="input7" class="col-form-label">remove news teller</label>
+
+                  </div>
+                  <div class="col-auto">
+                    <input type="email" id="input6" class="form-control" placeholder="email" name="removenewstelleremail">
+                  </div>
+                        <button class="btn btn-warning">remove</button>
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </footer>
