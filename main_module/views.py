@@ -3,6 +3,7 @@ from django.views.generic import DetailView,TemplateView
 from . import models
 from . import forms
 from django.http import JsonResponse
+import json
 # Create your views here.
 
 
@@ -82,3 +83,15 @@ def add_comments_part(request):
             'status': 'no',
             'message':'first login!'
         })
+
+
+
+
+class all_peoducts(TemplateView):
+    template_name = 'all products.html'
+
+    def get_context_data(self, **kwargs):
+        context=super(all_peoducts, self).get_context_data()
+        context['all_product']=models.Products.objects.all()
+
+        return context
