@@ -1,4 +1,6 @@
-from django.shortcuts import render,redirect,reverse,Http404,get_object_or_404
+from django.http import Http404 ,HttpResponseRedirect,JsonResponse
+from django.shortcuts import render,redirect,reverse,get_object_or_404
+from django.views.generic import TemplateView
 from django.views import View
 from . import forms
 from . import models
@@ -6,11 +8,8 @@ from django.utils.crypto import get_random_string
 from .utils.email_service import send_email
 from django.contrib.auth import login, logout
 from main_module.models import Products
-from django.http import Http404 ,HttpResponseRedirect,JsonResponse
 from main_module import models
 import json
-
-# Create your views here
 
 
 
@@ -32,10 +31,6 @@ class Profile(TemplateView):
 
 
          return context
-
-
-
-
 
 
 class signup(View):
@@ -87,8 +82,6 @@ class signup(View):
 
 
 
-
-
 class ActivateAccountView(View):
     def get(self, request, email_active_code):
         user = models.User.objects.filter(email_active_code__iexact=email_active_code).first()
@@ -104,8 +97,6 @@ class ActivateAccountView(View):
                 pass
 
         raise Http404
-
-
 
 
 
@@ -149,6 +140,7 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect(reverse('login_page'))
+
 
 
 
@@ -211,8 +203,23 @@ class ResetPasswordView(View):
 
 
 
-
 def favorit(request,pk):
+    # if request.user.is_authenticated:
+    #     post=get_object_or_404(Products ,id=pk)
+    #     print(post.favorit)
+    #     if post.favorit.filter(products__favorit=request.user.id).exists():
+    #         post.favorit.add(request.user)
+    #         return JsonResponse({
+    #             'status': 'add',
+    #             'message': 'add to favorit'
+    #         })
+    #     else:
+    #         post.favorit.remove(request.user)
+    #         return JsonResponse({
+    #             'status': 'remove',
+    #             'message': 'remove from favorit'
+    #         })
+
     if request.user.is_authenticated:
             post = get_object_or_404(Products, id=pk)
             fav = False
@@ -225,6 +232,9 @@ def favorit(request,pk):
                 fav = True
 
                 return redirect('profile')
+
+
+
     else:
 
         return redirect('login_page')

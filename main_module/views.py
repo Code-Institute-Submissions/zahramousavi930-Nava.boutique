@@ -1,11 +1,10 @@
-from django.shortcuts import redirect
-from django.views.generic import DetailView,TemplateView
+from django.shortcuts import redirect ,get_object_or_404
+from django.views.generic import TemplateView,DetailView
+from django.views import View
+from django.http import JsonResponse
 from . import models
 from . import forms
-from django.http import JsonResponse
 import json
-# Create your views here.
-
 
 
 class Home_page(TemplateView):
@@ -19,6 +18,7 @@ class Home_page(TemplateView):
         context['category']=models.Category.objects.all()
         print(self.request.user.id)
         return context
+
 
 
 
@@ -44,6 +44,18 @@ def newsteller(request):
 
 
 
+
+def remove_news_teller(request):
+    email = request.POST.get('removenewstelleremail')
+    models.News_teller.objects.filter(email__exact=email).delete()
+
+    return redirect('home_pgae')
+
+
+
+
+
+
 class Products(DetailView):
     template_name = 'products.html'
     model = models.Products
@@ -53,8 +65,6 @@ class Products(DetailView):
         context['comment_form']=forms.comments
         context['comments']=models.add_comments.objects.filter(product_id=self.kwargs['pk'])
         return context
-
-
 
 
 
@@ -86,7 +96,6 @@ def add_comments_part(request):
 
 
 
-
 class all_peoducts(TemplateView):
     template_name = 'all products.html'
 
@@ -95,7 +104,6 @@ class all_peoducts(TemplateView):
         context['all_product']=models.Products.objects.all()
 
         return context
-
 
 
 
@@ -112,16 +120,15 @@ class category(TemplateView):
 
 
 
-
 class contact_with_us(TemplateView):
     template_name = 'contac_with_us.html'
+
 
     def get_context_data(self, **kwargs):
         context=super(contact_with_us, self).get_context_data()
         context['footer']=models.contact_with_us.objects.get()
         context['contact_form']=forms.contact_form
         return context
-
 
 
 
@@ -184,5 +191,6 @@ def addtocart(request):
             'message': 'please login then order!',
 
         })
+
 
 
