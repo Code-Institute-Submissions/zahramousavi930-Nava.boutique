@@ -6,7 +6,37 @@ from django.utils.crypto import get_random_string
 from .utils.email_service import send_email
 from django.contrib.auth import login, logout
 from main_module.models import Products
-# Create your views here.
+from django.http import Http404 ,HttpResponseRedirect,JsonResponse
+from main_module import models
+import json
+
+# Create your views here
+
+
+
+class Profile(TemplateView):
+
+
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+         context = super(Profile, self).get_context_data()
+         current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
+         total_amount = 0
+         for order_detail in current_order.orderdetail_set.all():
+             total_amount += order_detail.product.price * order_detail.count
+
+         context['order'] = current_order
+         context['sum'] = total_amount
+         context['fav']=models.Products.objects.filter(favorit=self.request.user.id)
+
+
+         return context
+
+
+
+
+
 
 class signup(View):
     def get(self, request):
@@ -199,5 +229,57 @@ def favorit(request,pk):
 
         return redirect('login_page')
 
+
+
+
+
+def sendd_email(request):
+
+    teller=models.News_teller.objects.all()
+    for i in teller:
+        try:
+            send_email('new product', i.email, {'news': teller}, 'news_teller.html')
+            return JsonResponse({
+            'status': 'send',
+            'message': 'email send successfully'
+
+             })
+        except:
+            return JsonResponse({
+                'status': 'not',
+                'message': 'email can not send maybe there is no email to send!'
+
+            })
+
+
+
+
+
+
+def modify_order_detail(request):
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    pk = body['pk']
+
+
+    m = models.OrderDetail.objects.filter(product_id=pk, order__userr_id=request.user.id)
+    m.delete()
+    return JsonResponse({
+        'status':'del',
+        'message':'delete successfully'
+    })
+
+
+
+def remove_fav(request,pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Products, id=pk)
+        liked = False
+        if post.favorit.filter(id=request.user.id).exists():
+            post.favorit.remove(request.user)
+            liked = False
+        return HttpResponseRedirect(reverse('profile'))
+    else:
+        return render(reverse('home_page'))
 
 
