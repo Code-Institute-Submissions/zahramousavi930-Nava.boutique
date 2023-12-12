@@ -41,3 +41,18 @@ class News_teller(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+
+
+class add_comments(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    create_date = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(max_length=200)
+    text = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
