@@ -32,3 +32,12 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+class News_teller(models.Model):
+    email=models.EmailField(max_length=200)
+
+    def __str__(self):
+        return self.email
