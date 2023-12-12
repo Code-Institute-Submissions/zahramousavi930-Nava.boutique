@@ -141,3 +141,41 @@ class ForgetPasswordView(View):
         context = {'forget_pass_form': forget_pass_form}
         return render(request, 'forget_password.html', context)
 
+
+
+
+
+class ResetPasswordView(View):
+    def get(self, request, active_code):
+        user= models.User.objects.filter(email_active_code__iexact=active_code).first()
+        if user is None:
+            return redirect(reverse('login_page'))
+
+        reset_pass_form = forms.ResetPasswordForm()
+
+        context = {
+            'reset_pass_form': reset_pass_form,
+            'user': user
+        }
+        return render(request, 'reset_password.html', context)
+
+    def post(self, request, active_code):
+        reset_pass_form = forms.ResetPasswordForm(request.POST)
+        user = models.User.objects.filter(email_active_code__iexact=active_code).first()
+        if reset_pass_form.is_valid():
+            if user is None:
+                return redirect(reverse('login_page'))
+            user_new_pass = reset_pass_form.cleaned_data.get('password')
+            user.set_password(user_new_pass)
+            user.email_active_code = get_random_string(72)
+            user.is_active = True
+            user.save()
+            return redirect(reverse('login_page'))
+
+        context = {
+            'reset_pass_form': reset_pass_form,
+            'user': user
+        }
+
+        return render(request, 'reset_password.html', context)
+
