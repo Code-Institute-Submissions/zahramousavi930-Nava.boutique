@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+    all products
+{% endblock %}
+
+
+{% block contect %}
+ <section class="more-sell">
+        <div
+          class="detial-data d-flex justify-content-between align-items-center m-1"
+        >
+          <p class="h3 text-danger my-1 mx-2 "> products</p>
+
+        </div>
+
+        <div class="cards-container">
+            {% for product in all_product %}
+
+             <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
+            <img
+              src="{{ product.image.url }}"
+              class="card-img-top"
+              alt="{{product.name}}"
+            />
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <div class=" d-flex align-items-center justify-content-between">
+                <h6 class=" text-primary ">$ {{ product.price }}</h6>
+
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
+            </div>
+          </div>
+
+            {% endfor %}
+
+
+
+        </div>
+      </section>
+{% endblock %}
