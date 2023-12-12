@@ -60,3 +60,23 @@ class LoginForm(forms.Form):
         ]
     )
 
+
+class ForgotPasswordForm(forms.Form):
+    email = forms.EmailField(
+        label='email',
+        widget=forms.EmailInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator
+        ]
+    )
+
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(
+        label='new password ',
+        widget=forms.PasswordInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+        ]
+    )
