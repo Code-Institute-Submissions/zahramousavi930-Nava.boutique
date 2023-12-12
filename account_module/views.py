@@ -75,3 +75,41 @@ class ActivateAccountView(View):
 
         raise Http404
 
+
+
+
+
+
+class LoginView(View):
+    def get(self, request):
+        login_form = forms.LoginForm()
+        context = {
+            'login_form': login_form
+        }
+
+        return render(request, 'login.html', context)
+
+    def post(self, request ):
+        login_form = forms.LoginForm(request.POST)
+        if login_form.is_valid():
+            user_email = login_form.cleaned_data.get('email')
+            user_pass = login_form.cleaned_data.get('password')
+            user = models.User.objects.filter(email__iexact=user_email).first()
+            if user is not None:
+                if not user.is_active:
+                    login_form.add_error('email', ' your account is not active yet check your email.')
+                else:
+                    is_password_correct = user.check_password(user_pass)
+                    if is_password_correct:
+                        login(request, user)
+                        return redirect(reverse('profile'))
+                    else:
+                        login_form.add_error('email', 'password is wrong.')
+            else:
+                login_form.add_error('email', ' cant find user with this detail. ')
+
+        context = {
+            'login_form': login_form
+        }
+
+        return render(request, 'login.html', context)
