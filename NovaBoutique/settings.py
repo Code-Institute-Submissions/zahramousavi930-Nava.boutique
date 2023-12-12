@@ -35,8 +35,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com',
 'https://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/',
-'http://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com',
-'8000-zahramousav-navaboutiqu-zuyqkkgk4ti.ws-eu106.gitpod.io']
+'http://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com']
 
 
 # Application definition
