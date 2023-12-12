@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse,Http404
 from django.views import View
 from . import forms
 from . import models
@@ -54,4 +54,24 @@ class signup(View):
         }
 
         return render(request, 'signup.html', context)
+
+
+
+
+
+class ActivateAccountView(View):
+    def get(self, request, email_active_code):
+        user = models.User.objects.filter(email_active_code__iexact=email_active_code).first()
+        if user is not None:
+            if not user.is_active:
+                user.is_active = True
+                user.email_active_code = get_random_string(72)
+                user.save()
+
+                return redirect(reverse('login_page'))
+            else:
+                return redirect(reverse('home_pgae'))
+                pass
+
+        raise Http404
 
