@@ -37,3 +37,26 @@ class RegisterForm(forms.Form):
             validators.MaxLengthValidator(100),
         ]
     )
+
+
+
+
+class LoginForm(forms.Form):
+
+    email = forms.EmailField(
+        label='email',
+        widget=forms.EmailInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator,
+        ]
+    )
+
+    password = forms.CharField(
+        label='password',
+        widget=forms.PasswordInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+        ]
+    )
+
