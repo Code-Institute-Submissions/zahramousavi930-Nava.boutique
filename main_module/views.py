@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.views.generic import DetailView,TemplateView
 from . import models
 from . import forms
+from django.http import JsonResponse
 # Create your views here.
 
 
