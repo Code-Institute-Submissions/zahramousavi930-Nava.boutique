@@ -95,3 +95,17 @@ class all_peoducts(TemplateView):
         context['all_product']=models.Products.objects.all()
 
         return context
+
+
+
+
+class category(TemplateView):
+    template_name = 'category_products.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(category, self).get_context_data()
+        context['cat_prod']=models.Products.objects.filter(category=self.kwargs['id'])
+
+
+        return context
