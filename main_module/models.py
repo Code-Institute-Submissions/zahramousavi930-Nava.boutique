@@ -77,3 +77,26 @@ class contact(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+
+class Order(models.Model):
+    userr = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_paid = models.BooleanField()
+    payment_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.userr)
+
+    def calculate_total_price(self):
+        total_amount = 0
+        if self.is_paid:
+            for order_detail in self.orderdetail_set.all():
+                total_amount += order_detail.final_price * order_detail.count
+        else:
+            for order_detail in self.orderdetail_set.all():
+                total_amount += order_detail.product.price * order_detail.count
+
+        return total_amount
+
