@@ -2,8 +2,8 @@
       <navbar class="nav d-lg-flex d-none justify-content-evenly color-nav">
         <div class="search-container d-flex justify-content-evenly w-75 my-4">
            <div class="social-media h5">
-        <a href="https://www.facebook.com/profile.php?id=100094030952664" class="text-decoration-none mx-1">
-          <i class="bi bi-facebook">facebook</i>
+        <a href="{% url 'home_pgae' %}" class="text-decoration-none  text-dark ">
+          Nova botique
         </a>
 
       </div>
@@ -14,8 +14,8 @@
             {% endif %}
 
         <div>
-            <i class="bi bi-house-door mx-1 icon"></i>
-            <a class="text-dark text-decoration-none" href="{% url 'home_pgae' %}"> home </a>
+          <i class="bi bi-cart2"></i>
+            <a class="text-dark text-decoration-none" href="{% url 'home_pgae' %}"> shoping cart </a>
         </div>
         </div>
 
