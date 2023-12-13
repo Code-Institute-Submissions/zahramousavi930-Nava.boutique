@@ -1,15 +1,16 @@
 {% extends 'main/base.html' %}
-{%load static%}
+{% load static %}
 {% block title %}
-not found
+404
 {% endblock %}
+
 
 {% block contect %}
 <div class="container">
 
-    <img class="img-fluid" src="{%static 'assets/404.svg'%}" alt="not found">
+    <img class="img-fluid" src="{%static 'assets/ghost-404'%}" alt="not found" width="400" height="400">
     <a href="{%url 'home_page' %}">back to home</a>
 
 </div>
-    
 {% endblock %}
+
