@@ -29,8 +29,9 @@ sign up
               {% render_field login_form.password class+="form-control"  %}
             </div>
 
-            <a href="{% url 'forget_password_page' %}">forgot your password?</a>
         <button class="btn btn-success" type="submit" > submit</button>
+            <a href="{% url 'forget_password_page' %}">forgot your password?</a>
+            <a class="btn btn-primary" href="{% url 'sign_up' %}">sign up</a>
         </form>
     </main>
 {% endblock %}

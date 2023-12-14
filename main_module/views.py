@@ -143,7 +143,7 @@ class all_peoducts(View):
 
         if value == '4':
             a_to_z_prod = models.Products.objects.order_by('name')
-            print(a_to_z_prod)
+
             context = {
                 'high': a_to_z_prod
             }
@@ -151,7 +151,7 @@ class all_peoducts(View):
 
         if value == '5':
             z_to_a_prod = models.Products.objects.order_by('-name')
-            print(z_to_a_prod)
+
             context = {
                 'high': z_to_a_prod
             }
