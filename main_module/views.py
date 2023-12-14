@@ -202,9 +202,6 @@ def search(request):
     name=request.POST.get('search')
 
     result=models.Products.objects.filter(name__regex=name).all()
-
-    print(result)
-
     context={
         'result':result
     }
