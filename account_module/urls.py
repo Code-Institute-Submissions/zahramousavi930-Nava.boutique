@@ -12,5 +12,6 @@ urlpatterns = [
     path('sendemailtoall',views.sendd_email,name='send_email_to_all'),
     path('modify_order_detail',views.modify_order_detail,name='modify_order_detail'),
     path('remove_fav<int:pk>',views.remove_fav,name='remove_fav'),
+    path('shoping-cart',views.Shoping_cart.as_view(),name='shoping_cart'),
 
 ]

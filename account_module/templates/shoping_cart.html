@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% load  static %}
+{% block title %}
+profile
+{% endblock %}
+
+
+{% block contect %}
+    {% if user.is_authenticated %}
+        <div class="container my-5"  >
+        <a href="{% url 'logout_page' %}">log out >></a>
+
+
+
+        {% if sum == 0 %}
+            <img src="{% static 'assets/img/empty profile.jpg' %}" width="420" height="420">
+
+          {% else %}
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+
+                  <th scope="col">name</th>
+                  <th scope="col">price</th>
+                  <th scope="col">count</th>
+                  <th scope="col">delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+
+                   {% for foo in order.orderdetail_set.all  %}
+                      <tr >
+                  <td>{{ foo.product.name}}</td>
+                 <td>{{ foo.product.price}} $</td>
+                 <td >{{ foo.count}}</td>
+                 <td><button type="button" onclick="modify_order({{ foo.product.pk }})"  class="btn btn-danger">&times;</button></td>
+
+                </tr>
+
+
+                    {% endfor %}
+
+
+
+
+
+
+              </tbody>
+            </table>
+
+
+             <button class="btn btn-primary">
+                        chock out {{ sum }}
+           </button>
+
+            {% endif %}
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}
+
+

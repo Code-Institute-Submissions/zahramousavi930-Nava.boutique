@@ -9,8 +9,13 @@
       </div>
 
     <div>
+         {% if user.is_authenticated %}
       <i class="bi bi-cart2 h3" ></i>
-        <a class=" text-decoration-none text-light" href="{% url 'home_pgae' %}"> shoping cart </a>
+        <a class=" text-decoration-none text-light" href="{% url 'shoping_cart' %}"> shoping cart </a>
+         {% else %}
+              <i class="bi bi-cart2 h3" ></i>
+        <a class=" text-decoration-none text-light" href="{% url 'login_page' %}"> shoping cart </a>
+         {% endif %}
     </div>
     {% if user.is_authenticated %}
             <a href="{% url 'profile' %}"><i class="bi bi-person-circle prof text-light">profile</i> </a>
@@ -32,29 +37,43 @@
     >
         {% if user.is_authenticated %}
          <li class="d-flex flex-column justify-content-around">
-
-
         <i class="bi bi-person mx-3 icon"></i>
-        <a class="text-dark text-decoration-none" href="{% url 'profile' %}">profile</a>
+        <a class="text-light text-decoration-none" href="{% url 'profile' %}">profile</a>
 
-      </li>
-
+     q </li>
             {%else %}
                 <li class="d-flex flex-column justify-content-around">
-
-
         <i class="bi bi-person mx-3 icon"></i>
-        <a class="text-dark text-decoration-none" href="{% url 'login_page' %}">profile</a>
+        <a class="text-light text-decoration-none" href="{% url 'login_page' %}">profile</a>
 
         {% endif %}
 
 
+    {% if user.is_authenticated %}
+         <li class="d-flex flex-column justify-content-around">
+        <i class="bi bi-cart2 h3" ></i>
+        <a class="text-light text-decoration-none" href="{% url 'profile' %}">cart</a>
+
+     q </li>
+            {%else %}
+                <li class="d-flex flex-column justify-content-around">
+        <i class="bi bi-cart2 h3" ></i>
+        <a class="text-light text-decoration-none" href="{% url 'login_page' %}">cart</a>
+
+        {% endif %}
 
       <li class="d-flex flex-column justify-content-around">
-        <!-- <i class="fa-light fa-house icons"></i> -->
+
 
         <i class="bi bi-house-door mx-1 icon"></i>
-        <a class="text-dark text-decoration-none" href="{% url 'home_pgae' %}"> home </a>
+        <a class="text-light text-decoration-none" href="{% url 'home_pgae' %}"> home </a>
+      </li>
+
+        <li class="d-flex flex-column justify-content-around">
+
+
+        <i class="bi bi-search mx-1 h4"></i>
+        <button class="text-light text-decoration-none bt" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> search </button>
       </li>
 
 
@@ -63,27 +82,30 @@
   </nav>
 </header>
 
-<div class="bg-dark d-lg-none social-container d-flex justify-content-around align-items-center" >
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">search box </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group">
+                  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                </div>
+                                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    </div>
 
 
-    <div class="social-media h5">
-    <a href="{% url 'home_pgae' %}" class="text-decoration-none  text-light ">
-      Nova botique
-    </a>
-  </div>
 
 
-        <a class=" text-decoration-none text-light h2" href="{% url 'home_pgae' %}">
-        <i class="bi bi-cart2"></i>
-        </a>
-
-        {% if user.is_authenticated %}
-
-            {% else %}
-              <a href="{% url 'sign_up' %}"   class="btn btn-danger me-3"> login/signup</a>
-        {% endif %}
-
-
-
-
-</div>

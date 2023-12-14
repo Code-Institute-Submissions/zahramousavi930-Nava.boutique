@@ -12,10 +12,7 @@ from main_module import models
 import json
 
 
-
 class Profile(TemplateView):
-
-
     template_name = 'profile.html'
 
     def get_context_data(self, **kwargs):
@@ -31,6 +28,24 @@ class Profile(TemplateView):
 
 
          return context
+
+
+class Shoping_cart(TemplateView):
+    template_name = 'shoping_cart.html'
+
+    def get_context_data(self, **kwargs):
+         context = super(Shoping_cart, self).get_context_data()
+         current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
+         total_amount = 0
+         for order_detail in current_order.orderdetail_set.all():
+             total_amount += order_detail.product.price * order_detail.count
+
+         context['order'] = current_order
+         context['sum'] = total_amount
+
+         return context
+
+
 
 
 class signup(View):
