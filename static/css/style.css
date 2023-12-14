@@ -320,11 +320,13 @@ header navbar {
 /* footer */
 
 .footer {
-  height: 600px !important;
-  background: #929292;
+  height: 750px !important;
+  background: #202020;
   padding-top: 80px;
   padding-bottom: 40px;
 }
+
+
 
 /*END FOOTER SOCIAL DESIGN*/
 
@@ -607,7 +609,11 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   .drop-down  {
       display: none;
   }
-  
+
+  .footer{
+    height: auto !important;
+  }
+
 }
 
 @media (max-width:992px){

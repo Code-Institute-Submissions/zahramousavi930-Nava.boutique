@@ -1,34 +1,29 @@
 
     <footer class="footer">
-        <div class="container">
-            <div class=" d-flex justify-content-between align-items-center ">
-
-
+        <div class="container ">
+            <div class=" d-flex flex-column flex-lg-row justify-content-between align-items-center ">
                     <div class="single_footer">
-                        <h4> Metanoya shop</h4>
-                        <ul>
-
-                            <li class="my-3">
-                              <p>
-                                if you need help <br> you can connect us with facebook
+                        <h4 class="text-light"> Nova shop</h4>
+                        <div>
+                            <p class="text-light">
+                                if you need help <br> you can connect us with facebook or contact form
                               </p>
-                            </li>
-                            <li class="my-3">
-                              <button class="btn btn-danger">facebook</button>
-                            </li>
+                        </div>
 
-                              <li class="my-3">
-                                  <p>or</p>
-                              <a href="{% url 'contact_with_us' %}" class="btn btn-danger">contact with us</a>
-                            </li>
+                        <div class="d-flex  justify-content-between align-items-center" >
+                                 <a href="https://www.facebook.com/profile.php?id=100094030952664">
+                                    <i class="bi bi-facebook text-light h1"> </i>
+                                </a>
 
-                        </ul>
-                    </div>
+                             <a href="{% url 'contact_with_us' %}" class="btn btn-warning">contact with us</a>
 
-<div class="m-3">
+                        </div>
 
 
-                <form class="form-control" method="post" action="{% url 'news_teller'%}">
+                        </div>
+
+                        <div>
+                                  <form  class="form-control w-75 m-4" method="post" action="{% url 'news_teller'%}">
                     {% csrf_token %}
                     <div class="row g-3 align-items-center">
                   <div class="col-auto">
@@ -36,12 +31,16 @@
                   </div>
                   <div class="col-auto">
                     <input type="email" id="input7" class="form-control" placeholder="email" name="newstelleremail">
+                        <button class="btn btn-success my-2">submit</button>
                   </div>
-                        <button class="btn btn-success">submit</button>
                 </form>
-              </div>
 
-                 <form class="form-control " method="post" action="{% url 'remove_news_teller'%}">
+
+                        </div>
+
+                <div>
+
+                    <form class="form-control w-75 m-4 " method="post" action="{% url 'remove_news_teller'%}">
                     {% csrf_token %}
                     <div class="row g-3 align-items-center">
                   <div class="col-auto">
@@ -50,12 +49,22 @@
                   </div>
                   <div class="col-auto">
                     <input type="email" id="input6" class="form-control" placeholder="email" name="removenewstelleremail">
+                        <button class="btn btn-danger my-2">remove</button>
                   </div>
-                        <button class="btn btn-warning">remove</button>
                 </form>
 
-            </div>
-        </div>
+                </div>
+
+
+
+
+
+              </div>
+
+
+
+
+
 
 
 
