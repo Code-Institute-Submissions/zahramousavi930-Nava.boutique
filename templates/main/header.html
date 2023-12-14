@@ -50,13 +50,13 @@
     >
         {% if user.is_authenticated %}
          <li class="d-flex flex-column justify-content-around">
-        <i class="bi bi-person mx-3 icon"></i>
+        <i class="bi bi-person mx-1 icon"></i>
         <a class="text-light text-decoration-none" href="{% url 'profile' %}">profile</a>
 
-     q </li>
+     </li>
             {%else %}
                 <li class="d-flex flex-column justify-content-around">
-        <i class="bi bi-person mx-3 icon"></i>
+        <i class="bi bi-person mx-1 icon"></i>
         <a class="text-light text-decoration-none" href="{% url 'login_page' %}">profile</a>
 
         {% endif %}
@@ -67,7 +67,7 @@
         <i class="bi bi-cart2 h3" ></i>
         <a class="text-light text-decoration-none" href="{% url 'profile' %}">cart</a>
 
-     q </li>
+      </li>
             {%else %}
                 <li class="d-flex flex-column justify-content-around">
         <i class="bi bi-cart2 h3" ></i>

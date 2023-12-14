@@ -4,11 +4,24 @@
 {% block title %}
     all products
 {% endblock %}
-<button class="btn btn-sm btn-dark rounded-circle position-fixed bottom-0 end-0 translate-middle d-none top" onclick="scrollToTop()" id="back-to-up">
-  <i class="h1  bi bi-arrow-up-circle-fill text-light" ></i>
-</button>
 
 {% block contect %}
+
+    <div class="container my-5">
+        <form action="{% url 'all_products_pgae' %}" method="post">
+            {% csrf_token %}
+               <select id="select" name="select" class="form-select" aria-label="Default select">
+                  <option value="1" selected>sorted by</option>
+                  <option name="2" value="2">price (low to high)</option>
+                   <option name="3" value="3">price (high to low)</option>
+                   <option name="4" value="4">name (A to Z)</option>
+                   <option name="5" value="5">name (Z to A)</option>
+                </select>
+            <button type="submit" class="btn btn-secondary m-2" > sort</button>
+        </form>
+
+    </div>
+
  <section class="more-sell">
         <div
           class="detial-data d-flex justify-content-between align-items-center m-1"
@@ -61,7 +74,110 @@
                 {% endif %}
 
 
+
             {% endfor %}
+
+
+
+
+
+
+            {% if low %}
+                {% for product in low %}
+                 {% if product.discount %}
+
+           <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              <div class="real-container">
+                <div class=" d-flex flex-row-reverse align-items-center justify-content-between">
+                  <h6 class="card-subtitle fw-lighter text-secondary text-decoration-line-through d-inline">${{ product.price }}</h6>
+
+                </div>
+                <h6 class=" text-success discount-price ">${{ product.discount_price }}</h6>
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.id %}" class="btn btn-danger  ">see</a>
+            </div>
+            <div class="discount-number">
+              <p>{{ product.discount }}%</p>
+            </div>
+          </div>
+
+                    {% else %}
+
+             <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
+            <img
+              src="{{ product.image.url }}"
+              class="card-img-top"
+              alt="{{product.name}}"
+            />
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <div class=" d-flex align-items-center justify-content-between">
+                <h6 class=" text-primary ">$ {{ product.price }}</h6>
+
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
+            </div>
+          </div>
+
+                {% endif %}
+                {% endfor %}
+
+
+            {% endif %}
+
+
+
+
+            {% if high %}
+                {% for product in high %}
+                 {% if product.discount %}
+
+           <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              <div class="real-container">
+                <div class=" d-flex flex-row-reverse align-items-center justify-content-between">
+                  <h6 class="card-subtitle fw-lighter text-secondary text-decoration-line-through d-inline">${{ product.price }}</h6>
+
+                </div>
+                <h6 class=" text-success discount-price ">${{ product.discount_price }}</h6>
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.id %}" class="btn btn-danger  ">see</a>
+            </div>
+            <div class="discount-number">
+              <p>{{ product.discount }}%</p>
+            </div>
+          </div>
+
+                    {% else %}
+
+             <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
+            <img
+              src="{{ product.image.url }}"
+              class="card-img-top"
+              alt="{{product.name}}"
+            />
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <div class=" d-flex align-items-center justify-content-between">
+                <h6 class=" text-primary ">$ {{ product.price }}</h6>
+
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
+            </div>
+          </div>
+
+                {% endif %}
+                {% endfor %}
+
+
+            {% endif %}
 
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import redirect ,get_object_or_404,render
+from django.shortcuts import redirect ,render,reverse
 from django.views.generic import TemplateView,DetailView
 from django.views import View
 from django.http import JsonResponse
@@ -112,14 +112,68 @@ def add_comments_part(request):
 
 
 
-class all_peoducts(TemplateView):
-    template_name = 'all products.html'
+class all_peoducts(View):
+    def get(self,reqiest):
+        allproducts=models.Products.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context=super(all_peoducts, self).get_context_data()
-        context['all_product']=models.Products.objects.all()
+        context={
+            'all_product':allproducts
+        }
+        return render(reqiest,'all products.html',context)
 
-        return context
+    def post(self,request):
+        value =request.POST.get('select')
+
+        if value == '2':
+            low_prod=models.Products.objects.order_by('price')
+
+            context={
+                'low':low_prod
+            }
+            return render(request, 'all products.html', context)
+
+
+        if value == '3':
+            high_prod = models.Products.objects.order_by('-price')
+
+            context={
+                'high':high_prod
+            }
+            return render(request, 'all products.html', context)
+
+        if value == '4':
+            a_to_z_prod = models.Products.objects.order_by('name')
+            print(a_to_z_prod)
+            context = {
+                'high': a_to_z_prod
+            }
+            return render(request, 'all products.html', context)
+
+        if value == '5':
+            z_to_a_prod = models.Products.objects.order_by('-name')
+            print(z_to_a_prod)
+            context = {
+                'high': z_to_a_prod
+            }
+            return render(request, 'all products.html', context)
+
+
+
+        else:
+            return redirect('all_products_pgae')
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
