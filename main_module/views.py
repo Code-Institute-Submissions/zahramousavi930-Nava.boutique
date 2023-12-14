@@ -14,7 +14,11 @@ class Home_page(TemplateView):
     def get_context_data(self, **kwargs):
 
         context=super(Home_page, self).get_context_data()
-        context['products']=models.Products.objects.all()[:6]
+        context['products_discount']=models.Products.objects.all()
+        context['products']=models.Products.objects.filter(discount= 0).all()[:6]
+
+
+
         context['category']=models.Category.objects.all()
 
         return context
@@ -126,6 +130,7 @@ class category(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(category, self).get_context_data()
         context['cat_prod']=models.Products.objects.filter(category=self.kwargs['id'])
+        context['cat_name']=models.Products.objects.filter(category=self.kwargs['id']).first()
 
 
         return context

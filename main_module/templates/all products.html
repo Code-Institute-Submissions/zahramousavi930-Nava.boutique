@@ -19,6 +19,28 @@
 
         <div class="cards-container">
             {% for product in all_product %}
+                {% if product.discount %}
+
+           <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              <div class="real-container">
+                <div class=" d-flex flex-row-reverse align-items-center justify-content-between">
+                  <h6 class="card-subtitle fw-lighter text-secondary text-decoration-line-through d-inline">${{ product.price }}</h6>
+
+                </div>
+                <h6 class=" text-success discount-price ">${{ product.discount_price }}</h6>
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.id %}" class="btn btn-danger  ">see</a>
+            </div>
+            <div class="discount-number">
+              <p>{{ product.discount }}%</p>
+            </div>
+          </div>
+
+                    {% else %}
 
              <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
             <img
@@ -35,6 +57,9 @@
               <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
             </div>
           </div>
+
+                {% endif %}
+
 
             {% endfor %}
 

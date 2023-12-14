@@ -107,7 +107,7 @@
       </div>
 
 
-      <!-- most popular sell -->
+      <!--  all products -->
       <section class="more-sell">
         <div
           class="detial-data d-flex justify-content-between align-items-center m-1"
@@ -153,17 +153,15 @@
 
       <!-- discount product -->
       <section class="discounts-products my-5">
-        <div
-          class="detial-data d-flex justify-content-between align-items-center m-1"
-        >
+        <div>
           <p class="h3 text-danger my-1 mx-2"> discounters</p>
 
         </div>
         <div class="discount-container">
-            {% for product in products %}
-                {% if product.discount > 0 %}
 
-               <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+             {% for product in products_discount %}
+                {% if product.discount %}
+                       <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
             <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
             <div class="card-body text-dark d-flex justify-content-around flex-column">
               <h5 class="card-title">{{ product.name }}</h5>
@@ -181,9 +179,14 @@
               <p>{{ product.discount }}%</p>
             </div>
           </div>
+
+
                 {% endif %}
 
-            {% endfor %}
+
+
+                  {% endfor %}
+
 
 
 

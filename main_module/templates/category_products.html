@@ -9,40 +9,71 @@
 
 
 {% block contect %}
- <section class="more-sell">
+
+   {% if cat_prod %}
+<section class="more-sell">
         <div
           class="detial-data d-flex justify-content-between align-items-center m-1"
         >
-          <p class="h3 text-danger my-1 mx-2 "> </p>
+          <p class="h3 text-danger m-5"> {{ cat_name.category }}</p>
 
         </div>
 
-        <div class="cards-container my-5">
-        {% for foo in cat_prod %}
-
-                   <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
-            <img
-              src="{{ foo.image.url }}"
-              class="card-img-top"
-              alt="{{foo.name}}"
-            />
+        <div class="cards-container">
+           {% for product in cat_prod %}
+                {% if product.discount %}
+                       <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
             <div class="card-body text-dark d-flex justify-content-around flex-column">
-              <h5 class="card-title">{{ foo.name }}</h5>
-              <div class=" d-flex align-items-center justify-content-between">
-                <h6 class=" text-primary ">$ {{ foo.price }}</h6>
+              <h5 class="card-title">{{ product.name }}</h5>
 
+              <div class="real-container">
+                <div class=" d-flex flex-row-reverse align-items-center justify-content-between">
+                  <h6 class="card-subtitle fw-lighter text-secondary text-decoration-line-through d-inline">${{ product.price }}</h6>
+
+                </div>
+                <h6 class=" text-success discount-price ">${{ product.discount_price }}</h6>
               </div>
-              <a href="{% url 'products_pgae' foo.slug foo.pk %}" class="btn btn-danger  ">see</a>
+              <a href="{% url 'products_pgae' product.slug product.id %}" class="btn btn-danger  ">see</a>
+            </div>
+            <div class="discount-number">
+              <p>{{ product.discount }}%</p>
             </div>
           </div>
 
+           {% else %}
+                     <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
+            <img
+              src="{{ product.image.url }}"
+              class="card-img-top"
+              alt="{{product.name}}"
+            />
+            <div class="card-body text-dark d-flex justify-content-around flex-column">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <div class=" d-flex align-items-center justify-content-between">
+                <h6 class=" text-primary ">$ {{ product.price }}</h6>
 
-        {% endfor %}
+              </div>
+              <a href="{% url 'products_pgae' product.slug product.pk %}" class="btn btn-danger  ">see</a>
+            </div>
+          </div>
+                {% endif %}
 
 
+
+                  {% endfor %}
 
 
 
         </div>
       </section>
+       {% else %}
+        <p class="h1 m-5">
+        Ther is no product!
+        </p>
+         <img src="{% static 'assets/img/empty cart.jpg' %}" width="420" height="420">
+
+   {% endif %}
+
+
 {% endblock %}
