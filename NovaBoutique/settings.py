@@ -42,7 +42,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    # 'whitenoise',
+    'whitenoise',
     'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'account_module',
     'main_module',
     'widget_tweaks',
-    # 'cloudinary',
+    'cloudinary',
 
     
 ]
@@ -157,7 +157,7 @@ STATICFILES_DIRS = [
 
 
 
-STATIC_ROOT =  os.path.join(BASE_DIR,'staticfiless')
+STATIC_ROOT =  os.path.join(BASE_DIR,'staticfiles')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
