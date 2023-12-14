@@ -42,7 +42,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'whitenoise',
+    # 'whitenoise',
     'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,14 +52,14 @@ INSTALLED_APPS = [
     'account_module',
     'main_module',
     'widget_tweaks',
-    'cloudinary',
+    # 'cloudinary',
 
     
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,7 +157,7 @@ STATICFILES_DIRS = [
 
 
 
-STATIC_ROOT =  os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT =  os.path.join(BASE_DIR,'staticfiless')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
