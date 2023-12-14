@@ -70,7 +70,41 @@
               <p class="h4">{{ selected_product.name }} </p>
               <div class="stars d-flex align-items-center">
                 <p class="text-muted mx-3 my-1">( comments {{ comments.count }})</p>
-                <p class="text-muted mx-3 my-1">rate</p>
+                <p class="text-muted mx-3 my-1">
+                    {% if selected_product.rate < 5 %}
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+
+                      {% elif selected_product.rate < 20 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                        {% elif selected_product.rate < 30 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                         {% elif selected_product.rate < 40 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                           <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+
+                        {% elif selected_product.rate > 50 %}
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                    {% endif %}
+                </p>
 
 
               </div>

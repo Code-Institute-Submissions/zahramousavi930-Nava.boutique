@@ -77,6 +77,9 @@ def add_comments_part(request):
     email = data['email']
     rate= data['rate']
 
+    if rate ==0:
+        rate =1
+
 
 
     if request.user.is_authenticated:
