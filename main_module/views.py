@@ -1,4 +1,4 @@
-from django.shortcuts import redirect ,get_object_or_404
+from django.shortcuts import redirect ,get_object_or_404,render
 from django.views.generic import TemplateView,DetailView
 from django.views import View
 from django.http import JsonResponse
@@ -18,6 +18,8 @@ class Home_page(TemplateView):
         context['category']=models.Category.objects.all()
 
         return context
+
+
 
 
 
@@ -194,3 +196,16 @@ def addtocart(request):
 
 
 
+
+def search(request):
+
+    name=request.POST.get('search')
+
+    result=models.Products.objects.filter(name__regex=name).all()
+
+    print(result)
+
+    context={
+        'result':result
+    }
+    return render(request,'search.html',context)

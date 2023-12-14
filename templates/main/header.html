@@ -22,8 +22,21 @@
             {% else %}
       <a href="{% url 'sign_up' %}"   class="btn btn-warning me-3 text-dark"> login/signup</a>
         {% endif %}
+ <div>
+      <div class="input-group">
+          <form action="{% url 'search' %}" method="post">
+              {% csrf_token %}
+
+                <div class="input-group">
+                  <input type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  <button type="submit" class="btn btn-outline-warning" data-mdb-ripple-init>search</button>
+                </div>
+          </form>
+</div>
+  </div>
 
     </div>
+
 
 
 
@@ -90,12 +103,15 @@
                     <h5 class="modal-title" id="staticBackdropLabel">search box </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-                    <div class="input-group">
-                  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                  <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-                </div>
+                        <form  action="{% url 'search' %}" method="post">
+                             <div class="modal-body">
+                                 <div class="input-group">
+                            {% csrf_token %}
+                                <input  type="search" class="form-control rounded" name="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                            </div>
                                   </div>
+                        </form>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
