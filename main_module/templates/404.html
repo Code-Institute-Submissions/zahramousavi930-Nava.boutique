@@ -1,16 +1,24 @@
 {% extends 'main/base.html' %}
 {% load static %}
+
 {% block title %}
-404
+ not found
 {% endblock %}
 
 
 {% block contect %}
-<div class="container">
-
-    <img class="img-fluid" src="{%static 'assets/ghost-404'%}" alt="not found" width="400" height="400">
-    <a href="{%url 'home_page' %}">back to home</a>
-
-</div>
+    
+    
+    <div class="container m-5">
+        <img class="img-fluid" src="{% static 'assets/img/404.jpg' %}" alt="">
+        <p class="h3 container m-5 ">
+            <a href="{% url 'home_pgae' %}" class="btn btn-primary">
+                back to home
+            </a>
+        </p>
+    </div>
+    
+    
+    
+    
 {% endblock %}
-

@@ -31,18 +31,18 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com',
 # 'https://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/',
 # 'http://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','127.0.0.1:785','localhost']
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-
+    'whitenoise',
     'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,13 +53,13 @@ INSTALLED_APPS = [
     'main_module',
     'widget_tweaks',
     'cloudinary',
-    'whitenoise',
+
     
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-     # "whitenoise.middleware.WhiteNoiseMiddleware",
+     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,8 +157,8 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
