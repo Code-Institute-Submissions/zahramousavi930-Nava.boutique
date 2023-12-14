@@ -37,7 +37,7 @@ DEBUG = True
 # 'https://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/',
 # 'http://ckz80-django-novaboutique-da0d8dc361f8.herokuapp.com/']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -100,16 +100,16 @@ AUTH_USER_MODEL = 'account_module.User'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 # Password validation
