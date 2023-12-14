@@ -75,6 +75,7 @@ def add_comments_part(request):
     id = data['id']
     text = data['text']
     email = data['email']
+    rate= data['rate']
 
 
 
@@ -83,8 +84,14 @@ def add_comments_part(request):
             email=email,
             text=text,
             user_id=request.user.id,
-            product_id=id
+            product_id=id,
+
         )
+        old =models.Products.objects.filter(id=id).first()
+        old_value=old.rate
+        old_value +=int(rate)
+
+        models.Products.objects.update(rate=old_value)
         new_comments.save()
         return JsonResponse({
             'status': 'ok',

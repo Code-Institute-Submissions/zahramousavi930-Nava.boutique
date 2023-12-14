@@ -17,6 +17,7 @@ class Category(models.Model):
 
 
 class Products(models.Model):
+
     name=models.CharField(max_length=300)
     slug=models.CharField(max_length=300)
     category=models.ForeignKey(Category,on_delete=models.CASCADE,null=True)
@@ -24,8 +25,8 @@ class Products(models.Model):
     size=models.IntegerField()
     description=models.TextField(max_length=9000)
     image=models.ImageField(upload_to='products')
-    favorit=models.ManyToManyField(User,null=True,blank=True)
-
+    favorit=models.ManyToManyField(User,blank=True)
+    rate=models.IntegerField(default=0)
     discount=models.IntegerField(null=True,default=0)
     discount_price=models.IntegerField(null=True,default=0)
 
@@ -47,6 +48,7 @@ class News_teller(models.Model):
 
 
 class add_comments(models.Model):
+
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)

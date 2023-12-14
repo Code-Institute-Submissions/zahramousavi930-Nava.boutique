@@ -27,7 +27,10 @@ function add_commentt(id){
 
     const email =document.getElementById('id_email').value
     const text =document.getElementById('id_text').value
+    const rate =document.getElementById('rate').value
     const frm =document.getElementById('frm')
+
+
 
 
 
@@ -36,7 +39,7 @@ function add_commentt(id){
         credentials: 'include',
         headers ,
         body : JSON.stringify({
-           email,text,id
+           email,text,id,rate
         })
     }).then(response=>{
         frm.reset()

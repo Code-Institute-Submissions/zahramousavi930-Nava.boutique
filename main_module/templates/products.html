@@ -70,6 +70,7 @@
               <p class="h4">{{ selected_product.name }} </p>
               <div class="stars d-flex align-items-center">
                 <p class="text-muted mx-3 my-1">( comments {{ comments.count }})</p>
+                <p class="text-muted mx-3 my-1">rate</p>
 
 
               </div>
@@ -224,10 +225,18 @@
         <div class="add-comments">
           <form id="frm" class="m-3" method="post" action="{% url 'add_comments' %}">
               {% csrf_token %}
-            <div class="mb-3">
+               <div class="mb-3">
+                  <div class="form-group">
+                        <label for="rate">rate </label>
+                        <input type="number" max="5" min="1" class="form-control" id="rate" aria-describedby="emailHelp" placeholder="Enter number between 5 ro 1">
+
+                      </div>
+
+                 </div>
+            <div class="mb-3 form-group">
                 {% render_field comment_form.email class+="form-control" placeholder+='email' %}
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                  {% render_field comment_form.text class+="form-control" placeholder+='text'%}
             </div>
             <button onclick="add_commentt({{ selected_product.id }})" id="submit-msg" type="button" class="btn btn-primary">send</button>
