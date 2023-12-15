@@ -9,6 +9,7 @@ from .utils.email_service import send_email
 from django.contrib.auth import login, logout
 from main_module.models import Products
 from main_module import models
+from main_module.forms import order_detail_form
 import json
 
 
@@ -40,6 +41,7 @@ class Shoping_cart(TemplateView):
          for order_detail in current_order.orderdetail_set.all():
              total_amount += order_detail.product.price * order_detail.count
 
+         context['order_form']=order_detail_form()
          context['order'] = current_order
          context['sum'] = total_amount
 
@@ -275,8 +277,9 @@ def modify_order_detail(request):
     body = json.loads(body_unicode)
     pk = body['pk']
 
+    print(pk)
 
-    m = models.OrderDetail.objects.filter(product_id=pk, order__userr_id=request.user.id)
+    m = models.OrderDetail.objects.filter(pk=pk, order__userr_id=request.user.id)
    
     m.delete()
     return JsonResponse({

@@ -179,7 +179,7 @@ function modify_order(pk){
     }).then(res=>{
         res.json().then(response=>{
             if(response.status === 'del'){
-                window.location.href='/user/profile'
+                window.location.href='/user/shoping-cart'
             }
         })
     })

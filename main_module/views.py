@@ -244,8 +244,8 @@ def addtocart(request):
              current_order_detail = current_order.orderdetail_set.filter(product_id=pk).first()
 
              if current_order_detail is not None:
-                 current_order_detail.count += 1
-                 current_order_detail.save()
+                 new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr)
+                 new_detail.save()
              else:
                 new_detail =models.OrderDetail(order_id=current_order.id ,product_id=pk,size=sizee,color=colorr)
                 new_detail.save()

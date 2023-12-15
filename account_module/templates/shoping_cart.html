@@ -1,5 +1,9 @@
 {% extends 'main/base.html' %}
 {% load  static %}
+{% load widget_tweaks %}
+
+
+
 {% block title %}
 profile
 {% endblock %}
@@ -37,29 +41,86 @@ profile
                  <td >{{ foo.count}}</td>
                  <td >{{ foo.size}}</td>
                  <td >{{ foo.color}}</td>
-                 <td><button type="button" onclick="modify_order({{ foo.product.pk }})"  class="btn btn-danger">&times;</button></td>
+                 <td><button type="button" onclick="modify_order({{ foo.pk }})"  class="btn btn-danger">&times;</button></td>
 
                 </tr>
 
 
                     {% endfor %}
 
-
-
-
-
-
               </tbody>
             </table>
 
+            <form class="container my-5"   method="post" action="{% url 'save_contact' %}">
+            {% csrf_token %}
+                <p class="h3 ">Detail</p>
+              <div class="mb-3">
+                  {% render_field order_form.full_name class+="form-control" placeholder+='full name' %}
+              </div>
+              <div class="mb-3">
+                   {% render_field order_form.email_address class+="form-control" placeholder+='email' %}
+              </div>
 
-             <button class="btn btn-primary">
+                <p class="h3 my-3">Delivery</p>
+              <div class="mb-3 form-check">
+                {% render_field order_form.phone_number class+="form-control" placeholder+='phone number' %}
+              </div>
+              <div class="mb-3 form-check">
+                {% render_field order_form.phone_number class+="form-control" placeholder+='phone number *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.street_address1 class+="form-control" placeholder+='street address 1 *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.street_address2 class+="form-control" placeholder+='street address 2 *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.town_or_city class+="form-control" placeholder+='town or city *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.country_state_or_location class+="form-control" placeholder+='country state or location *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.country_state_or_location class+="form-control" placeholder+='country state or location *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.post_code class+="form-control" placeholder+='post code *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.country class+="form-control" placeholder+='country *' %}
+              </div>
+
+                <p class="h3">Payment</p>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.card_name class+="form-control w-50" placeholder+='card name *' %}
+              </div>
+                <div class="mb-3 form-check">
+                {% render_field order_form.expiration_date class+="form-control w-25" placeholder+='expiration *' %}
+              </div>
+                 <div class="mb-3 form-check">
+                {% render_field order_form.cvs class+="form-control w-25" placeholder+='cvs *' %}
+              </div>
+              <button class="btn btn-primary">
                         chock out $ {{ sum }}
            </button>
+            </form>
+
+
+
 
             {% endif %}
+
+
         </div>
-    {% endif %}
+
+
+
+
+
+
+
+
+                {% endif %}
 
 
 
