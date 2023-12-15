@@ -1,6 +1,6 @@
 from django.db import models
 from account_module.models import User
-from colorfield.fields import ColorField
+
 # Create your models here.
 
 
@@ -36,14 +36,17 @@ class Products(models.Model):
     rate=models.IntegerField(default=0)
     discount=models.IntegerField(null=True,default=0)
     discount_price=models.IntegerField(null=True,default=0)
-    color = ColorField(default='#FF0000',null=True)
-    color2 = ColorField(default='#FF0000',null=True)
-    color3 = ColorField(default='#FF0000',null=True)
+    color = models.CharField(max_length=200,null=True)
+    color2 =  models.CharField(max_length=200,null=True)
+    color3 =  models.CharField(max_length=2000,null=True)
 
 
 
     def __str__(self):
         return self.name
+
+
+
 
 
 
@@ -119,8 +122,10 @@ class Order(models.Model):
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey( Products, on_delete=models.CASCADE,null=True)
+    size=models.CharField(max_length=100,default='')
+    color=models.CharField(max_length=100,default='')
     final_price = models.IntegerField(null=True, blank=True)
-    count = models.IntegerField()
+    count = models.IntegerField(default=1)
 
     def get_total_price(self):
         return self.count * self.product.price

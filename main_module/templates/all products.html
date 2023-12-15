@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block contect %}
+
     <button id="scrollToTopBtn" onclick="scrollToTop()"><i class="bi bi-arrow-up-circle-fill h1"></i></button>
+
 
     <div class="container my-5">
         <form action="{% url 'all_products_pgae' %}" method="post">
@@ -27,7 +29,7 @@
         <div
           class="detial-data d-flex justify-content-between align-items-center m-1"
         >
-          <p class="h3 text-danger my-1 mx-2 "> products</p>
+          <p class="h3 text-dark my-3 mx-4 "> product count : {{ all_product.count }}</p>
 
         </div>
 

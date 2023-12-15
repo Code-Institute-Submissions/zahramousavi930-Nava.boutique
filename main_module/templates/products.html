@@ -158,26 +158,84 @@
           <hr />
 
 
+            <form  action="{% url 'add_to_cart' %}" method="post">
+            {% csrf_token %}
+
+            <div class="mx-5  flex-column d-flex justify-content-between align-items-center">
+
+                <div  >
 
 
+                         <div class="my-4">
+
+
+                         <div>
+                          <p> select size &nbsp&nbsp&nbsp </p>
+                             <input type="radio" value="small" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                            <label class="btn btn-outline-info" for="option1">{{ products.size_small }}</label>
+
+                            <input type="radio" class="btn-check" value="medium" name="options" id="option2" autocomplete="off">
+                            <label class="btn btn-outline-info" for="option2">{{ products.size_medium }}</label>
+
+                            <input type="radio" class="btn-check" value="large" name="options" id="option3" autocomplete="off">
+                            <label class="btn btn-outline-info" for="option3">{{ products.size_larg }}</label>
+
+                            <input type="radio" class="btn-check" name="options" value="xlarge" id="option4" autocomplete="off">
+                            <label class="btn btn-outline-info" for="option4">{{ products.size_xlarg }}</label>
+                         </div>
+                         </div>
+
+                    <div>
+
+
+
+                     <div>
+                        <p>select color &nbsp&nbsp&nbsp </p>
+                             <input type="radio" value="{{ products.color }}" class="btn-check" name="color" id="option5" autocomplete="off" checked>
+                            <label class="btn btn-outline-warning" for="option5">{{ products.color }}</label>
+
+                            <input type="radio" class="btn-check" value="{{ products.color2 }}" name="color" id="option6" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="option6">{{ products.color2 }}</label>
+
+                            <input type="radio" class="btn-check" value="{{ products.color3 }}" name="color" id="option7" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="option7">{{ products.color3 }}</label>
+
+
+                         </div>
+                     </div>
+
+                   </div>
+
+
+
+            </div>
           <hr />
 
-          <div
+             <div
             class="add-to-cart d-flex justify-content-around w-75 align-items-center my-3 mx-auto"
           >
 
             <div>
-                <form action="{% url 'add_to_cart' %}" method="post">
-                    {% csrf_token %}
+
+
                        <button onclick="add_to_cart({{ selected_product.pk }})" type="button" class="btn btn-success">
                             add to shopping cart
                         </button>
 
-                </form>
+
 
 
             </div>
           </div>
+                   </form>
+
+
+
+
+
+
+
+
 
           <!-- drop down details in under 992 -->
           <div class="drop-down-detail my-5">
@@ -217,7 +275,12 @@
         </div>
       </section>
 
-      <!-- drop down detail upper 992 -->
+
+
+
+
+
+
 
       <!-- decriptions  -->
       <div class="container my-5 detail2" data-aos="zoom-in">

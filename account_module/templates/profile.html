@@ -29,65 +29,22 @@ profile
           </div>
             </div>
         {% endfor %}
-        {% if sum == 0 %}
-            <img src="{% static 'assets/img/empty profile.jpg' %}" width="420" height="420">
-
-          {% else %}
-
-            <table class="table table-striped">
-  <thead>
-    <tr>
-
-      <th scope="col">name</th>
-      <th scope="col">price</th>
-      <th scope="col">count</th>
-      <th scope="col">delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-
-       {% for foo in order.orderdetail_set.all  %}
-          <tr >
-      <td>{{ foo.product.name}}</td>
-     <td>{{ foo.product.price}} $</td>
-     <td >{{ foo.count}}</td>
-     <td><button type="button" onclick="modify_order({{ foo.product.pk }})"  class="btn btn-danger">&times;</button></td>
-
-    </tr>
-
-
-        {% endfor %}
 
 
 
 
 
-
-  </tbody>
-</table>
-
-
-             <button class="btn btn-primary">
-           chock out {{ sum }}
-           </button>
-
-        {% endif %}
-        </div>
     {% endif %}
-{% if user.is_superuser %}
+
+
     <div class="container my-5">
-        <form action="{% url 'send_email_to_all' %}" method="post">
-            {% csrf_token %}
-            <p>you can with this button send newsteller to all emails!</p>
-            <button type="button" onclick="sendMail()" class="btn btn-success">
-                send email
-            </button>
+        <p>chck out list</p>
 
-
-        </form>
     </div>
-{% endif %}
+
+        </div>
+
+
 
 
 {% endblock %}

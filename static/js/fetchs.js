@@ -89,16 +89,17 @@ function add_to_cart(pk) {
 
 
 
+    const size = document.querySelector('input[name="options"]:checked').value
+    const color = document.querySelector('input[name="color"]:checked').value
 
-
-
+    console.log(size,color)
 
     fetch('/addtocart',{
          method: 'post',
         credentials: 'include',
         headers ,
         body : JSON.stringify({
-       pk
+       pk,size ,color
         })
     }).then(res=>{
         res.json().then(response=>{

@@ -22,6 +22,8 @@ profile
                   <th scope="col">name</th>
                   <th scope="col">price</th>
                   <th scope="col">count</th>
+                  <th scope="col">size</th>
+                  <th scope="col">color</th>
                   <th scope="col">delete</th>
                 </tr>
               </thead>
@@ -33,6 +35,8 @@ profile
                   <td>{{ foo.product.name}}</td>
                  <td>{{ foo.product.price}} $</td>
                  <td >{{ foo.count}}</td>
+                 <td >{{ foo.size}}</td>
+                 <td >{{ foo.color}}</td>
                  <td><button type="button" onclick="modify_order({{ foo.product.pk }})"  class="btn btn-danger">&times;</button></td>
 
                 </tr>
@@ -60,5 +64,22 @@ profile
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
