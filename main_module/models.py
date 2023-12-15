@@ -1,5 +1,6 @@
 from django.db import models
 from account_module.models import User
+from colorfield.fields import ColorField
 # Create your models here.
 
 
@@ -22,13 +23,23 @@ class Products(models.Model):
     slug=models.CharField(max_length=300)
     category=models.ForeignKey(Category,on_delete=models.CASCADE,null=True)
     price=models.IntegerField()
-    size=models.IntegerField()
+    size=models.CharField(max_length=200,null=True)
+    size_small=models.CharField(max_length=200,null=True)
+    size_medium=models.CharField(max_length=200,null=True)
+    size_larg=models.CharField(max_length=200,null=True)
+    size_xlarg=models.CharField(max_length=200,null=True)
+
+
     description=models.TextField(max_length=9000)
     image=models.ImageField(upload_to='products')
     favorit=models.ManyToManyField(User,blank=True)
     rate=models.IntegerField(default=0)
     discount=models.IntegerField(null=True,default=0)
     discount_price=models.IntegerField(null=True,default=0)
+    color = ColorField(default='#FF0000',null=True)
+    color2 = ColorField(default='#FF0000',null=True)
+    color3 = ColorField(default='#FF0000',null=True)
+
 
 
     def __str__(self):
