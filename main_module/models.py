@@ -24,10 +24,10 @@ class Products(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE,null=True)
     price=models.IntegerField()
     size=models.CharField(max_length=200,null=True)
-    size_small=models.CharField(max_length=200,null=True)
-    size_medium=models.CharField(max_length=200,null=True)
-    size_larg=models.CharField(max_length=200,null=True)
-    size_xlarg=models.CharField(max_length=200,null=True)
+    size_small=models.CharField(max_length=200,null=True,blank=True)
+    size_medium=models.CharField(max_length=200,null=True,blank=True)
+    size_larg=models.CharField(max_length=200,null=True,blank=True)
+    size_xlarg=models.CharField(max_length=200,null=True,blank=True)
 
 
     description=models.TextField(max_length=9000)
@@ -36,9 +36,9 @@ class Products(models.Model):
     rate=models.IntegerField(default=0)
     discount=models.IntegerField(null=True,default=0)
     discount_price=models.IntegerField(null=True,default=0)
-    color = models.CharField(max_length=200,null=True)
-    color2 =  models.CharField(max_length=200,null=True)
-    color3 =  models.CharField(max_length=2000,null=True)
+    color = models.CharField(max_length=200,null=True,blank=True)
+    color2 =  models.CharField(max_length=200,null=True,blank=True)
+    color3 =  models.CharField(max_length=2000,null=True,blank=True)
 
 
 

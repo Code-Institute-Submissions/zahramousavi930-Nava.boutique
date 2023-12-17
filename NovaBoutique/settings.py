@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'main_module',
     'widget_tweaks',
     'cloudinary',
+    'stripe',
 
 
     
@@ -168,6 +169,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'bookingsystemresturant@gmail.com'
 EMAIL_HOST_PASSWORD = 'njnmzovebbklmsxd'
 EMAIL_PORT = 587
+
+
+
+# srtipe
+
+STRIPE_SECRET_KEY =  'sk_test_51NHrCEIf6yLcH0aFaZQmJFkXPirjC63bYHAQ6asT4ykFj7nH2u8AGFoDFHZRWSCAvD4s1vaEKddboNTaET93AgFj00D2ZsiKns'
 
 
 

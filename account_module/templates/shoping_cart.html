@@ -5,7 +5,7 @@
 
 
 {% block title %}
-profile
+shopping cart
 {% endblock %}
 
 
@@ -51,7 +51,7 @@ profile
               </tbody>
             </table>
 
-            <form class="container my-5"   method="post" action="{% url 'save_contact' %}">
+            <form class="container my-5"   method="post" action="{% url 'shoping_cart' %}">
             {% csrf_token %}
                 <p class="h3 ">Detail</p>
               <div class="mb-3">
@@ -90,22 +90,16 @@ profile
                 {% render_field order_form.country class+="form-control" placeholder+='country *' %}
               </div>
 
-                <p class="h3">Payment</p>
-                 <div class="mb-3 form-check">
-                {% render_field order_form.card_name class+="form-control w-50" placeholder+='card name *' %}
-              </div>
-                <div class="mb-3 form-check">
-                {% render_field order_form.expiration_date class+="form-control w-25" placeholder+='expiration *' %}
-              </div>
-                 <div class="mb-3 form-check">
-                {% render_field order_form.cvs class+="form-control w-25" placeholder+='cvs *' %}
-              </div>
-              <button class="btn btn-primary">
+
+
+              <button type="submit" class="btn btn-primary">
                         chock out $ {{ sum }}
            </button>
             </form>
 
-
+          <div class="mb-3" id="card-element"></div>
+                    <!-- Used to display form errors -->
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
 
 
             {% endif %}
@@ -125,8 +119,6 @@ profile
 
 
 {% endblock %}
-
-
 
 
 

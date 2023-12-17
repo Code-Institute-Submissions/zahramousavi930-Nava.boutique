@@ -11,43 +11,80 @@ from main_module.models import Products
 from main_module import models
 from main_module.forms import order_detail_form
 import json
-
+from NovaBoutique import settings
+import stripe
+from django.conf import settings
 
 class Profile(TemplateView):
     template_name = 'profile.html'
 
     def get_context_data(self, **kwargs):
          context = super(Profile, self).get_context_data()
-         current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
-         total_amount = 0
-         for order_detail in current_order.orderdetail_set.all():
-             total_amount += order_detail.product.price * order_detail.count
+         final_order =models.OrderDetail.objects.filter(order__is_paid=True, order__userr=self.request.user)
 
-         context['order'] = current_order
-         context['sum'] = total_amount
+         context['order'] = final_order
          context['fav']=models.Products.objects.filter(favorit=self.request.user.id)
 
 
          return context
 
 
-class Shoping_cart(TemplateView):
-    template_name = 'shoping_cart.html'
 
-    def get_context_data(self, **kwargs):
-         context = super(Shoping_cart, self).get_context_data()
+
+class Shoping_cart(View):
+    def get(self,request):
          current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
          total_amount = 0
          for order_detail in current_order.orderdetail_set.all():
-             total_amount += order_detail.product.price * order_detail.count
-
-         context['order_form']=order_detail_form()
-         context['order'] = current_order
-         context['sum'] = total_amount
-
-         return context
+              total_amount += order_detail.product.price * order_detail.count
 
 
+
+         context={
+             'order_form':order_detail_form(),
+             'order':current_order,
+             'sum':total_amount
+         }
+
+         return render(request ,'shoping_cart.html',context)
+
+    def post(self,request):
+        if request.POST:
+            current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
+            total_amount = 0
+            products_name =[]
+            for order_detail in current_order.orderdetail_set.all():
+                total_amount += order_detail.product.price * order_detail.count
+                products_name.append(order_detail.product.name)
+
+
+
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            host = self.request.get_host()
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[
+                    {
+                        'price_data': {
+                            'currency': 'usd',
+                            'unit_amount': '{}'.format(total_amount *100),
+                            'product_data': {
+                                'name': '{}'.format(products_name)
+
+                            },
+                        },
+                        'quantity': 1,
+                    },
+                ],
+                mode='payment',
+                success_url='https://{}{}'.format(host, reverse('profile')),
+                cancel_url='https://{}{}'.format(host, reverse('shoping_cart')),
+            )
+
+            if checkout_session.url == 'success_url':
+                current_order.is_paid==True
+
+            return redirect(checkout_session.url)
 
 
 class signup(View):
@@ -277,7 +314,7 @@ def modify_order_detail(request):
     body = json.loads(body_unicode)
     pk = body['pk']
 
-    print(pk)
+
 
     m = models.OrderDetail.objects.filter(pk=pk, order__userr_id=request.user.id)
    

@@ -38,7 +38,39 @@ profile
 
 
     <div class="container my-5">
-        <p>chck out list</p>
+        <p>check out order list</p>
+
+         <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">color</th>
+      <th scope="col">size</th>
+      <th scope="col">price</th>
+      <th scope="col">paid</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for foo in order %}
+         <tr>
+      <td>{{ foo.product.name }}</td>
+      <td>{{ foo.color }}</td>
+      <td>{{ foo.size }}</td>
+      <td>{{ foo.product.price }}</td>
+      <td><i class="bi bi-check-circle text-success"></i></td>
+    </tr>
+    {% endfor %}
+
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
 
     </div>
 

@@ -234,7 +234,7 @@ def addtocart(request):
     sizee = data['size']
     colorr = data['color']
 
-    print(pk,sizee,colorr)
+
 
 
     if request.user.is_authenticated:
