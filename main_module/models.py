@@ -142,16 +142,12 @@ class order_data(models.Model):
     email_address=models.EmailField(max_length=300)
     phone_number=models.CharField(max_length=500)
     street_address1=models.CharField(max_length=500)
-    street_address2=models.CharField(max_length=500)
+    street_address2=models.CharField(max_length=500,null=True,blank=True)
     town_or_city=models.CharField(max_length=500)
     country_state_or_location=models.CharField(max_length=500)
     post_code=models.CharField(max_length=100)
     country=models.CharField(max_length=100)
 
-
-    card_name=models.CharField(max_length=100)
-    expiration_date=models.CharField(max_length=100)
-    cvs=models.CharField(max_length=100)
 
 
 

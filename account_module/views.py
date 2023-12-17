@@ -57,8 +57,6 @@ class Shoping_cart(View):
                 total_amount += order_detail.product.price * order_detail.count
                 products_name.append(order_detail.product.name)
 
-
-
             stripe.api_key = settings.STRIPE_SECRET_KEY
             host = self.request.get_host()
             checkout_session = stripe.checkout.Session.create(
@@ -81,7 +79,12 @@ class Shoping_cart(View):
                 cancel_url='https://{}{}'.format(host, reverse('shoping_cart')),
             )
 
+
+
+
             if checkout_session.url == 'success_url':
+                new_data = order_detail_form(request.POST)
+                new_data.save()
                 current_order.is_paid==True
 
             return redirect(checkout_session.url)

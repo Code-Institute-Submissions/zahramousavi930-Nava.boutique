@@ -62,9 +62,7 @@ shopping cart
               </div>
 
                 <p class="h3 my-3">Delivery</p>
-              <div class="mb-3 form-check">
-                {% render_field order_form.phone_number class+="form-control" placeholder+='phone number' %}
-              </div>
+
               <div class="mb-3 form-check">
                 {% render_field order_form.phone_number class+="form-control" placeholder+='phone number *' %}
               </div>
@@ -72,7 +70,7 @@ shopping cart
                 {% render_field order_form.street_address1 class+="form-control" placeholder+='street address 1 *' %}
               </div>
                  <div class="mb-3 form-check">
-                {% render_field order_form.street_address2 class+="form-control" placeholder+='street address 2 *' %}
+                {% render_field order_form.street_address2 class+="form-control" placeholder+='street address 2' %}
               </div>
                  <div class="mb-3 form-check">
                 {% render_field order_form.town_or_city class+="form-control" placeholder+='town or city *' %}
@@ -80,9 +78,7 @@ shopping cart
                  <div class="mb-3 form-check">
                 {% render_field order_form.country_state_or_location class+="form-control" placeholder+='country state or location *' %}
               </div>
-                 <div class="mb-3 form-check">
-                {% render_field order_form.country_state_or_location class+="form-control" placeholder+='country state or location *' %}
-              </div>
+
                  <div class="mb-3 form-check">
                 {% render_field order_form.post_code class+="form-control" placeholder+='post code *' %}
               </div>
