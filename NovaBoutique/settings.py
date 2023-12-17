@@ -36,7 +36,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['https://botiuqnova-ae121ab1d794.herokuapp.com/',
 'http://botiuqnova-ae121ab1d794.herokuapp.com/',
-'botiuqnova-ae121ab1d794.herokuapp.com']
+'botiuqnova-ae121ab1d794.herokuapp.com',
+
+# gitpod
+'8000-zahramousav-navaboutiqu-3rhmnxsx5i6.ws-eu107.gitpod.io'
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -159,7 +163,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+SSTATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
