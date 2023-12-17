@@ -14,7 +14,13 @@ class Home_page(TemplateView):
     def get_context_data(self, **kwargs):
 
         context=super(Home_page, self).get_context_data()
-        context['products_discount']=models.Products.objects.all()
+        m=models.Products.objects.all()
+        e=[]
+        for i in m:
+            if i.discount !=0:
+                e.append(i)
+
+        context['products_discount']=e
         context['products']=models.Products.objects.filter(discount= 0).all()[:6]
 
 

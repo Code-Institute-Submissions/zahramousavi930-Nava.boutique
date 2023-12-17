@@ -156,9 +156,7 @@
 
         </div>
         <div class="discount-container">
-
-             {% for product in products_discount %}
-                {% if product.discount %}
+            {% for product in products_discount %}
                        <div class="card m-2 " data-aos="zoom-in" data-aos-delay="250">
             <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"/>
             <div class="card-body text-dark d-flex justify-content-around flex-column">
@@ -177,14 +175,7 @@
               <p>{{ product.discount }}%</p>
             </div>
           </div>
-
-
-                {% endif %}
-
-
-
                   {% endfor %}
-
 
 
 
