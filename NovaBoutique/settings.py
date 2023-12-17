@@ -45,14 +45,14 @@ ALLOWED_HOSTS = ['https://botiuqnova-ae121ab1d794.herokuapp.com/',
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'whitenoise',
-    'cloudinary_storage',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'account_module',
+    'whitenoise',
     'main_module',
     'widget_tweaks',
     'cloudinary',
@@ -163,7 +163,7 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
    ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 
 
