@@ -31,7 +31,7 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['https://botiuqnova-ae121ab1d794.herokuapp.com/',
