@@ -614,10 +614,27 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   .footer{
     height: auto !important;
   }
-
+  .scroll{
+    justify-content: space-around;
+  }
 }
 
+
+.errorlist{
+  color: red;
+}
+
+
+
+
+
 @media (max-width:992px){
+
+  .color-nav{
+    font-size: 14px;
+  }
+
+
 
   .detail2, .show-coments-lg{
       display: none;
@@ -627,7 +644,8 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   }
   
 
-  
+
+
 
 }
 
@@ -662,8 +680,15 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
 }
 
 .prof{
-  color: white;
-  font-size: 20px;
+  width: 170px;
+}
+.prof2{
+  width: 110px;
+}
+
+
+.prof ,.prof2 a{
+  font-size: 19px;
 }
 
 
