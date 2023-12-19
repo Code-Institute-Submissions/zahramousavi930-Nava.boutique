@@ -12,7 +12,7 @@ sign up
    <main class="my-5">
 
         <form action="{% url 'sign_up' %}" method="post" class="signup-form border-1 ">
-              <p class="text text-danger">
+              <p>
                   {{ register_form.errors }}
               </p>
             {% csrf_token %}

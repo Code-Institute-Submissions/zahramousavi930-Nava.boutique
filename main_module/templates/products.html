@@ -8,342 +8,351 @@
 
 
 {% block contect %}
-     <main>
-      <section class="main-product my-2 d-lg-flex flex-lg-row">
-        <!-- image slider -->
-        <div class="img container-sm">
-          <div
-            id="carouselExampleControls"
-            class="carousel slide container"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img
-                  src="{{ selected_product.image.url}}"
-                  class="d-block w-100 img-fluid object-fit-cover"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                   src="{{ selected_product.image.url}}"
-                  class="d-block w-100 img-fluid object-fit-cover"
-                  alt="..."
-                />
-              </div>
+    <main>
+        <section class="main-product my-2 d-lg-flex flex-lg-row">
+            <!-- image slider -->
+            <div class="img container-sm">
+                <div
+                        id="carouselExampleControls"
+                        class="carousel slide container"
+                        data-bs-ride="carousel"
+                >
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img
+                                    src="{{ selected_product.image.url }}"
+                                    class="d-block w-100 img-fluid object-fit-cover"
+                                    alt="..."
+                            />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                    src="{{ selected_product.image.url }}"
+                                    class="d-block w-100 img-fluid object-fit-cover"
+                                    alt="..."
+                            />
+                        </div>
 
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControls"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="main-de-container">
-          <!-- name and stars -->
-          <div
-            class="detail my-3 container d-lg-flex flex-lg-row justify-content-start"
-          >
-           <p class="h4">{{ selected_product.name }} </p>
-            <div class="d-flex justify-content-between mx-3 flex-lg-column">
-
-             <p class="h6 text-secondary"><i class="bi bi-bookmark-star-fill"></i>{{ selected_product.category }} </p>
-
-              <div class="stars d-flex align-items-center">
-                <p class="text-muted mx-3 my-1">( comments {{ comments.count }})</p>
-                <p class="text-muted mx-3 my-1">
-                    {% if selected_product.rate < 5 %}
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-
-                      {% elif selected_product.rate < 20 %}
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                        {% elif selected_product.rate < 30 %}
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                         {% elif selected_product.rate < 40 %}
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                           <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-
-                        {% elif selected_product.rate > 50 %}
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                    {% endif %}
-                </p>
-
-
-              </div>
-            </div>
-          </div>
-
-          <!-- price -->
-          <div class="detail-product-main container">
-            <p class="h4 mx-3 text-danger"> $
-                {% if selected_product.discount_price %}
-                    {{ selected_product.discount_price }}
-                  {% else %}
-                {{ selected_product.price }}</p>
-
-                {% endif %}
-
-           <form action="{% url 'favorite' selected_product.pk %} " method="post">
-               {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">
-                add to favorit
-              </button>
-                </form>
-          </div>
-
-          <hr />
-
-          <!-- drop down upper 992 -->
-          <div  class="drop-down-detail2 mx-5 my-4">
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="5">size</p>
-
-                <p>{{ selected_product.size }}</p>
-
-
-
-
-
-
-
-
-
-            </div>
-
-
-
-          </div>
-
-          <hr />
-
-
-            <form  action="{% url 'add_to_cart' %}" method="post">
-            {% csrf_token %}
-
-            <div class="mx-5  flex-column d-flex justify-content-between align-items-center">
-
-                <div  >
-
-
-                         <div class="my-4">
-
-
-                         <div>
-                          <p> select size &nbsp&nbsp&nbsp </p>
-                             <input type="radio" value="small" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                            <label class="btn btn-outline-info" for="option1">{{ products.size_small|default_if_none:'' }}</label>
-
-                            <input type="radio" class="btn-check" value="medium" name="options" id="option2" autocomplete="off">
-                            <label class="btn btn-outline-info" for="option2">{{ products.size_medium|default_if_none:'' }}</label>
-
-                            <input type="radio" class="btn-check" value="large" name="options" id="option3" autocomplete="off">
-                            <label class="btn btn-outline-info" for="option3">{{ products.size_larg|default_if_none:'' }}</label>
-
-                            <input type="radio" class="btn-check" name="options" value="xlarge" id="option4" autocomplete="off">
-                            <label class="btn btn-outline-info" for="option4">{{ products.size_xlarg|default_if_none:'' }}</label>
-                         </div>
-                         </div>
-
-                    <div>
-
-
-
-                     <div>
-                        <p>select color &nbsp&nbsp&nbsp </p>
-                             <input type="radio" value="{{ products.color|default_if_none:'' }}" class="btn-check" name="color" id="option5" autocomplete="off" checked>
-                            <label class="btn btn-outline-warning" for="option5">{{ products.color|default_if_none:'' }}</label>
-
-                            <input type="radio" class="btn-check" value="{{ products.color2|default_if_none:'' }}" name="color" id="option6" autocomplete="off">
-                            <label class="btn btn-outline-warning" for="option6">{{ products.color2|default_if_none:'' }}</label>
-
-                            <input type="radio" class="btn-check" value="{{ products.color3|default_if_none:'' }}" name="color" id="option7" autocomplete="off">
-                            <label class="btn btn-outline-warning" for="option7">{{ products.color3|default_if_none:'' }}</label>
-
-
-                         </div>
-                     </div>
-
-                   </div>
-
-
-
-            </div>
-          <hr />
-
-             <div
-            class="add-to-cart d-flex justify-content-around w-75 align-items-center my-3 mx-auto"
-          >
-
-            <div>
-
-
-                       <button onclick="add_to_cart({{ selected_product.pk }})" type="button" class="btn btn-success">
-                            add to shopping cart
-                        </button>
-
-
-
-
-            </div>
-          </div>
-                   </form>
-
-
-
-
-
-
-
-
-
-          <!-- drop down details in under 992 -->
-          <div class="drop-down-detail my-5">
-            <div class="drop-down mx-3">
-              <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button
-                      class="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#panelsStayOpen-collapseOne"
-                      aria-expanded="true"
-                      aria-controls="panelsStayOpen-collapseOne"
-                    >
-                      description
-                    </button>
-                  </h2>
-                  <div
-                    id="panelsStayOpen-collapseOne"
-                    class="accordion-collapse collapse show"
-                    aria-labelledby="panelsStayOpen-headingOne"
-                  >
-                    <div class="accordion-body">
-                      <p>
-                       {{ selected_product.description }}
-                      </p>
                     </div>
-                  </div>
+                    <button
+                            class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev"
+                    >
+              <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+              ></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                            class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next"
+                    >
+              <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+              ></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="main-de-container">
+                <!-- name and stars -->
+                <div
+                        class="detail my-3 container d-lg-flex flex-lg-row justify-content-start"
+                >
+                    <p class="h4">{{ selected_product.name }} </p>
+                    <div class="d-flex justify-content-between mx-3 flex-lg-column">
+
+                        <p class="h6 text-secondary"><i
+                                class="bi bi-bookmark-star-fill"></i>{{ selected_product.category }} </p>
+
+                        <div class="stars d-flex align-items-center">
+                            <p class="text-muted mx-3 my-1">( comments {{ comments.count }})</p>
+                            <p class="text-muted mx-3 my-1">
+                                {% if selected_product.rate < 5 %}
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+
+                                {% elif selected_product.rate < 20 %}
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                {% elif selected_product.rate < 30 %}
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                {% elif selected_product.rate < 40 %}
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+
+                                {% elif selected_product.rate > 50 %}
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                {% endif %}
+                            </p>
+
+
+                        </div>
+                    </div>
                 </div>
 
+                <!-- price -->
+                <div class="detail-product-main container">
+                    <p class="h4 mx-3 text-danger"> $
+                        {% if selected_product.discount_price %}
+                            {{ selected_product.discount_price }}
+                        {% else %}
+                            {{ selected_product.price }}</p>
+
+                        {% endif %}
+
+                    <form action="{% url 'favorite' selected_product.pk %} " method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            add to favorit
+                        </button>
+                    </form>
+                </div>
+
+                <hr/>
+
+                <!-- drop down upper 992 -->
+                <div class="drop-down-detail2 mx-5 my-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="5">size</p>
+
+                        <p>{{ selected_product.size }}</p>
 
 
-              </div>
+                    </div>
+
+
+                </div>
+
+                <hr/>
+
+
+                <form action="{% url 'add_to_cart' %}" method="post">
+                    {% csrf_token %}
+
+                    <div class="mx-5  flex-column d-flex justify-content-between align-items-center">
+
+                        <div>
+
+
+                            <div class="my-4">
+
+
+                                <div>
+                                    <p> select size &nbsp&nbsp&nbsp </p>
+                                    <input type="radio" value="small" class="btn-check" name="options" id="option1"
+                                           autocomplete="off" checked>
+                                    <label class="btn btn-outline-info"
+                                           for="option1">{{ products.size_small|default_if_none:'' }}</label>
+
+                                    <input type="radio" class="btn-check" value="medium" name="options" id="option2"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-info"
+                                           for="option2">{{ products.size_medium|default_if_none:'' }}</label>
+
+                                    <input type="radio" class="btn-check" value="large" name="options" id="option3"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-info"
+                                           for="option3">{{ products.size_larg|default_if_none:'' }}</label>
+
+                                    <input type="radio" class="btn-check" name="options" value="xlarge" id="option4"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-info"
+                                           for="option4">{{ products.size_xlarg|default_if_none:'' }}</label>
+                                </div>
+                            </div>
+
+                            <div>
+
+
+                                <div>
+                                    <p>select color &nbsp&nbsp&nbsp </p>
+                                    <input type="radio" value="{{ products.color|default_if_none:'' }}"
+                                           class="btn-check" name="color" id="option5" autocomplete="off" checked>
+                                    <label class="btn btn-outline-warning"
+                                           for="option5">{{ products.color|default_if_none:'' }}</label>
+
+                                    <input type="radio" class="btn-check"
+                                           value="{{ products.color2|default_if_none:'' }}" name="color" id="option6"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-warning"
+                                           for="option6">{{ products.color2|default_if_none:'' }}</label>
+
+                                    <input type="radio" class="btn-check"
+                                           value="{{ products.color3|default_if_none:'' }}" name="color" id="option7"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-warning"
+                                           for="option7">{{ products.color3|default_if_none:'' }}</label>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <hr/>
+
+                    <div
+                            class="add-to-cart d-flex justify-content-around w-75 align-items-center my-3 mx-auto"
+                    >
+
+                        <div>
+
+
+                            <div class=" d-flex flex-column justify-content-around w-75 align-items-center mx-auto">
+                                <div>
+
+                                <p>count = <i id="counter" >1</i>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </p>
+
+                                </div>
+                                <div>
+
+                                    <button class="btn btn-secondary my-2" type="button" onclick="increase()">Increase</button>
+
+
+                                    <button class="btn btn-secondary my-2" type="button" onclick="decrease()">Decrease</button>
+                                </div>
+                            </div>
+
+                            <button onclick="add_to_cart({{ selected_product.pk }})" type="button"
+                                    class="btn btn-success">
+                                add to shopping cart
+                            </button>
+
+
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- drop down details in under 992 -->
+                <div class="drop-down-detail my-5">
+                    <div class="drop-down mx-3">
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                    <button
+                                            class="accordion-button"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne"
+                                            aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne"
+                                    >
+                                        description
+                                    </button>
+                                </h2>
+                                <div
+                                        id="panelsStayOpen-collapseOne"
+                                        class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne"
+                                >
+                                    <div class="accordion-body">
+                                        <p>
+                                            {{ selected_product.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </section>
+
+
+        <!-- decriptions  -->
+        <div class="container my-5 detail2" data-aos="zoom-in">
+            <p class="h2 text-danger">description</p>
+            <p>
+                {{ selected_product.description }}
+            </p>
         </div>
-      </section>
 
-
-
-
-
-
-
-
-      <!-- decriptions  -->
-      <div class="container my-5 detail2" data-aos="zoom-in">
-        <p class="h2 text-danger">description</p>
-        <p>
-        {{ selected_product.description }}
-        </p>
-      </div>
-
-<div class=" my-5 container row">
-                        {% for comment in comments %}
-                             <div class="h-75 border-bottom my-3">
-                        <div
-                          class="img-time d-flex justify-content-between align-items-center"
-                        >
-                          <div class="d-flex img-name-container">
+        <div class=" my-5 container row">
+            {% for comment in comments %}
+                <div class="h-75 border-bottom my-3">
+                    <div
+                            class="img-time d-flex justify-content-between align-items-center"
+                    >
+                        <div class="d-flex img-name-container">
                             <img
-                              src="{% static 'assets/img/avata.jpg' %}"
-                              class="img-comment"
-                              alt=""
+                                    src="{% static 'assets/img/avata.jpg' %}"
+                                    class="img-comment"
+                                    alt=""
                             />
                             <p class="mx-3 text-secondary">{{ comment.email }}</p>
-                          </div>
-                          <p class="text-muted time">{{ comment.create_date }}</p>
                         </div>
-                        <p>
-                          {{ comment.text }}
-                        </p>
-                      </div>
-                        {% endfor %}
+                        <p class="text-muted time">{{ comment.create_date }}</p>
+                    </div>
+                    <p>
+                        {{ comment.text }}
+                    </p>
+                </div>
+            {% endfor %}
 
 
-
-
-                  </div>
-<!-- comments container -->
-      <div data-aos="zoom-in" class="main-comments-cont container d-lg-flex flex-column justify-content-around align-items-center" >
-
-      <!-- add new comments -->
-      <div data-aos="zoom-in-left" class="add-new-comments">
-        <p class="h3 text-danger mx-3 my-4"> add comment</p>
-        <div class="add-comments">
-          <form id="frm" class="m-3" method="post" action="{% url 'add_comments' %}">
-              {% csrf_token %}
-               <div class="mb-3">
-                  <div class="form-group">
-                        <label for="rate">rate </label>
-                        <input type="number" max="5" min="1" class="form-control" id="rate" aria-describedby="emailHelp" placeholder="Enter number between 5 ro 1">
-
-                      </div>
-
-                 </div>
-            <div class="mb-3 form-group">
-                {% render_field comment_form.email class+="form-control" placeholder+='email' %}
-            </div>
-            <div class="mb-3 form-group">
-                 {% render_field comment_form.text class+="form-control" placeholder+='text'%}
-            </div>
-            <button onclick="add_commentt({{ selected_product.id }})" id="submit-msg" type="button" class="btn btn-primary">send</button>
-          </form>
         </div>
-      </div>
-    </div>
+        <!-- comments container -->
+        <div data-aos="zoom-in"
+             class="main-comments-cont container d-lg-flex flex-column justify-content-around align-items-center">
+
+            <!-- add new comments -->
+            <div data-aos="zoom-in-left" class="add-new-comments">
+                <p class="h3 text-danger mx-3 my-4"> add comment</p>
+                <div class="add-comments">
+                    <form id="frm" class="m-3" method="post" action="{% url 'add_comments' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="rate">rate </label>
+                                <input type="number" max="5" min="1" class="form-control" id="rate"
+                                       aria-describedby="emailHelp" placeholder="Enter number between 5 ro 1">
+
+                            </div>
+
+                        </div>
+                        <div class="mb-3 form-group">
+                            {% render_field comment_form.email class+="form-control" placeholder+='email' %}
+                        </div>
+                        <div class="mb-3 form-group">
+                            {% render_field comment_form.text class+="form-control" placeholder+='text' %}
+                        </div>
+                        <button onclick="add_commentt({{ selected_product.id }})" id="submit-msg" type="button"
+                                class="btn btn-primary">send
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </main>
 {% endblock %}

@@ -77,7 +77,14 @@ profile
         </div>
 
 
+    <div class="container mx-5 my-5">
+        <form action="{% url 'send_email_to_all' %}" method="post">
+            {% csrf_token %}
 
+        <p>you can send email with this button in newsteller</p>
+    <button type="button" onclick="sendMail()" class="btn btn-success">send email</button>
+        </form>
+    </div>
 
 {% endblock %}
 

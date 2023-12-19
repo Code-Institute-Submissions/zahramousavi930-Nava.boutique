@@ -124,6 +124,8 @@ class OrderDetail(models.Model):
     product = models.ForeignKey( Products, on_delete=models.CASCADE,null=True)
     size=models.CharField(max_length=100,default='')
     color=models.CharField(max_length=100,default='')
+    coount=models.IntegerField(default=1)
+
     final_price = models.IntegerField(null=True, blank=True)
     count = models.IntegerField(default=1)
 

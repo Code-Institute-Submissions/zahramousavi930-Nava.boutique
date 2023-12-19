@@ -31,12 +31,13 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['https://botiuqnova-ae121ab1d794.herokuapp.com/',
 'http://botiuqnova-ae121ab1d794.herokuapp.com/',
 'botiuqnova-ae121ab1d794.herokuapp.com',
+ '127.0.0.1',
 
 # gitpod
 '8000-zahramousav-navaboutiqu-3rhmnxsx5i6.ws-eu107.gitpod.io'
@@ -102,19 +103,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'NovaBoutique.wsgi.application'
 AUTH_USER_MODEL = 'account_module.User'
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
-    'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+#
+# DATABASES = {
+#     'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 # Password validation

@@ -58,6 +58,8 @@ def newsteller(request):
 
 
 def remove_news_teller(request):
+
+
     email = request.POST.get('removenewstelleremail')
     models.News_teller.objects.filter(email__exact=email).delete()
 
@@ -239,6 +241,7 @@ def addtocart(request):
     pk = data['pk']
     sizee = data['size']
     colorr = data['color']
+    count = data['count']
 
 
 
@@ -250,10 +253,10 @@ def addtocart(request):
              current_order_detail = current_order.orderdetail_set.filter(product_id=pk).first()
 
              if current_order_detail is not None:
-                 new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr)
+                 new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr,count=count)
                  new_detail.save()
              else:
-                new_detail =models.OrderDetail(order_id=current_order.id ,product_id=pk,size=sizee,color=colorr)
+                new_detail =models.OrderDetail(order_id=current_order.id ,product_id=pk,size=sizee,color=colorr,count=count)
                 new_detail.save()
 
              return JsonResponse({
@@ -281,7 +284,8 @@ def search(request):
 
     name=request.POST.get('search')
 
-    result=models.Products.objects.filter(name__regex=name).all()
+    result=models.Products.objects.filter(name__icontains=name).all()
+
     context={
         'result':result
     }

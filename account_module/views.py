@@ -82,10 +82,13 @@ class Shoping_cart(View):
 
 
 
-            if checkout_session.url == 'success_url':
+
+            print(checkout_session)
+            if checkout_session.payment_status == 'paid':
+                print('ok')
                 new_data = order_detail_form(request.POST)
                 new_data.save()
-                current_order.is_paid==True
+                s=current_order.is_paid==True
 
             return redirect(checkout_session.url)
 
