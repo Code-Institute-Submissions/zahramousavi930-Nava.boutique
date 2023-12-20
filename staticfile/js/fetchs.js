@@ -148,3 +148,68 @@ function decrease() {
 
 
 
+
+function signupData() {
+     function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+
+    let headers = {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+        'X-CSRFToken': csrftoken,
+    }
+
+
+
+    const name=document.getElementById("id_name").value
+    const email=document.getElementById("id_email").value
+    const phone_number=document.getElementById("id_phone_number").value
+    const password=document.getElementById("id_password").value
+
+
+    fetch('signup',{
+         method: 'post',
+        credentials: 'include',
+        headers,
+        body: JSON.stringify({
+            email,name,phone_number,password
+        })
+    }).then(res=>{
+       res.json().then(response=>{
+           if (response.status === 'exist') {
+                    Swal.fire({
+                        text: response.message,
+                        icon: "error"
+                    });
+                }
+           if (response.status === 'user exist') {
+                    Swal.fire({
+                        text: response.message,
+                        icon: "error"
+                    });
+                }
+           if (response.status === 'send') {
+                    Swal.fire({
+                        text: response.message,
+                        icon: "success"
+                    });
+                }
+       })
+    })
+
+}

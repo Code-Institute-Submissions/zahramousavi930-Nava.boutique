@@ -99,9 +99,9 @@
 
       <!-- fisrt photo -->
       <div class="photo-container my-4">
-        <div class="shadow"></div>
 
-        <img src="{% static 'assets/img/8.jpg' %}" alt="">
+
+        <img class="object-fit-contain  " src="{% static 'assets/img/over 50.png' %}" alt="">
       </div>
 
 
@@ -110,7 +110,8 @@
         <div
           class="detial-data d-flex justify-content-between align-items-center m-1"
         >
-          <p class="h3 text-danger my-1 mx-2 "> products</p>
+            <img class="lable_img my-1 mx-2"  src="{% static 'assets/img/products.png' %}" alt="">
+
           <a href="{% url 'all_products_pgae' %}" class="see-all text-decoration-none pointer-event mx-2"> see all ></a>
         </div>
 
@@ -143,16 +144,17 @@
 
       <!-- second photo of discount -->
       <div class="photo-container my-4">
-        <div class="shadow"></div>
 
-        <img src="{% static 'assets/img/4.jpg'  %}" class="size-img" alt="">
+
+        <img src="{% static 'assets/img/discount lable.png'  %}" class="size-img" alt="">
       </div>
 
 
       <!-- discount product -->
       <section class="discounts-products my-5">
         <div>
-          <p class="h3 text-danger my-1 mx-2"> Discounts</p>
+            <img class="lable_img my-1 mx-2 " src="{% static 'assets/img/discount.png' %}" alt="">
+{#          <p class="h3 text-danger my-1 mx-2"> Discounts</p>#}
 
         </div>
         <div class="discount-container">

@@ -121,6 +121,14 @@ header navbar {
 
 /* more sell cards */
 
+.lable_img{
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+
+}
+
+
 .detial-data {
   text-align: center;
 }
@@ -182,7 +190,8 @@ header navbar {
 .photo-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
+
 }
 
 /* discount  */
@@ -577,44 +586,48 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
 
 /* product  */
 @media (min-width:992px) {
-  
+
+
   .main-product {
-      display: flex !important;
-      justify-content: space-evenly !important;
-      flex-direction: column;
-      align-items: center;
-      width: 90% !important;
-     
-  }
-
-  .img{
-      width:508px !important;
+    display: flex !important;
+    justify-content: space-evenly !important;
+    flex-direction: column;
+    align-items: center;
+    width: 90% !important;
 
   }
 
-  .main-de-container{
-      width: 40%;
- 
-      height: auto;
-      margin-top: 10px;
-      
+  .img {
+    width: 508px !important;
+
   }
-  .stars{
-      direction: ltr;
+
+  .main-de-container {
+    width: 40%;
+
+    height: auto;
+    margin-top: 10px;
+
   }
-  .main-de-container .detail div p{
+
+  .stars {
+    direction: ltr;
+  }
+
+  .main-de-container .detail div p {
     position: relative;
     right: 0;
   }
 
-  .drop-down  {
-      display: none;
+  .drop-down {
+    display: none;
   }
 
-  .footer{
+  .footer {
     height: auto !important;
   }
-  .scroll{
+
+  .scroll {
     justify-content: space-around;
   }
 }
@@ -622,13 +635,26 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
 
 .errorlist{
   color: red;
+
+}
+
+@media (min-width:854px) {
+
+
+ .photo-container img{
+   object-fit: cover !important;
+
+}
+
 }
 
 
 
 
-
 @media (max-width:992px){
+
+
+
 
   .color-nav{
     font-size: 14px;
@@ -668,6 +694,7 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   .photo-container img {
     width: 100%;
     height: 100%;
+    object-fit: scale-down;
 
 
   }
@@ -706,7 +733,7 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
 #scrollToTopBtn {
   display: none;
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   font-size: 16px;
   padding: 10px;
