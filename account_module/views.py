@@ -1,4 +1,4 @@
-from django.http import Http404 ,HttpResponseRedirect,JsonResponse
+from django.http import Http404 ,HttpResponseRedirect,JsonResponse,HttpResponse
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from django.views.generic import TemplateView
 from django.views import View
@@ -14,19 +14,103 @@ import json
 from NovaBoutique import settings
 import stripe
 from django.conf import settings
-
-class Profile(TemplateView):
-    template_name = 'profile.html'
-
-    def get_context_data(self, **kwargs):
-         context = super(Profile, self).get_context_data()
-         final_order =models.OrderDetail.objects.filter(order__is_paid=True, order__userr=self.request.user)
-
-         context['order'] = final_order
-         context['fav']=models.Products.objects.filter(favorit=self.request.user.id)
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 
-         return context
+
+
+class Profile(View):
+
+    def get(self,request):
+        final_order =models.OrderDetail.objects.filter(order__is_paid=True, order__userr=self.request.user)
+        fav=models.Products.objects.filter(favorit=self.request.user.id)
+        context={
+            'order':final_order,
+            'fav':fav
+        }
+
+
+
+        return render(request,'profile.html',context)
+
+
+
+
+
+@csrf_exempt
+def stripe_webhook(request):
+        payload = request.body
+        sig_header =request.META['HTTP_STRIPE_SIGNATURE']
+        event = None
+
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+            )
+        except ValueError as e:
+            return HttpResponse(status=400)
+        except stripe.error.SignatureVerificationError as e:
+            return HttpResponse(status=400)
+
+        if event['type'] == 'checkout.session.completed':
+            amount = event['data']['object']
+            user_id = amount['metadata']['user_id']
+            total=amount['amount_total']
+
+            full_name = amount['metadata']['full_name']
+            email_address = amount['metadata']['email_address']
+            phone_number = amount['metadata']['phone_number']
+            street_address1 = amount['metadata']['street_address1']
+            town_or_city = amount['metadata']['town_or_city']
+            country_state_or_location = amount['metadata']['country_state_or_location']
+            post_code = amount['metadata']['post_code']
+            country = amount['metadata']['country']
+
+
+            order_basket=models.Order.objects.filter(is_paid=False,userr_id=user_id).first()
+            if order_basket.is_paid == False:
+                 order_basket.is_paid = True
+                 order_basket.payment_date = datetime.now()
+                 order_basket.save()
+
+            if order_basket.payment_date == None:
+                order_basket.delete()
+                order_basket.save()
+
+
+
+
+            order_detail_final_price=models.OrderDetail.objects.filter(final_price=None,order__userr=user_id).first()
+
+            if order_detail_final_price.final_price == None:
+                order_detail_final_price.final_price = total
+                order_detail_final_price.save()
+
+            new_data=models.order_data(
+                full_name=full_name,
+                email_address=email_address,
+                phone_number=phone_number,
+                street_address1=street_address1,
+                town_or_city=town_or_city,
+                country_state_or_location=country_state_or_location,
+                post_code=post_code,
+                country=country
+            )
+            new_data.save()
+
+            email_user=models.User.objects.filter(id=user_id).first()
+            main_email=email_user.email
+
+            send_email('new order', main_email, {'email': email_user}, 'email_part/order.html')
+
+
+        return HttpResponse(status=200)
+
+
+
+
+
 
 
 
@@ -34,6 +118,7 @@ class Profile(TemplateView):
 class Shoping_cart(View):
     def get(self,request):
          current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
+
          total_amount = 0
          for order_detail in current_order.orderdetail_set.all():
               total_amount += order_detail.product.price * order_detail.count
@@ -57,6 +142,15 @@ class Shoping_cart(View):
                 total_amount += order_detail.product.price * order_detail.count
                 products_name.append(order_detail.product.name)
 
+            full_name = request.POST.get('full_name')
+            email_address = request.POST.get('email_address')
+            phone_number = request.POST.get('phone_number')
+            street_address1 = request.POST.get('street_address1')
+            town_or_city = request.POST.get('town_or_city')
+            country_state_or_location = request.POST.get('country_state_or_location')
+            post_code = request.POST.get('post_code')
+            country = request.POST.get('country')
+
             stripe.api_key = settings.STRIPE_SECRET_KEY
             host = self.request.get_host()
             checkout_session = stripe.checkout.Session.create(
@@ -67,30 +161,44 @@ class Shoping_cart(View):
                             'currency': 'usd',
                             'unit_amount': '{}'.format(total_amount *100),
                             'product_data': {
-                                'name': '{}'.format(products_name)
+                             'name':'Nova'
 
                             },
                         },
                         'quantity': 1,
                     },
                 ],
+                metadata={
+                    'user_id':self.request.user.id,
+
+                        'full_name':full_name,
+                        'email_address':email_address,
+                        'phone_number':phone_number,
+                        'street_address1':street_address1,
+                        'town_or_city':town_or_city,
+                        'country_state_or_location':country_state_or_location,
+                        'post_code':post_code,
+                        'country':country
+
+
+
+                },
                 mode='payment',
-                success_url='https://{}{}'.format(host, reverse('profile')),
-                cancel_url='https://{}{}'.format(host, reverse('shoping_cart')),
+                success_url='http://{}{}'.format(host, reverse('profile')),
+                cancel_url='http://{}{}'.format(host, reverse('shoping_cart')),
             )
 
 
-
-
-
-            print(checkout_session)
-            if checkout_session.payment_status == 'paid':
-                print('ok')
-                new_data = order_detail_form(request.POST)
-                new_data.save()
-                s=current_order.is_paid==True
-
             return redirect(checkout_session.url)
+
+
+
+
+
+
+
+
+
 
 
 class signup(View):

@@ -73,9 +73,7 @@ shopping cart
                  <div class="mb-3 form-check">
                 {% render_field order_form.street_address1 class+="form-control" placeholder+='street address 1 *' %}
               </div>
-                 <div class="mb-3 form-check">
-                {% render_field order_form.street_address2 class+="form-control" placeholder+='street address 2' %}
-              </div>
+
                  <div class="mb-3 form-check">
                 {% render_field order_form.town_or_city class+="form-control" placeholder+='town or city *' %}
               </div>
@@ -93,7 +91,7 @@ shopping cart
 
 
               <button type="submit" class="btn btn-primary">
-                        chock out $ {{ sum }}
+                        check out $ {{ sum }}
            </button>
             </form>
 

@@ -37,7 +37,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['https://botiuqnova-ae121ab1d794.herokuapp.com/',
 'http://botiuqnova-ae121ab1d794.herokuapp.com/',
 'botiuqnova-ae121ab1d794.herokuapp.com',
- '127.0.0.1',
+ 'localhost',
+
+   '127.0.0.1',
 
 # gitpod
 '8000-zahramousav-navaboutiqu-3rhmnxsx5i6.ws-eu107.gitpod.io'
@@ -104,16 +106,16 @@ WSGI_APPLICATION = 'NovaBoutique.wsgi.application'
 AUTH_USER_MODEL = 'account_module.User'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+    'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
 
 
 # Password validation
@@ -182,7 +184,7 @@ EMAIL_PORT = 587
 # srtipe
 
 STRIPE_SECRET_KEY =  'sk_test_51NHrCEIf6yLcH0aFaZQmJFkXPirjC63bYHAQ6asT4ykFj7nH2u8AGFoDFHZRWSCAvD4s1vaEKddboNTaET93AgFj00D2ZsiKns'
-
+STRIPE_WEBHOOK_SECRET='whsec_d423c9166e4cc9bc78b35e326dd00894ecc8d38783e0b53390c5e8c0bf1c0b22'
 
 
 # Default primary key field type

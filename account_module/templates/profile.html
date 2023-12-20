@@ -44,6 +44,7 @@ profile
   <thead>
     <tr>
       <th scope="col">name</th>
+      <th scope="col">count</th>
       <th scope="col">color</th>
       <th scope="col">size</th>
       <th scope="col">price</th>
@@ -54,9 +55,10 @@ profile
    {% for foo in order %}
          <tr>
       <td>{{ foo.product.name }}</td>
+      <td>{{ foo.count }}</td>
       <td>{{ foo.color }}</td>
       <td>{{ foo.size }}</td>
-      <td>{{ foo.product.price }}</td>
+      <td>${{ foo.final_price }}</td>
       <td><i class="bi bi-check-circle text-success"></i></td>
     </tr>
     {% endfor %}
