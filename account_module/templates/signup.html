@@ -12,9 +12,7 @@ sign up
    <main class="my-5">
 
         <form action="{% url 'sign_up' %}" method="post" class="signup-form border-1 ">
-              <p>
-                  {{ register_form.errors }}
-              </p>
+
             {% csrf_token %}
             <h1>signup</h1>
             <div>
@@ -39,7 +37,7 @@ sign up
             </div>
 
             <a href="{% url 'login_page' %}"> have an accoung?</a>
-        <button class="btn btn-success" type="submit" > submit</button>
+        <button  class="btn btn-success" type="button" onclick="signupData()" > submit</button>
         </form>
     </main>
 {% endblock %}

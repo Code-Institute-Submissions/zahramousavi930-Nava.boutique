@@ -213,40 +213,46 @@ class signup(View):
 
 
     def post(self, request):
-        register_form =forms.RegisterForm(request.POST)
-        if register_form.is_valid():
-            user_email = register_form.cleaned_data.get('email')
-            user_password = register_form.cleaned_data.get('password')
-            user_name = register_form.cleaned_data.get('name')
-            user_phone_number = register_form.cleaned_data.get('phone_number')
-            user: bool = models.User.objects.filter(email__iexact=user_email ).exists()
-            user_namee: bool = models.User.objects.filter(username__exact=user_name).exists()
-            if user:
-                register_form.add_error('email', 'email is exists')
-            elif user_namee:
-                register_form.add_error('name', 'name  is exist')
 
-            else:
-                new_user = models.User(
-                    email=user_email,
-                    email_active_code=get_random_string(72),
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        name = body['name']
+        email = body['email']
+        phone_number = body['phone_number']
+        password = body['password']
+
+
+        user: bool = models.User.objects.filter(email__iexact=email ).exists()
+        user_namee: bool = models.User.objects.filter(username__exact=name).exists()
+        if user:
+               return JsonResponse({
+                   'status': 'exist',
+                   'message' :'email is exist!'
+               })
+        elif user_namee:
+            return JsonResponse({
+                'status': 'user exist' ,
+                  'message' :'username is exist!'
+            })
+
+        else:
+            new_user = models.User(
+                     email=email,
+                   email_active_code=get_random_string(72),
                     is_active=False,
-                    username=user_name,
-                    phone_number=user_phone_number
+                    username=name,
+                    phone_number=phone_number
                 )
-                new_user.set_password(user_password)
-                new_user.save()
+            new_user.set_password(password)
+            new_user.save()
+
+            send_email('active account', new_user.email, {'user': new_user}, 'email_part/activate_account.html')
+            return JsonResponse({
+                'status': 'send',
+                'message': 'email active code sent to to your email :)'
+            })
 
 
-
-                send_email('active account', new_user.email, {'user': new_user}, 'email_part/activate_account.html')
-                return redirect(reverse('home_pgae'))
-
-        context = {
-            'register_form': register_form
-        }
-
-        return render(request, 'signup.html', context)
 
 
 
