@@ -106,7 +106,9 @@ function add_to_cart(pk) {
 
                     text: response.message,
                     icon: "success"
-                });
+                }).then(function() {
+                     window.location = document.URL})
+
             }
             if (response.status === 'not_found') {
                 Swal.fire({

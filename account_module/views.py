@@ -1,6 +1,6 @@
 from django.http import Http404 ,HttpResponseRedirect,JsonResponse,HttpResponse
 from django.shortcuts import render,redirect,reverse,get_object_or_404
-from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
 from django.views import View
 from . import forms
 from . import models
@@ -15,8 +15,8 @@ from NovaBoutique import settings
 import stripe
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from datetime import datetime
-
+from django.utils import timezone
+from account_module.models import User
 
 
 
@@ -24,10 +24,17 @@ class Profile(View):
 
     def get(self,request):
         final_order =models.OrderDetail.objects.filter(order__is_paid=True, order__userr=self.request.user)
+
         fav=models.Products.objects.filter(favorit=self.request.user.id)
+        user=models.User.objects.filter(id=self.request.user.id).first()
+        delivary_data=models.order_data.objects.filter()
+
         context={
             'order':final_order,
-            'fav':fav
+            'fav':fav,
+            'user':user,
+
+            'delivary_data':delivary_data
         }
 
 
@@ -36,6 +43,13 @@ class Profile(View):
 
 
 
+
+def detailcart(request,pk):
+
+    detail=models.order_data.objects.filter(which_order_id=pk).get()
+
+    return render(request,'detailcart.html',{'detail':detail,
+                                             })
 
 
 @csrf_exempt
@@ -68,10 +82,15 @@ def stripe_webhook(request):
             country = amount['metadata']['country']
 
 
+
+
+
             order_basket=models.Order.objects.filter(is_paid=False,userr_id=user_id).first()
             if order_basket.is_paid == False:
                  order_basket.is_paid = True
-                 order_basket.payment_date = datetime.now()
+                 order_basket.payment_date =timezone.now()
+
+
                  order_basket.save()
 
             if order_basket.payment_date == None:
@@ -87,6 +106,11 @@ def stripe_webhook(request):
                 order_detail_final_price.final_price = total
                 order_detail_final_price.save()
 
+
+
+
+            user=models.User.objects.filter(id=user_id).first()
+
             new_data=models.order_data(
                 full_name=full_name,
                 email_address=email_address,
@@ -95,14 +119,17 @@ def stripe_webhook(request):
                 town_or_city=town_or_city,
                 country_state_or_location=country_state_or_location,
                 post_code=post_code,
-                country=country
+                country=country,
+                which_user=user,
+                which_order=order_basket
             )
             new_data.save()
 
             email_user=models.User.objects.filter(id=user_id).first()
             main_email=email_user.email
 
-            send_email('new order', main_email, {'email': email_user}, 'email_part/order.html')
+
+            send_email('new order', main_email, {'order_basket': order_detail_final_price,'date':new_data,}, 'email_part/order.html')
 
 
         return HttpResponse(status=200)
@@ -110,9 +137,16 @@ def stripe_webhook(request):
 
 
 
+class Edit_profilr(UpdateView):
+        template_name = 'edit_user_detail.html'
+        model =  User
+        fields = ['first_name','last_name','email','username','phone_number']
+
+        success_url = 'profile'
 
 
-
+        def get_success_url(self):
+            return reverse('profile')
 
 
 class Shoping_cart(View):
@@ -136,6 +170,9 @@ class Shoping_cart(View):
     def post(self,request):
         if request.POST:
             current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=self.request.user.id)
+            order_detail_id = models.OrderDetail.objects.filter(final_price=None, order__userr=self.request.user.id)
+
+
             total_amount = 0
             products_name =[]
             for order_detail in current_order.orderdetail_set.all():
@@ -178,7 +215,8 @@ class Shoping_cart(View):
                         'town_or_city':town_or_city,
                         'country_state_or_location':country_state_or_location,
                         'post_code':post_code,
-                        'country':country
+                        'country':country,
+
 
 
 

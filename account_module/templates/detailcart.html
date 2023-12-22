@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+detail cart
+{% endblock %}
+
+
+
+{% block contect %}
+    <p class="text-danger m-5 container">order detials</p>
+    <div class="container m-5 d-flex align-item-center justify-content-between flex-column">
+        <div class="my-2">full name: {{ detail.full_name }}</div>
+        <div class="my-2">email address : {{ detail.email_address }} </div>
+        <div class="my-2">phone number :{{ detail.phone_number }}</div>
+        <div class="my-2">street address : {{ detail.street_address1 }}</div>
+        <div class="my-2">city : {{ detail.country_state_or_location }}</div>
+        <div class="my-2">state :  {{ detail.country_state_or_location }}</div>
+        <div class="my-2">post code :  {{ detail.post_code }}</div>
+        <div class="my-2">payment time :   {{ detail.which_order.payment_date }}</div>
+
+
+
+
+        <a class="btn btn-info w-50 my-3" href="{% url 'profile'%}">see profile</a>
+    </div>
+
+{% endblock %}

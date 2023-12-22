@@ -10,7 +10,8 @@
 
             <div class="d-flex align-items-center justify-content-evenly prof">
                 {% if user.is_authenticated %}
-                    <i class="bi bi-cart2 h2"></i>
+                    <i class="bi bi-cart2 h2 pos"> <p class="counttt2"> {{ data }}</p></i>
+
                     <a class=" text-decoration-none text-light " href="{% url 'shoping_cart' %}"> shopping cart </a>
                 {% else %}
                     <i class="bi bi-cart2 h2"></i>
@@ -68,10 +69,13 @@
             {% endif %}
 
 
+
             {% if user.is_authenticated %}
-                <li class="d-flex flex-column justify-content-around">
+                <li class="d-flex flex-column justify-content-around pos">
+                <p class="counttt">{{ data }}
+</p>
                     <i class="bi bi-cart2 h3"></i>
-                    <a class="text-light text-decoration-none" href="{% url 'shoping_cart' %}">cart</a>
+                    <a class="text-light text-decoration-none d-flex justify-content-around" href="{% url 'shoping_cart' %}">cart </a>
 
                 </li>
             {% else %}

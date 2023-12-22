@@ -1,9 +1,4 @@
 
-
-
-
-
-
 * {
   padding: 0;
   margin: 0;
@@ -748,4 +743,30 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
 
 #scrollToTopBtn.show {
   display: block;
+}
+
+.pos{
+  position: relative;
+}
+
+.counttt{
+  position: absolute;
+  color: red;
+  left: 24px;
+  bottom: 25px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
+
+
+.counttt2{
+ position: absolute;
+  color: red;
+  left: 31px;
+  bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
 }

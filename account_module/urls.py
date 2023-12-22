@@ -14,5 +14,7 @@ urlpatterns = [
     path('remove_fav<int:pk>',views.remove_fav,name='remove_fav'),
     path('shoping-cart',views.Shoping_cart.as_view(),name='shoping_cart'),
     path('stripe',views.stripe_webhook,name='stripe'),
+    path('edit-profile/<int:pk>',views.Edit_profilr.as_view(),name='edit_profile'),
+    path('detail-cart/<int:pk>',views.detailcart,name='detailcart')
 
 ]

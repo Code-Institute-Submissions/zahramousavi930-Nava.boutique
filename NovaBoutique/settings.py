@@ -78,7 +78,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'NovaBoutique.urls'
 
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dggry4oz1',
     'API_KEY': '619785319395311',
@@ -97,6 +96,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_module.views.add_variable_to_context',
             ],
         },
     },

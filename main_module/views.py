@@ -5,6 +5,9 @@ from django.http import JsonResponse
 from . import models
 from . import forms
 import json
+import random
+
+
 
 
 class Home_page(TemplateView):
@@ -32,7 +35,12 @@ class Home_page(TemplateView):
 
 
 
+def add_variable_to_context(request):
+    data= models.OrderDetail.objects.filter(order__userr_id=request.user.id,final_price=None).count()
 
+    return {
+        'data': data
+    }
 
 def newsteller(request):
 
@@ -256,8 +264,17 @@ def addtocart(request):
                  new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr,count=count)
                  new_detail.save()
              else:
-                new_detail =models.OrderDetail(order_id=current_order.id ,product_id=pk,size=sizee,color=colorr,count=count)
-                new_detail.save()
+
+                 random_numbers = [random.randint(1, 100) for _ in range(3)]
+                 formatted_numbers = ''.join(map(str, random_numbers))
+                 new_detail =models.OrderDetail(order_id=current_order.id
+                                               ,product_id=pk
+                                               ,size=sizee,
+                                               color=colorr,
+                                               count=count,
+                                                order_number=formatted_numbers
+                                                )
+                 new_detail.save()
 
              return JsonResponse({
                 'status': 'success',

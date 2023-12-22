@@ -4,6 +4,31 @@
     <p> you can see your order now !</p>
     <p>
         <a href="https://botiuqnova-ae121ab1d794.herokuapp.com/{% url 'profile' %}">
-            see order detail</a>
+            see order in profile</a>
     </p>
+
+    <p>order detail</p>
+
+         <div>order number : {{ order_basket.order_nimber }}</div>
+        <div>count :{{ order_basket.count }}</div>
+        <div>size : {{ order_basket.size }}</div>
+        <div>color : {{ order_basket.color }}</div>
+        <div>cost : $ {{ order_basket.final_price }}</div>
+
+
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <p>delivary detail</p>
+
+     <div>full name : {{ date.full_name }}</div>
+        <div>email address : {{ date.email_address }} </div>
+        <div>phone number :{{ date.phone_number }}</div>
+        <div>street address : {{ date.street_address1 }}</div>
+        <div>city : {{ date.town_or_city }}</div>
+        <div>state :  {{ date.country_state_or_location }}</div>
+        <div>post code :  {{ date.post_code }}</div>
+        <div>country :  {{ date.country }}</div>
 </div>

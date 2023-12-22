@@ -18,4 +18,11 @@ class contact_form(forms.ModelForm):
 class order_detail_form(forms.ModelForm):
     class Meta:
         model=order_data
-        fields=('__all__')
+        fields=('full_name',
+                'email_address',
+                'phone_number',
+                'street_address1',
+                'town_or_city',
+                'country_state_or_location',
+                'post_code',
+                'country')

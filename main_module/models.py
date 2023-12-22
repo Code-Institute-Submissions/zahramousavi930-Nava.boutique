@@ -100,7 +100,7 @@ class contact(models.Model):
 class Order(models.Model):
     userr = models.ForeignKey(User, on_delete=models.CASCADE)
     is_paid = models.BooleanField()
-    payment_date = models.DateField(null=True, blank=True)
+    payment_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(self.userr)
@@ -125,6 +125,7 @@ class OrderDetail(models.Model):
     size=models.CharField(max_length=100,default='')
     color=models.CharField(max_length=100,default='')
     coount=models.IntegerField(default=1)
+    order_number=models.IntegerField()
 
     final_price = models.IntegerField(null=True, blank=True)
     count = models.IntegerField(default=1)
@@ -148,7 +149,8 @@ class order_data(models.Model):
     country_state_or_location=models.CharField(max_length=500)
     post_code=models.CharField(max_length=100)
     country=models.CharField(max_length=100)
-
+    which_order=models.ForeignKey(Order, on_delete=models.CASCADE,default=None)
+    which_user = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
 
 
 

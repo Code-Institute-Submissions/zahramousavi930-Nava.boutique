@@ -1,5 +1,5 @@
 
-const backToTopButton = document.querySelector("button");
+const backToTopButton = document.getElementById("scrollToTopBtn");
 
 backToTopButton.onclick = () =>
   document.documentElement.scroll({
