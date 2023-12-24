@@ -17,7 +17,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from account_module.models import User
-
+import random
 
 
 class Profile(View):
@@ -46,10 +46,10 @@ class Profile(View):
 
 def detailcart(request,pk):
 
-    detail=models.order_data.objects.filter(which_order_id=pk).get()
+    detail=models.order_data.objects.filter(which_order=pk).get()
+    payment_datea=models.OrderDetail.objects.filter(pk=pk).get()
 
-    return render(request,'detailcart.html',{'detail':detail,
-                                             })
+    return render(request,'detailcart.html',{'detail':detail,'payment_datea':payment_datea})
 
 
 @csrf_exempt
@@ -85,31 +85,41 @@ def stripe_webhook(request):
 
 
 
-            order_basket=models.Order.objects.filter(is_paid=False,userr_id=user_id).first()
-            if order_basket.is_paid == False:
-                 order_basket.is_paid = True
-                 order_basket.payment_date =timezone.now()
 
 
-                 order_basket.save()
+            order_basket=models.Order.objects.filter(is_paid=False,userr_id=user_id).all()
 
-            if order_basket.payment_date == None:
-                order_basket.delete()
-                order_basket.save()
+            for order in order_basket:
+                if order.is_paid == False:
+                     order.is_paid = True
+                     order.payment_date =timezone.now()
+
+
+                     order.save()
+
+                if order.payment_date == None:
+                    order.delete()
+                    order.save()
 
 
 
 
-            order_detail_final_price=models.OrderDetail.objects.filter(final_price=None,order__userr=user_id).first()
+            order_detail_final_price=models.OrderDetail.objects.filter(final_price=None,order__userr=user_id).all()
+            total_price='{}'.format(total)[:-2]
+            for orders in order_detail_final_price:
+                if orders.final_price == None:
+                    orders.final_price = total_price
+                    orders.save()
 
-            if order_detail_final_price.final_price == None:
-                order_detail_final_price.final_price = total
-                order_detail_final_price.save()
 
 
 
 
             user=models.User.objects.filter(id=user_id).first()
+
+
+
+
 
             new_data=models.order_data(
                 full_name=full_name,
@@ -120,13 +130,16 @@ def stripe_webhook(request):
                 country_state_or_location=country_state_or_location,
                 post_code=post_code,
                 country=country,
-                which_user=user,
-                which_order=order_basket
+                which_user=user
+
             )
             new_data.save()
+            for orderss in order_detail_final_price:
+                new_data.which_order.add(orderss)
 
-            email_user=models.User.objects.filter(id=user_id).first()
-            main_email=email_user.email
+
+
+            main_email=email_address
 
 
             send_email('new order', main_email, {'order_basket': order_detail_final_price,'date':new_data,}, 'email_part/order.html')
@@ -196,7 +209,7 @@ class Shoping_cart(View):
                     {
                         'price_data': {
                             'currency': 'usd',
-                            'unit_amount': '{}'.format(total_amount *100),
+                            'unit_amount': '{}'.format(total_amount * 100),
                             'product_data': {
                              'name':'Nova'
 
@@ -216,6 +229,7 @@ class Shoping_cart(View):
                         'country_state_or_location':country_state_or_location,
                         'post_code':post_code,
                         'country':country,
+
 
 
 

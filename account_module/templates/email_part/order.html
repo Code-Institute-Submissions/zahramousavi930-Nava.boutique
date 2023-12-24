@@ -9,11 +9,19 @@
 
     <p>order detail</p>
 
-         <div>order number : {{ order_basket.order_number }}</div>
-        <div>count :{{ order_basket.count }}</div>
-        <div>size : {{ order_basket.size }}</div>
-        <div>color : {{ order_basket.color }}</div>
-        <div>cost : $ {{ order_basket.final_price }}</div>
+
+    {% for foo in order_basket %}
+      <div>order number : {{ foo.order_number }}</div>
+        <div>count :{{ foo.count }}</div>
+        <div>size : {{ foo.size }}</div>
+        <div>color : {{ foo.color }}</div>
+        <div>cost : $ {{ foo.final_price }}</div>
+        <hr>
+        <hr>
+
+    {% endfor %}
+
+
 
 
     <hr>

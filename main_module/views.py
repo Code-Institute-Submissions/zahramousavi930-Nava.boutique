@@ -256,17 +256,21 @@ def addtocart(request):
 
     if request.user.is_authenticated:
         product = models.Products.objects.filter(id=pk).first()
+        random_numbers = [random.randint(1, 100) for _ in range(3)]
+        formatted_numbers2 = ''.join(map(str, random_numbers))
         if product is not None:
              current_order, created = models.Order.objects.get_or_create(is_paid=False, userr_id=request.user.id)
              current_order_detail = current_order.orderdetail_set.filter(product_id=pk).first()
 
              if current_order_detail is not None:
-                 new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr,count=count)
+
+                 new_detail = models.OrderDetail(order_id=current_order.id, product_id=pk, size=sizee, color=colorr,count=count,order_number=formatted_numbers2)
                  new_detail.save()
              else:
-
                  random_numbers = [random.randint(1, 100) for _ in range(3)]
-                 formatted_numbers = ''.join(map(str, random_numbers))
+                 formatted_numbers= ''.join(map(str, random_numbers))
+
+
                  new_detail =models.OrderDetail(order_id=current_order.id
                                                ,product_id=pk
                                                ,size=sizee,
