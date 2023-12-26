@@ -54,7 +54,8 @@ def detailcart(request,pk):
 
 @csrf_exempt
 def stripe_webhook(request):
-        payload = request.body
+        # payload = request.body
+        payload = request.body.decode('utf-8')
         sig_header =request.META['HTTP_STRIPE_SIGNATURE']
         event = None
 
@@ -63,11 +64,10 @@ def stripe_webhook(request):
                 payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
             )
         except ValueError as e:
-            print('ValueError')
             return HttpResponse(status=400)
             
         except stripe.error.SignatureVerificationError as e:
-            print('SignatureVerificationError')
+
             
             return HttpResponse(status=400)
 
