@@ -175,8 +175,8 @@ EMAIL_PORT = 587
 # srtipe
 
 STRIPE_SECRET_KEY =  'sk_test_51NHrCEIf6yLcH0aFaZQmJFkXPirjC63bYHAQ6asT4ykFj7nH2u8AGFoDFHZRWSCAvD4s1vaEKddboNTaET93AgFj00D2ZsiKns'
-STRIPE_WEBHOOK_SECRET='whsec_d423c9166e4cc9bc78b35e326dd00894ecc8d38783e0b53390c5e8c0bf1c0b22'
-# STRIPE_WEBHOOK_SECRET='we_1ORZ18If6yLcH0aFj1fS8cq8'
+# STRIPE_WEBHOOK_SECRET='whsec_d423c9166e4cc9bc78b35e326dd00894ecc8d38783e0b53390c5e8c0bf1c0b22'
+STRIPE_WEBHOOK_SECRET='we_1ORZ18If6yLcH0aFj1fS8cq8'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
