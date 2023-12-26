@@ -15,6 +15,7 @@ edit data
           <div class="form_container">
             <form method="post">
                {% csrf_token %}
+                {{ form.errors  }}
               <div class="my-2">
                   <label >first name</label>
                   {% render_field form.first_name class+="form-control" %}
@@ -42,7 +43,7 @@ edit data
 
 
 
-                  <button type="submit" id="set" class="btn btn-success" value="Update">sumbit</button>
+                  <button type="submit" class="btn btn-success" >sumbit</button>
                   <a href="{% url 'profile' %}" type="button" id="cancel" class="btn btn-danger" >cancel</a>
 
 
