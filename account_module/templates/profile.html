@@ -84,11 +84,12 @@
 
         <div class="d-flex align-item-center justify-content-between flex-column">
             <div>order number : {{ foo.order_number }}</div>
+            <div>product name : {{ foo.product.name }}</div>
             <div>count :{{ foo.count }}</div>
             <div>size : {{ foo.size }}</div>
             <div>color : {{ foo.color }}</div>
             <div>cost : $ {{ foo.final_price }}</div>
-            <a class="btn btn-info w-50 my-3" href="{% url 'detailcart' foo.pk %}">view details</a>
+            <a class="btn btn-info w-25 my-3" href="{% url 'detailcart' foo.pk %}">view details</a>
         </div>
 
         <hr>

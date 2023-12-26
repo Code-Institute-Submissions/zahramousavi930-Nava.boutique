@@ -12,6 +12,7 @@
 
     {% for foo in order_basket %}
       <div>order number : {{ foo.order_number }}</div>
+      <div>product name : {{ foo.product.name }}</div>
         <div>count :{{ foo.count }}</div>
         <div>size : {{ foo.size }}</div>
         <div>color : {{ foo.color }}</div>
