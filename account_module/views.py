@@ -236,8 +236,8 @@ class Shoping_cart(View):
 
                 },
                 mode='payment',
-                success_url=' https://nova-python-shop-bcd50c116716.herokuapp.com/user/profile',
-                cancel_url=' https://nova-python-shop-bcd50c116716.herokuapp.com/user/shoping-cart',
+                success_url='https://nova-python-shop-bcd50c116716.herokuapp.com/user/profile',
+                cancel_url='https://nova-python-shop-bcd50c116716.herokuapp.com/user/shoping-cart',
             )
 
 
