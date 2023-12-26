@@ -31,13 +31,12 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = [
     'https://nova-python-shop-bcd50c116716.herokuapp.com/',
-    'nova-python-shop-bcd50c116716.herokuapp.com',
-    '8000-zahramousav-navaboutiqu-q9rabc2rvi4.ws-eu107.gitpod.io']
+    'nova-python-shop-bcd50c116716.herokuapp.com',]
 # Application definition
 
 INSTALLED_APPS = [
