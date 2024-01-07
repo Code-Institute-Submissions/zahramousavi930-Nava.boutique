@@ -141,13 +141,3 @@ I deployed this website using GitPod, Heroku, and following the below steps:
 - Comprehensive testing using the Django test framework.
 - Users must log in first to access all features of the site.
 
-## Screenshots
-
-![Basket](static/images/basket.PNG)
-**Basket Page**: Users can view and manage the items in their shopping cart. This page displays the items in the user's shopping cart. Users can view the selected items and manage their quantities before proceeding to checkout. It provides a convenient overview of the chosen items for the user.
-
-![About]
-**About Us Page**: Learn more about our team and our commitment to delivering a delightful shopping experience. This section provides users with information about the team behind Nava Boutique Online Shop. It offers insights into the company's values, mission, and dedication to delivering a delightful shopping experience.
-
-![Comment](static/images/comment.PNG)
-**Comments Section**: Users can leave comments on products. This section showcases user-generated content and allows for interaction. Admins have the capability to review and approve comments before they are displayed on the main page,
