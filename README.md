@@ -141,29 +141,67 @@ I deployed this website using GitPod, Heroku, and following the below steps:
 - Comprehensive testing using the Django test framework.
 - Users must log in first to access all features of the site.
 
-
 ## Screenshots
 
-![add products](img/add%20products.png)
-**add products**: 
+### 1. Add Products
+![Add Products](img/add%20products.png)
+**Description:** This screenshot showcases the "Add Products" interface, where administrators can add new food items to the menu.
 
-![Comment](img/comment.png)
-**Comments Section**: Users can leave comments on food items. This section showcases user-generated content and allows for interaction. Admins have the capability to review and approve comments before they are displayed on the main page, ensuring content quality.
+### 2. Comments Section
+![Comments Section](img/comment.png)
+**Description:** Users can leave comments on food items, fostering user interaction. Admins have the ability to review and approve comments before they appear on the main page, ensuring content quality.
 
-![Countact us](img/countact%20us.png)
-**Food Menu Page**: This is the main menu page where users can explore a comprehensive list of dishes. Each item typically includes rich descriptions and images to enhance the user's understanding of the available options.
+### 3. Header Section
+![Header Section](img/header.png)
+**Description:** The header is a crucial component of the website, offering clear and intuitive navigation. It typically includes the restaurant's logo, navigation links, and may feature a search bar or other relevant elements.
 
-![Header](img/header.png)
-**Header Section**: The header is a crucial part of the website's layout, providing clear and intuitive navigation. It typically includes the restaurant's logo, navigation links, and may also include a search bar or other relevant elements.
+### 4. Login Page
+![Login Page](img/login.png)
+**Description:** Users access their accounts securely through the login page. This is essential for user authentication, enabling registered users to manage reservations, orders, and preferences.
 
-![Loginpage](img/login.png)
-**Login Page**: Users can access their accounts securely by logging in. This page is essential for user authentication, allowing registered users to manage their reservations, orders, and preferences.
-
+### 5. Teller
 ![Teller](img/tailr.png)
-**Teller**: 
+**Description:** The Teller section allows users to subscribe to email notifications for new arrivals. Users can enter their email address to receive updates about the latest additions to the menu.
 
-![Products Detils](img/products%20detils.png)
-**Products Detils**: 
+### 6. Admin Section - Add Products
+![Admin Section - Add Products](img/add%20products.png)
+**Description:** Admins have the ability to add new products to the menu through a dedicated interface, ensuring seamless management of the restaurant's offerings.
+
+### 7. Admin Section - Change Password
+![Admin Section - Change Password](img/change%20pasword.png)
+**Description:** Admins can change their password securely through a designated page, enhancing account security and access control.
+
+### 8. Admin Section - Accept Comments and Edit Users
+![Admin Section - Accept Comments and Edit Users](img/admin.png)
+**Description:** Admins can review and accept comments from users, ensuring content quality. Additionally, they have the capability to edit user profiles, providing comprehensive control over user management.
+
+### 9. Checkout Section
+![Checkout Section](img/checktout.png)
+**Description:** The Checkout section allows users to review their selected items, enter shipping information, and proceed to payment. This step-by-step process ensures a smooth and secure completion of the order.
+
+### 10. Order Details and Receipt
+![Order Details and Receipt](img/order%20data.png)
+
+![Order Details and Receipt](img/order%20detils.png)
+**Description:** After completing the checkout process, users receive a detailed order summary and a receipt. This includes information about the items purchased, total cost, and any relevant order details. Enhances user experience by providing a clear record of their transaction.
+
+## Databases (PostgreSQL)
+
+### Database Structure
+* The project uses PostgreSQL as the relational database management system.
+* Schemas and tables are organized to store information about products, users, comments, and orders.
+
+### Database Connection
+* The application connects to the PostgreSQL database to retrieve and store data.
+* Database connection details such as host, port, username, and password are configured in the application's settings.
+
+### Database Interaction
+* CRUD operations are implemented to interact with the database.
+* SQL queries are used to insert, retrieve, update, and delete data based on user actions and system requirements.
+
+### Data Security
+* The application ensures data security by using parameterized queries and prepared statements to prevent SQL injection attacks.
+* Passwords are securely hashed before storing them in the database to enhance user authentication security.
 
 ## Testing
 
