@@ -180,8 +180,6 @@ I deployed this website using GitPod, Heroku, and following the below steps:
 **Description:** The Checkout section allows users to review their selected items, enter shipping information, and proceed to payment. This step-by-step process ensures a smooth and secure completion of the order.
 
 ### 10. Order Details and Receipt
-![Order Details and Receipt](img/order%20data.png)
-
 ![Order Details and Receipt](img/order%20detils.png)
 **Description:** After completing the checkout process, users receive a detailed order summary and a receipt. This includes information about the items purchased, total cost, and any relevant order details. Enhances user experience by providing a clear record of their transaction.
 
