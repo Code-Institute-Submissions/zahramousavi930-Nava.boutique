@@ -144,29 +144,26 @@ I deployed this website using GitPod, Heroku, and following the below steps:
 
 ## Screenshots
 
-![Basket](static/images/basket.PNG)
-**Basket Page**: Users can view and manage the items in their shopping cart.This page displays the items in the user's shopping cart. Users can view the selected items and manage their quantities before proceeding to checkout. It provides a convenient overview of the chosen items for the user.
+![add products](img/add%20products.png)
+**add products**: 
 
-![About]
-**About Us Page**: Learn more about our team and our commitment to delivering a delightful dining experience.This section provides users with information about the team behind the Restaurant Booking System. It offers insights into the company's values, mission, and dedication to delivering a delightful dining experience.
-
-![Comment](static/images/comment.PNG)
+![Comment](img/comment.png)
 **Comments Section**: Users can leave comments on food items. This section showcases user-generated content and allows for interaction. Admins have the capability to review and approve comments before they are displayed on the main page, ensuring content quality.
 
-![Fooder](static/images/fooder.PNG)
+![Countact us](img/countact%20us.png)
 **Food Menu Page**: This is the main menu page where users can explore a comprehensive list of dishes. Each item typically includes rich descriptions and images to enhance the user's understanding of the available options.
 
-![Header](static/images/header.PNG)
+![Header](img/header.png)
 **Header Section**: The header is a crucial part of the website's layout, providing clear and intuitive navigation. It typically includes the restaurant's logo, navigation links, and may also include a search bar or other relevant elements.
 
-![Loginpage](static/images/login.PNG)
+![Loginpage](img/login.png)
 **Login Page**: Users can access their accounts securely by logging in. This page is essential for user authentication, allowing registered users to manage their reservations, orders, and preferences.
 
-![Menu](static/images/menu.PNG)
-**Menu Page**: Similar to the Fooder page, this is another view of the menu. It may present different sections or categories of dishes, making it easy for users to explore and find their desired items.
+![Teller](img/tailr.png)
+**Teller**: 
 
-![Notifaction](static/images/not.PNG)
-**Notification Section**: This section provides users with updates and notifications related to their orders. It enhances user communication and keeps them informed about the status of their reservations or food orders.
+![Products Detils](img/products%20detils.png)
+**Products Detils**: 
 
 ## Testing
 
