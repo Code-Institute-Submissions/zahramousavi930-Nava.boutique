@@ -144,7 +144,7 @@ I deployed this website using GitPod, Heroku, and following the below steps:
 ## Screenshots
 
 ### 1. Add Products
-![Add Products](img/add%20products.png)
+![Add Products](img/products.png)
 **Description:** This screenshot showcases the "Add Products" interface, where administrators can add new food items to the menu.
 
 ### 2. Comments Section
