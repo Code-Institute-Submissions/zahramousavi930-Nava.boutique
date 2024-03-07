@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary_storage',
-    'django.contrib.sitemaps'
+    'django.contrib.sitemaps',
     'account_module',
     'whitenoise',
     'main_module',

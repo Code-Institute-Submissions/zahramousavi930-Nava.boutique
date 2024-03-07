@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from accout_module.models import Products
+from .models import Products
 
 class AccountSitemap(Sitemap):
     protocol = 'http'
@@ -10,6 +10,6 @@ class AccountSitemap(Sitemap):
        
         return Products.objects.all()
 
-    def lastmod(self, obj):
-        
-        return obj.updated
+    
+    def location(self, obj):
+        return '/products/{}/'.format(obj.pk)

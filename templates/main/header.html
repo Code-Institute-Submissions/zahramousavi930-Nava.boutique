@@ -7,9 +7,10 @@
                 </a>
 
             </div>
-
+          
             <div class="d-flex align-items-center justify-content-evenly prof">
                 {% if user.is_authenticated %}
+
                     <i class="bi bi-cart2 h2 pos"> <p class="counttt2"> {{ data }}</p></i>
 
                     <a class=" text-decoration-none text-light " href="{% url 'shoping_cart' %}"> shopping cart </a>
@@ -56,22 +57,26 @@
     <nav class="w-75 nav  d-lg-none fixed-bottom mx-auto my-2 color-nav border-read">
         <ul class="hover-links container d-flex justify-content-evenly align-items-center my-3 h-auto px-4">
             {% if user.is_authenticated %}
-                <li class="d-flex flex-column justify-content-around">
-                    <i class="bi bi-person mx-1 icon"></i>
-                    <a class="text-light text-decoration-none" href="{% url 'profile' %}">profile</a>
+                <li class="d-flex flex-column justify-content-around ">
+ 
+
+                    <i class="bi bi-person mx-1 icon {% if '/user' in request.path and 'user/shoping-cart' not in request.path %} text-primary {% endif %}"></i>
+
+                    <a class="text-light text-decoration-none " href="{% url 'profile' %}">profile</a>
 
                 </li>
             {% else %}
-                <li class="d-flex flex-column justify-content-around">
-                <i class="bi bi-person mx-1 icon"></i>
-                <a class="text-light text-decoration-none" href="{% url 'login_page' %}">profile</a>
+                <li class="d-flex flex-column justify-content-around ">
+                    <i class="bi bi-person mx-1 icon {% if '/user/' in request.path %} text-primary {% elif request.path == '/user/shoping-cart/' %} text-light {% endif %}"></i>
+
+                    <a class="text-light text-decoration-none" href="{% url 'login_page' %}">profile</a>
                 </li>
             {% endif %}
 
 
 
             {% if user.is_authenticated %}
-                <li class="d-flex flex-column justify-content-around pos">
+                <li class="d-flex flex-column justify-content-around pos {% if request.path == '/user/shoping-cart' %} text-primary {%else%}  {% endif %}">
                 <p class="counttt">{{ data }}
 </p>
                     <i class="bi bi-cart2 h3"></i>
@@ -79,23 +84,24 @@
 
                 </li>
             {% else %}
-                <li class="d-flex flex-column justify-content-around">
+                <li class="d-flex flex-column justify-content-around ">
                     <i class="bi bi-cart2 h3"></i>
                     <a class="text-light text-decoration-none" href="{% url 'login_page' %}">cart</a>
                 </li>
             {% endif %}
 
-            <li class="d-flex flex-column justify-content-around">
+            <li class="d-flex flex-column justify-content-around {% if request.path == '/'%} text-primary  {%else%} {% endif %}">
 
 
                 <i class="bi bi-house-door mx-1 icon"></i>
-                <a class="text-light text-decoration-none" href="{% url 'home_pgae' %}"> home </a>
+                <a class="text-light text-decoration-none  " href="{% url 'home_pgae' %}">home</a>
+
             </li>
 
             <li class="d-flex flex-column justify-content-around">
 
 
-                <i class="bi bi-search mx-1 h4"></i>
+                <i class="bi bi-search mx-1 h4 {% if request.path == '/search'%} text-primary {%else%}  {% endif %}"></i>
                 <button class="text-light text-decoration-none bt" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop"> search
                 </button>
@@ -106,7 +112,7 @@
     </nav>
 </header>
 
-<!-- Modal -->
+
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

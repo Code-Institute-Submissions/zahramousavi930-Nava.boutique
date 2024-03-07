@@ -84,6 +84,9 @@ class Products(DetailView):
         context['comments']=models.add_comments.objects.filter(product_id=self.kwargs['pk'])
         return context
 
+    def get_absolute_url(self):
+        return reverse('products_pgae', args=[self.pk])
+
 
 
 def add_comments_part(request):
