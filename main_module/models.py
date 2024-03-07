@@ -128,7 +128,7 @@ class OrderDetail(models.Model):
     order_number = models.IntegerField()
 
 
-    final_price = models.CharField(null=True, blank=True)
+    final_price = models.CharField(max_length=2000,null=True, blank=True)
     count = models.IntegerField(default=1)
 
     def get_total_price(self):
