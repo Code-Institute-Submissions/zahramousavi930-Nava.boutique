@@ -28,8 +28,6 @@ class Products(models.Model):
     size_medium=models.CharField(max_length=200,null=True,blank=True)
     size_larg=models.CharField(max_length=200,null=True,blank=True)
     size_xlarg=models.CharField(max_length=200,null=True,blank=True)
-
-
     description=models.TextField(max_length=9000)
     image=models.ImageField(upload_to='products')
     favorit=models.ManyToManyField(User,blank=True)
@@ -125,7 +123,7 @@ class OrderDetail(models.Model):
     size=models.CharField(max_length=100,default='')
     color=models.CharField(max_length=100,default='')
     coount=models.IntegerField(default=1)
-    order_number = models.IntegerField()
+    order_number = models.IntegerField(default=0)
 
 
     final_price = models.CharField(max_length=2000,null=True, blank=True)
