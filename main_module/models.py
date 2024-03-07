@@ -29,7 +29,7 @@ class Products(models.Model):
     size_larg=models.CharField(max_length=200,null=True,blank=True)
     size_xlarg=models.CharField(max_length=200,null=True,blank=True)
     description=models.TextField(max_length=9000)
-    image=models.ImageField(upload_to='products')
+    image = models.ImageField(upload_to='products', null=True, blank=True)
     favorit=models.ManyToManyField(User,blank=True)
     rate=models.IntegerField(default=0)
     discount=models.IntegerField(null=True,default=0)
@@ -122,7 +122,7 @@ class OrderDetail(models.Model):
     product = models.ForeignKey( Products, on_delete=models.PROTECT,null=True)
     size=models.CharField(max_length=100,default='')
     color=models.CharField(max_length=100,default='')
-    coount=models.IntegerField(default=1)
+  
     order_number = models.IntegerField(default=0)
 
 

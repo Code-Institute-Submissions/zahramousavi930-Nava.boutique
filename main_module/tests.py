@@ -1,12 +1,13 @@
-import os
-from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files.storage import FileSystemStorage
-from account_module.models import User 
+from django.test import TestCase, Client, RequestFactory
+from account_module.models import User
+from django.urls import reverse, reverse_lazy
 from . import forms
 from . import models
 from . import views
-
+import json
+import os
 
 
 class CommentsFormTest(TestCase):
@@ -21,8 +22,8 @@ class CommentsFormTest(TestCase):
 
     def test_comments_form_invalid_data(self):
         form_data = {
-            'email': 'invalidemail', 
-            'text': ''  
+            'email': 'invalidemail',
+            'text': ''
         }
         form = forms.comments(data=form_data)
         self.assertFalse(form.is_valid())
@@ -39,8 +40,6 @@ class CommentsFormTest(TestCase):
         self.assertEqual(comment.text, 'This is a test comment.')
 
 
-
-
 class ContactFormTest(TestCase):
 
     def test_contact_form_valid_data(self):
@@ -54,9 +53,9 @@ class ContactFormTest(TestCase):
 
     def test_contact_form_invalid_data(self):
         form_data = {
-            'email': 'invalidemail', 
-            'name': '',  
-            'text': ''  
+            'email': 'invalidemail',
+            'name': '',
+            'text': ''
         }
         form = forms.contact_form(data=form_data)
         self.assertFalse(form.is_valid())
@@ -75,10 +74,7 @@ class ContactFormTest(TestCase):
         self.assertEqual(contact_instance.text, 'This is a test message.')
 
 
-
-
 class OrderDetailFormTest(TestCase):
-
 
     def test_order_detail_form_valid_data(self):
         form_data = {
@@ -96,14 +92,14 @@ class OrderDetailFormTest(TestCase):
 
     def test_order_detail_form_invalid_data(self):
         form_data = {
-            'full_name': '', 
-            'email_address': 'invalidemail', 
-            'phone_number': '123',  
-            'street_address1': '', 
-            'town_or_city': '', 
-            'country_state_or_location': '', 
-            'post_code': '', 
-            'country': ''  
+            'full_name': '',
+            'email_address': 'invalidemail',
+            'phone_number': '123',
+            'street_address1': '',
+            'town_or_city': '',
+            'country_state_or_location': '',
+            'post_code': '',
+            'country': ''
         }
         form = forms.order_detail_form(data=form_data)
         self.assertFalse(form.is_valid())
@@ -127,16 +123,17 @@ class OrderDetailFormTest(TestCase):
         self.assertEqual(order_instance.phone_number, '1234567890')
         self.assertEqual(order_instance.street_address1, '123 Main St')
         self.assertEqual(order_instance.town_or_city, 'Anytown')
-        self.assertEqual(order_instance.country_state_or_location, 'Some State')
+        self.assertEqual(
+            order_instance.country_state_or_location, 'Some State')
         self.assertEqual(order_instance.post_code, '12345')
         self.assertEqual(order_instance.country, 'US')
-
 
 
 class CategoryModelTest(TestCase):
 
     def setUp(self):
-        self.storage = FileSystemStorage(location='/workspace/Nava.boutique/img/comment.png')
+        self.storage = FileSystemStorage(
+            location='/workspace/Nava.boutique/img/comment.png')
         self.storage.location = '/workspace/Nava.boutique/img'
 
     def tearDown(self):
@@ -147,15 +144,15 @@ class CategoryModelTest(TestCase):
         self.assertEqual(str(category), 'Test Category')
 
     def test_category_parent_is_null(self):
-        category =  models.Category.objects.create(categoryy='Parent Category')
+        category = models.Category.objects.create(categoryy='Parent Category')
         self.assertIsNone(category.parent)
 
     def test_category_has_parent(self):
-        parent_category =  models.Category.objects.create(categoryy='Parent Category')
-        child_category =  models.Category.objects.create(categoryy='Child Category', parent=parent_category)
+        parent_category = models.Category.objects.create(
+            categoryy='Parent Category')
+        child_category = models.Category.objects.create(
+            categoryy='Child Category', parent=parent_category)
         self.assertEqual(child_category.parent, parent_category)
-
-   
 
 
 class ProductsModelTest(TestCase):
@@ -173,12 +170,11 @@ class ProductsModelTest(TestCase):
             price=100,
             size='Large',
             description='Test description',
-            image='/workspace/Nava.boutique/img/products.png',  
+            image='/workspace/Nava.boutique/img/products.png',
             color='Red',
             color2='Blue',
         )
-        
-        
+
         self.assertIsNotNone(product)
 
         self.assertEqual(product.name, 'Test Product')
@@ -187,12 +183,10 @@ class ProductsModelTest(TestCase):
         self.assertEqual(product.price, 100)
         self.assertEqual(product.size, 'Large')
         self.assertEqual(product.description, 'Test description')
-        self.assertEqual(product.image, '/workspace/Nava.boutique/img/products.png')
+        self.assertEqual(
+            product.image, '/workspace/Nava.boutique/img/products.png')
         self.assertEqual(product.color, 'Red')
         self.assertEqual(product.color2, 'Blue')
-
-
-
 
 
 class NewsTellerModelTest(TestCase):
@@ -200,28 +194,24 @@ class NewsTellerModelTest(TestCase):
     def test_news_teller_creation(self):
         email = 'test@example.com'
         news_teller = models.News_teller.objects.create(email=email)
-        
-       
+
         self.assertIsNotNone(news_teller)
 
-        
         self.assertEqual(news_teller.email, email)
 
     def test_news_teller_str_representation(self):
         email = 'test@example.com'
-        news_teller =  models.News_teller.objects.create(email=email)
-        
-        
+        news_teller = models.News_teller.objects.create(email=email)
+
         self.assertEqual(str(news_teller), email)
-
-
 
 
 class AddCommentsModelTest(TestCase):
 
     def test_add_comments_str_representation(self):
         user = User.objects.create(username='test_user')
-        product = models.Products.objects.create(name='Test Product', price=100)
+        product = models.Products.objects.create(
+            name='Test Product', price=100)
         comment = models.add_comments.objects.create(
             product=product,
             user=user,
@@ -229,13 +219,13 @@ class AddCommentsModelTest(TestCase):
             text='Test comment',
         )
 
-     
         expected_str = str(user)
         self.assertEqual(str(comment), expected_str)
 
     def test_add_comments_creation(self):
         user = User.objects.create(username='test_user')
-        product = models.Products.objects.create(name='Test Product', price=100)
+        product = models.Products.objects.create(
+            name='Test Product', price=100)
         comment = models.add_comments.objects.create(
             product=product,
             user=user,
@@ -243,16 +233,12 @@ class AddCommentsModelTest(TestCase):
             text='Test comment',
         )
 
-       
         self.assertIsNotNone(comment)
 
-  
         self.assertEqual(comment.product, product)
         self.assertEqual(comment.user, user)
         self.assertEqual(comment.email, 'test@example.com')
         self.assertEqual(comment.text, 'Test comment')
-
-
 
 
 class ContactWithUsModelTest(TestCase):
@@ -264,7 +250,6 @@ class ContactWithUsModelTest(TestCase):
             about_us='Test message about us.',
         )
 
-       
         expected_str = 'test@example.com'
         self.assertEqual(str(contact), expected_str)
 
@@ -275,15 +260,11 @@ class ContactWithUsModelTest(TestCase):
             about_us='Test message about us.',
         )
 
-        
         self.assertIsNotNone(contact)
 
-      
         self.assertEqual(contact.email, 'test@example.com')
         self.assertEqual(contact.phone_number, '123456789')
         self.assertEqual(contact.about_us, 'Test message about us.')
-
-
 
 
 class ContactModelTest(TestCase):
@@ -292,9 +273,9 @@ class ContactModelTest(TestCase):
         email = 'test@example.com'
         name = 'Test User'
         text = 'Test message'
-        contact_instance = models.contact.objects.create(email=email, name=name, text=text)
+        contact_instance = models.contact.objects.create(
+            email=email, name=name, text=text)
 
-  
         expected_str = email
         self.assertEqual(str(contact_instance), expected_str)
 
@@ -302,66 +283,57 @@ class ContactModelTest(TestCase):
         email = 'test@example.com'
         name = 'Test User'
         text = 'Test message'
-        contact_instance =  models.contact.objects.create(email=email, name=name, text=text)
+        contact_instance = models.contact.objects.create(
+            email=email, name=name, text=text)
 
-      
         self.assertIsNotNone(contact_instance)
 
-    
         self.assertEqual(contact_instance.email, email)
         self.assertEqual(contact_instance.name, name)
         self.assertEqual(contact_instance.text, text)
-
-
 
 
 class ContactModelTest(TestCase):
 
     def test_contact_str_representation(self):
 
-        contact_us = models.contact.objects.create(email='test@example.com', name='Test User', text='This is a test message')
+        contact_us = models.contact.objects.create(
+            email='test@example.com', name='Test User', text='This is a test message')
 
         expected_str = 'test@example.com'
         self.assertEqual(str(contact_us), expected_str)
 
 
-
-
-
 class OrderModelTest(TestCase):
 
     def test_order_str_representation(self):
-       
+
         user = User.objects.create(username='test_user')
 
-     
         order = models.Order.objects.create(userr=user, is_paid=False)
 
-      
         expected_str = str(user)
         self.assertEqual(str(order), expected_str)
 
     def test_order_payment_date_is_none(self):
-      
+
         user = User.objects.create(username='test_user')
 
-        order = models.Order.objects.create(userr=user, is_paid=True, payment_date=None)
+        order = models.Order.objects.create(
+            userr=user, is_paid=True, payment_date=None)
 
         self.assertIsNone(order.payment_date)
 
     def test_order_payment_date_is_not_none(self):
-  
+
         user = User.objects.create(username='test_user')
 
         payment_date = '2024-03-07 12:00:00'
 
-        order = models.Order.objects.create(userr=user, is_paid=True, payment_date=payment_date)
+        order = models.Order.objects.create(
+            userr=user, is_paid=True, payment_date=payment_date)
 
         self.assertEqual(str(order.payment_date), payment_date)
-
-
-
-
 
 
 class OrderDetailModelTest(TestCase):
@@ -372,7 +344,7 @@ class OrderDetailModelTest(TestCase):
 
         order = models.Order.objects.create(userr=user, is_paid=False)
 
-        order_detail = models.OrderDetail.objects.create(order=order) 
+        order_detail = models.OrderDetail.objects.create(order=order)
         expected_str = str(user)
         self.assertEqual(str(order_detail.order), expected_str)
 
@@ -380,29 +352,25 @@ class OrderDetailModelTest(TestCase):
 
         user = User.objects.create(username='test_user')
 
-
         order = models.Order.objects.create(userr=user, is_paid=False)
 
+        product = models.Products.objects.create(
+            name='Test Product', price=100)
 
-        product = models.Products.objects.create(name='Test Product', price=100)
-
-        order_detail = models.OrderDetail.objects.create(order=order, product=product)
+        order_detail = models.OrderDetail.objects.create(
+            order=order, product=product)
 
         expected_str = 'Test Product'
         self.assertEqual(str(order_detail.product), expected_str)
-     
 
     def test_order_detail_default_values(self):
-  
+
         user = User.objects.create(username='test_user')
 
-      
         order = models.Order.objects.create(userr=user, is_paid=False)
 
-       
         order_detail = models.OrderDetail.objects.create(order=order)
 
-     
         self.assertEqual(order_detail.size, '')
         self.assertEqual(order_detail.color, '')
         self.assertEqual(order_detail.count, 1)
@@ -410,30 +378,26 @@ class OrderDetailModelTest(TestCase):
         self.assertIsNone(order_detail.final_price)
 
 
-
-
-
-
-
 class OrderDataModelTest(TestCase):
 
     def setUp(self):
-     
-        self.user = User.objects.create(username='test_user', email='test@example.com')
 
-     
-        self.order = models.Order.objects.create(userr=self.user, is_paid=False)
+        self.user = User.objects.create(
+            username='test_user', email='test@example.com')
 
-      
-        self.product = models.Products.objects.create(name='Test Product', slug='test-product', price=100)
+        self.order = models.Order.objects.create(
+            userr=self.user, is_paid=False)
 
-       
+        self.product = models.Products.objects.create(
+            name='Test Product', slug='test-product', price=100)
+
         self.order_detail = models.OrderDetail.objects.create(
             order=self.order,
             product=self.product,
             final_price='100',
             count=2
         )
+
     def test_order_data_str_representation(self):
         order = models.order_data.objects.create(
             full_name='Test User',
@@ -444,7 +408,7 @@ class OrderDataModelTest(TestCase):
             country_state_or_location='Test Country',
             post_code='12345',
             country='Test Country',
-        
+
             which_user=self.user
         )
 
@@ -466,6 +430,346 @@ class OrderDataModelTest(TestCase):
 
         self.assertEqual(order.which_order.count(), 1)
         self.assertIn(self.order_detail, order.which_order.all())
+
+
+# views test
+
+class SearchViewTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+        self.user = User.objects.create_user(
+            username='testuser', password='password')
+
+    def test_search_view(self):
+
+        product = models.Products.objects.create(
+            name='Test Product',
+            slug='test-product',
+            price=100,
+            description='Test description',
+            image='test_image.jpg'
+        )
+
+        data = {'search': 'Test'}
+        request = self.factory.post(reverse('search'), data)
+
+        request.user = self.user
+
+        response = views.search(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertIn(product.name.encode(), response.content)
+
+
+class AddToCartViewTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_add_to_cart_authenticated(self):
+
+        user = models.User.objects.create_user(
+            username='testuser', password='12345')
+
+        product = models.Products.objects.create(
+            name='Test Product', slug='test-product', price=100)
+
+        request = self.factory.post(reverse('add_to_cart'), json.dumps({
+            'pk': product.pk,
+            'size': 'small',
+            'color': 'red',
+            'count': 1
+        }), content_type='application/json')
+        request.user = user
+
+        response = views.addtocart(request)
+
+        self.assertEqual(response.status_code, 200)
+
+        content = json.loads(response.content)
+        self.assertEqual(content['status'], 'success')
+        self.assertEqual(content['message'], 'order add to cart')
+
+
+class SaveContactUsViewTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_save_contact_us(self):
+        
+        post_data = {
+            'name': 'John Doe',
+            'email': 'john@example.com',
+            'text': 'Test message for contact form.'
+        }
+
+
+        request = self.factory.post(reverse('save_contact'), post_data)
+
+    
+        response = views.save_contact_us(request)
+
+
+        self.assertEqual(response.url, reverse('home_pgae'))
+
+       
+        contact = models.contact.objects.last()
+        self.assertEqual(contact.name, post_data['name'])
+        self.assertEqual(contact.email, post_data['email'])
+        self.assertEqual(contact.text, post_data['text'])
+
+    def test_save_contact_us_invalid_request(self):
+     
+        request = self.factory.get(reverse('save_contact'))
+
+     
+        response = views.save_contact_us(request)
+
+     
+        self.assertEqual(response.url, reverse('home_pgae'))
+
+
+
+
+class ContactWithUsViewTest(TestCase):
+    def setUp(self):
+
+        self.contact_info = models.contact_with_us.objects.create(
+            email='test@example.com',
+            phone_number='1234567890',
+            about_us='Test about us text'
+        )
+
+    def test_contact_with_us_view(self):
+       
+        client = Client()
+        response = client.get(reverse('contact_with_us'))
+
+        self.assertEqual(response.status_code, 200)
+
+
+        self.assertTemplateUsed(response, 'contac_with_us.html')
+
+
+        self.assertEqual(response.context['footer'], self.contact_info)
+
+
+
+
+
+class CategoryModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+     
+        cls.parent_category = models.Category.objects.create(categoryy="Parent Category")
+       
+        cls.category_with_parent = models.Category.objects.create(categoryy="Child Category", parent=cls.parent_category)
+       
+        cls.category_without_parent = models.Category.objects.create(categoryy="Top Level Category")
+
+    def test_category_str_method(self):
+        
+        self.assertEqual(str(self.parent_category), self.parent_category.categoryy)
+        self.assertEqual(str(self.category_with_parent), self.category_with_parent.categoryy)
+        self.assertEqual(str(self.category_without_parent), self.category_without_parent.categoryy)
+
+    def test_parent_category_relationship(self):
+     
+        self.assertEqual(self.category_with_parent.parent, self.parent_category)
+
+    def test_blank_and_null_fields(self):
+
+        self.assertIsNone(self.category_without_parent.parent)
+        self.assertEqual(self.category_without_parent.image, '')  
+
+   
+
+
+
+
+
+class AddCommentsPartTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_add_comments_authenticated(self):
+        product = models.Products.objects.create(name='Test Product', slug='test-product', price=100)
+        user = User.objects.create(username='testuser')
+
+        request = self.factory.post(reverse('add_comments'), json.dumps({
+            'id': product.id,
+            'text': 'Test comment',
+            'email': 'test@example.com',
+            'rate': 4
+        }), content_type='application/json')
+        request.user = user
+
+        response = views.add_comments_part(request)
+
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(content['status'], 'ok')
+        self.assertEqual(content['message'], 'refresh page to see your comment.')
+
+
+
+
+
+class ProductsDetailViewTest(TestCase):
+    def test_products_detail_view(self):
+        product = models.Products.objects.create(name='Test Product', slug='test-product', price=100)
+
+        client = Client()
+        response = client.get(reverse('products_pgae', kwargs={'slug': 'test-product', 'pk': product.pk}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'products.html')
+
+
+
+
+
+
+
+class RemoveNewsTellerViewTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        
+    def test_remove_news_teller(self):
+       
+        email = 'test@example.com'
+        news_teller = models.News_teller.objects.create(email=email)
+
+        
+        data = {'removenewstelleremail': email}
+        request = self.factory.post(reverse('remove_news_teller'), data)
+
+        
+        response = views.remove_news_teller(request)
+
+     
+        self.assertEqual(models.News_teller.objects.count(), 0)
+
+       
+        self.assertEqual(response.status_code, 302)
+
+        self.assertEqual(response.url, reverse('home_pgae'))
+
+
+
+
+class NewsTellerViewTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_newsteller_view(self):
+     
+        data = {'newstelleremail': 'test@example.com'}
+        request = self.factory.post(reverse('news_teller'), data)
+
+        
+        response = views.newsteller(request)
+
+     
+        self.assertEqual(models.News_teller.objects.count(), 1)
+        news_teller = models.News_teller.objects.first()
+        self.assertEqual(news_teller.email, 'test@example.com')
+
+       
+        self.assertEqual(response.status_code, 302)
+
+        
+        self.assertEqual(response.url, reverse('home_pgae'))
+
+
+
+
+
+class HomePageViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create(username='testuser', password='12345')
+        category = models.Category.objects.create(categoryy='Test Category')
+        models.Products.objects.create(name='Test Product', slug='test-product', category=category, price=100)
+
+    def test_home_page_view(self):
+        response = self.client.get(reverse('home_pgae'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home_page.html')
+        self.assertTrue('products_discount' in response.context)
+        self.assertTrue('products' in response.context)
+        self.assertTrue('category' in response.context)
+
+
+
+
+
+
+
+
+class AddToCartTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.product = models.Products.objects.create(name='Test Product', price=10.00) 
+
+    def test_add_to_cart_authenticated(self):
+    
+        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        data = {
+            'pk': self.product.pk,
+            'size': 'Large',
+            'color': 'Blue',
+            'count': 2
+        }
+        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
+        request.user = user   
+        response = views.addtocart(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content)['status'], 'success')
+        self.assertEqual(models.OrderDetail.objects.count(), 1)  
+
+    
+
+    def test_add_to_cart_product_not_found(self):
+        
+        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+
+    
+        data = {
+            'pk': 999,  # Non-existent product ID
+            'size': 'Large',
+            'color': 'Blue',
+            'count': 2
+        }
+        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
+        request.user = user  # Attach the user to the request
+
+        # Call the view function
+        response = views.addtocart(request)
+
+        # Check if the response indicates the product is not found
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content)['status'], 'not_found')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

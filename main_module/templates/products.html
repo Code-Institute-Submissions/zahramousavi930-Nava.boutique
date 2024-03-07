@@ -23,18 +23,19 @@
                 >
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img
-                                    src="{{ selected_product.image.url }}"
-                                    class="d-block w-100 img-fluid object-fit-cover"
-                                    alt="..."
-                            />
+                            {% if selected_product.image %}
+    <img src="{{ selected_product.image.url }}" alt="{{ selected_product.name }}">
+{% else %}
+    <p>No image available</p>
+{% endif %}
                         </div>
                         <div class="carousel-item">
-                            <img
-                                    src="{{ selected_product.image.url }}"
-                                    class="d-block w-100 img-fluid object-fit-cover"
-                                    alt="..."
-                            />
+                            {% if selected_product.image %}
+                            <img src="{{ selected_product.image.url }}" alt="{{ selected_product.name }}">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+
                         </div>
 
                     </div>

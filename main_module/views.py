@@ -10,37 +10,33 @@ import random
 
 
 
+
+
 class Home_page(TemplateView):
     template_name = 'home_page.html'
 
-
     def get_context_data(self, **kwargs):
-
-        context=super(Home_page, self).get_context_data()
-        m=models.Products.objects.all()
-        e=[]
-        for i in m:
-            if i.discount !=0:
-                e.append(i)
-
-        context['products_discount']=e
-        context['products']=models.Products.objects.filter(discount= 0).all()[:6]
-
-
-
-        context['category']=models.Category.objects.all()
-
+        context = super(Home_page, self).get_context_data(**kwargs)
+        context['products_discount'] = models.Products.objects.exclude(discount=0)
+        context['products'] = models.Products.objects.filter(discount=0)[:6]
+        context['category'] = models.Category.objects.all()
         return context
 
 
 
 
-def add_variable_to_context(request):
-    data= models.OrderDetail.objects.filter(order__userr_id=request.user.id,final_price=None).count()
 
+
+def add_variable_to_context(request):
+    if request.user.is_authenticated:
+        data = models.OrderDetail.objects.filter(order__userr_id=request.user.id, final_price=None).count()
+    else:
+        data = 0
     return {
         'data': data
     }
+
+
 
 def newsteller(request):
 
@@ -128,12 +124,21 @@ def add_comments_part(request):
 
 
 
+
+
+
+
+
+
+
+
+
 class all_peoducts(View):
     def get(self,reqiest):
-        allproducts=models.Products.objects.all()
+        all_products=models.Products.objects.all()
 
         context={
-            'all_product':allproducts
+            'all_product':all_products
         }
         return render(reqiest,'all products.html',context)
 
@@ -213,9 +218,12 @@ class contact_with_us(TemplateView):
 
     def get_context_data(self, **kwargs):
         context=super(contact_with_us, self).get_context_data()
-        context['footer']=models.contact_with_us.objects.get()
+        context['footer']=models.contact_with_us.objects.all()
         context['contact_form']=forms.contact_form
         return context
+
+
+
 
 
 
@@ -282,7 +290,7 @@ def addtocart(request):
 
              return JsonResponse({
                 'status': 'success',
-                'message':' order add to cart',
+                'message':'order add to cart',
 
             })
         else:
