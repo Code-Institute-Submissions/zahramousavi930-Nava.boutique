@@ -332,28 +332,6 @@ class SaveContactUsViewTest(TestCase):
         self.assertEqual(response.url, reverse('home_pgae'))
 
 
-class ContactWithUsViewTest(TestCase):
-    def setUp(self):
-
-        self.contact_info = models.contact_with_us.objects.create(
-            email='test@example.com',
-            phone_number='1234567890',
-            about_us='Test about us text'
-        )
-
-    def test_contact_with_us_view(self):
-       
-        client = Client()
-        response = client.get(reverse('contact_with_us'))
-
-        self.assertEqual(response.status_code, 200)
-
-
-        self.assertTemplateUsed(response, 'contac_with_us.html')
-
-
-        self.assertEqual(response.context['footer'], self.contact_info)
-
 
 
 class AddCommentsPartTest(TestCase):
@@ -495,60 +473,25 @@ class HomePageViewTest(TestCase):
 
 
 
-class AddToCartTestCase(TestCase):
+
+
+class ContactWithUsViewTest(TestCase):
     def setUp(self):
-        self.factory = RequestFactory()
-        self.product = models.Products.objects.create(name='Test Product', price=10.00) 
+        self.contact_info = models.contact_with_us.objects.create(
+            email='test@example.com',
+            phone_number='1234567890',
+            about_us='Test about us text'
+        )
 
-    def test_add_to_cart_authenticated(self):
-    
-        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
-        data = {
-            'pk': self.product.pk,
-            'size': 'Large',
-            'color': 'Blue',
-            'count': 2
-        }
-        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
-        request.user = user   
-        response = views.addtocart(request)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.content)['status'], 'success')
-        self.assertEqual(models.OrderDetail.objects.count(), 1)  
-
-    
-
-    def test_add_to_cart_product_not_found(self):
-        
-        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
-
-    
-        data = {
-            'pk': 999,  
-            'size': 'Large',
-            'color': 'Blue',
-            'count': 2
-        }
-        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
-        request.user = user  
-
-     
-        response = views.addtocart(request)
+    def test_contact_with_us_view(self):
+        client = Client()
+        response = client.get(reverse('contact_with_us'))
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.content)['status'], 'not_found')
 
+        self.assertTemplateUsed(response, 'contac_with_us.html')
 
-
-
-
-
-
-
-
-
-
-
+        self.assertQuerysetEqual(response.context['footer'], models.contact_with_us.objects.all())
 
 
 

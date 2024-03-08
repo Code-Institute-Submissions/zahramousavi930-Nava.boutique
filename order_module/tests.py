@@ -63,6 +63,51 @@ class OrderDetailFormTest(TestCase):
 
 
 
+class AddToCartTestCase(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.product = models.Products.objects.create(name='Test Product', price=10.00) 
+
+    def test_add_to_cart_authenticated(self):
+    
+        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        data = {
+            'pk': self.product.pk,
+            'size': 'Large',
+            'color': 'Blue',
+            'count': 2
+        }
+        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
+        request.user = user   
+        response = views.addtocart(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content)['status'], 'success')
+        self.assertEqual(models.OrderDetail.objects.count(), 1)  
+
+    
+
+    def test_add_to_cart_product_not_found(self):
+        
+        user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+
+    
+        data = {
+            'pk': 999,  
+            'size': 'Large',
+            'color': 'Blue',
+            'count': 2
+        }
+        request = self.factory.post(reverse('add_to_cart'), json.dumps(data), content_type='application/json')
+        request.user = user  
+
+     
+        response = views.addtocart(request)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(json.loads(response.content)['status'], 'not_found')
+
+
+
 
 class AddToCartViewTest(TestCase):
     def setUp(self):
