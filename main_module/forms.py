@@ -1,5 +1,5 @@
 from django import forms
-from .models import add_comments ,contact,order_data
+from .models import add_comments ,contact
 
 
 
@@ -15,14 +15,3 @@ class contact_form(forms.ModelForm):
 
 
 
-class order_detail_form(forms.ModelForm):
-    class Meta:
-        model=order_data
-        fields=('full_name',
-                'email_address',
-                'phone_number',
-                'street_address1',
-                'town_or_city',
-                'country_state_or_location',
-                'post_code',
-                'country')

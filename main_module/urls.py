@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
 
 
@@ -12,8 +12,10 @@ urlpatterns = [
     path('removenewsteller',views.remove_news_teller,name='remove_news_teller'),
     path('contact',views.contact_with_us.as_view(),name='contact_with_us'),
     path('save-contact',views.save_contact_us,name='save_contact'),
-    path('addtocart',views.addtocart,name='add_to_cart'),
+    path('order/',include('order_module.urls')),
     path('search',views.search,name='search'),
+    
+    
 
 
 
