@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 if os.path.isfile('env.py'):
     import env
-    import STRIPE_SECRET_KEY from env
-    import STRIPE_WEBHOOK_SECRET from env 
+    from env import STRIPE_SECRET_KEY
+    from env import STRIPE_WEBHOOK_SECRET
 
-    import CLOUD_NAME from env 
-    import API_KEY from env 
-    import API_SECRET from env 
+    from env import CLOUD_NAME 
+    from env import API_KEY
+    from env import API_SECRET
 
 
 
@@ -37,7 +37,7 @@ if os.path.isfile('env.py'):
 SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = [
