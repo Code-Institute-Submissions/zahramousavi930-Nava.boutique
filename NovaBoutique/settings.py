@@ -27,6 +27,7 @@ if os.path.isfile('env.py'):
     from env import CLOUD_NAME 
     from env import API_KEY
     from env import API_SECRET
+    from env import key
 
 
 
@@ -34,7 +35,7 @@ if os.path.isfile('env.py'):
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
+SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

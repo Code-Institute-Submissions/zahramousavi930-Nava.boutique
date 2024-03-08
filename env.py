@@ -11,3 +11,6 @@ STRIPE_WEBHOOK_SECRET='whsec_qBsz2OqJXfS7HUzDdoW6p7Xw7S8PhqQN'
 CLOUD_NAME = 'dggry4oz1'
 API_KEY = '619785319395311'
 API_SECRET = 'tCzuwcSoxBJ8zP1xoSt1INUakto'
+
+
+key='django-insecure-df^irl(6md@1o8#a(68^0fa2+uoha9qcys+_^623+%-25dh(u7'
