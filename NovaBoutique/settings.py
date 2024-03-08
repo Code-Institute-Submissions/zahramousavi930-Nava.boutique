@@ -21,6 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 if os.path.isfile('env.py'):
     import env
+    import STRIPE_SECRET_KEY from env
+    import STRIPE_WEBHOOK_SECRET from env 
+
+    import CLOUD_NAME from env 
+    import API_KEY from env 
+    import API_SECRET from env 
 
 
 
@@ -76,9 +82,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'NovaBoutique.urls'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dggry4oz1',
-    'API_KEY': '619785319395311',
-    'API_SECRET': 'tCzuwcSoxBJ8zP1xoSt1INUakto'
+    'CLOUD_NAME': CLOUD_NAME,
+    'API_KEY': API_KEY,
+    'API_SECRET': API_SECRET
 }
 
 TEMPLATES = [
@@ -103,16 +109,16 @@ WSGI_APPLICATION = 'NovaBoutique.wsgi.application'
 AUTH_USER_MODEL = 'account_module.User'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+    'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
 
 
 # Password validation
@@ -180,9 +186,9 @@ EMAIL_PORT = 587
 
 # srtipe
 
-STRIPE_SECRET_KEY =  'sk_test_51NHrCEIf6yLcH0aFaZQmJFkXPirjC63bYHAQ6asT4ykFj7nH2u8AGFoDFHZRWSCAvD4s1vaEKddboNTaET93AgFj00D2ZsiKns'
-# STRIPE_WEBHOOK_SECRET='whsec_d423c9166e4cc9bc78b35e326dd00894ecc8d38783e0b53390c5e8c0bf1c0b22'
-STRIPE_WEBHOOK_SECRET='whsec_qBsz2OqJXfS7HUzDdoW6p7Xw7S8PhqQN'
+STRIPE_SECRET_KEY =  STRIPE_SECRET_KEY
+
+STRIPE_WEBHOOK_SECRET = STRIPE_WEBHOOK_SECRET
 
 
 # Default primary key field type
