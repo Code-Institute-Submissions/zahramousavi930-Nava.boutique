@@ -38,7 +38,7 @@ if os.path.isfile('env.py'):
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['nova-123-90e80f3300ba.herokuapp.com',
