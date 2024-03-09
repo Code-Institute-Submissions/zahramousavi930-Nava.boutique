@@ -92,7 +92,7 @@ function add_to_cart(pk) {
 
 
 
-    fetch('/addtocart', {
+    fetch('/order/addtocart', {
         method: 'post',
         credentials: 'include',
         headers,

@@ -1,211 +1,55 @@
 <header>
-    <nav class="nav d-lg-flex d-none justify-content-evenly color-nav">
-      <div class="d-flex justify-content-around w-100 my-4 align-items-center">
-        <div class="h5">
-          <a
-            href="{% url 'home_pgae' %}"
-            class="text-decoration-none text-info h2"
-          >
-            Nova botique
-          </a>
-        </div>
-  
-        <div class="d-flex align-items-center justify-content-evenly prof">
-          {% if user.is_authenticated %}
-  
-          <i class="bi bi-cart2 h2 pos"> <p class="counttt2">{{ data }}</p></i>
-  
-          <a
-            class="text-decoration-none text-light"
-            href="{% url 'shoping_cart' %}"
-          >
-            shopping cart
-          </a>
-          {% else %}
-          <i class="bi bi-cart2 h2"></i>
-          <a
-            class="text-decoration-none text-light"
-            href="{% url 'login_page' %}"
-          >
-            shopping cart
-          </a>
-          {% endif %}
-        </div>
-        {% if user.is_authenticated %} {# profile#}
-        <div class="d-flex align-items-center justify-content-evenly prof2">
-          <i class="bi bi-person-circle h2 text-light my-2"></i>
-          <a href="{% url 'profile' %}" class="text-decoration-none text-light"
-            >profile
-          </a>
-        </div>
-  
-        {% else %} {# login#}
-        <a href="{% url 'sign_up' %}" class="btn btn-warning me-3 text-light">
-          login/signup</a
+  <nav class="nav d-lg-flex d-none justify-content-evenly color-nav">
+    <div class="d-flex justify-content-around w-100 my-4 align-items-center">
+      <div class="h5">
+        <a
+          href="{% url 'home_pgae' %}"
+          class="text-decoration-none text-info h2"
         >
-        {% endif %} {# search#}
-        <div>
-          <div class="input-group">
-            <form action="{% url 'search' %}" method="post">
-              {% csrf_token %}
-  
-              <div class="input-group">
-                <input
-                  type="search"
-                  class="form-control rounded"
-                  name="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="search-addon"
-                />
-                <button
-                  type="submit"
-                  class="btn btn-outline-warning"
-                  data-mdb-ripple-init
-                >
-                  <i class="bi bi-search"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+          Nova botique
+        </a>
       </div>
-  
-      <p class="text-primary my-3">
-        <!-- account module path -->
-        {% if request.path == '/user/profile' %}
-        <a href="{% url 'home_pgae'%}"> home /</a> <a>user profile</a> 
-  
-        
-        {%elif request.path == '/user/login/'%} <a href="{% url 'home_pgae'%}"> home /</a> <a >login</a>
-  
-        {%elif request.path == '/user/signup'%}
-        <a href="{% url 'home_pgae'%}"> home /</a> <a> signup</a> 
-        
-        {%elif request.path == '/user/forget-pass/'%}
-        <a href="{% url 'home_pgae'%}"> home /</a> <a> forgot assword</a>
-  
-        <!-- main module path -->
-  
-        {% elif 'category/' in request.path %}
-        <a href="{% url 'home_pgae' %}">home</a> / <a>category</a>
-        {% elif request.path == '/all' %}
-        <a href="{% url 'home_pgae' %}">home</a> /
-        <a href="{% url 'all_products_page' %}">all products</a>
-        {% elif 'products/' in request.path %}
-        <a href="{% url 'home_pgae' %}">home</a> / <a>product</a>
-       
-        {% elif 'contact' in request.path %}
-        <a href="{% url 'home_pgae' %}">home</a> / <a>contact</a>
-        {% elif 'search' in request.path %}
-        <a href="{% url 'home_pgae' %}">home</a> / <a>search</a>
-  
-  
-  
-          <!-- order module apth -->
-          {% elif request.path == '/order/shoping-cart'   %}
-        <a href="{% url 'home_pgae' %}">home / </a> <a href="{% url 'profile'%}"> user / </a>  <a>shoping-cart</a>
-  
-        {% endif %}
-      </p>
-    </nav>
-  
-    <nav
-      class="w-75 nav d-lg-none fixed-bottom mx-auto my-2 color-nav border-read"
-    >
-      <ul
-        class="hover-links container d-flex justify-content-evenly align-items-center my-3 h-auto px-4"
-      >
+
+      <div class="d-flex align-items-center justify-content-evenly prof">
         {% if user.is_authenticated %}
-        <li class="d-flex flex-column justify-content-around">
-          <i
-            class="bi bi-person mx-1 icon {% if '/user' in request.path %} text-primary {% endif %}"
-          ></i>
-  
-          <a class="text-light text-decoration-none" href="{% url 'profile' %}"
-            >profile</a
-          >
-        </li>
-        {% else %}
-        <li class="d-flex flex-column justify-content-around">
-          <i
-            class="bi bi-person mx-1 icon {% if '/user/' in request.path %} text-primary {%else%} text-light {% endif %}"
-          ></i>
-  
-          <a class="text-light text-decoration-none" href="{% url 'login_page' %}"
-            >profile</a
-          >
-        </li>
-        {% endif %} {% if user.is_authenticated %}
-        <li
-          class="d-flex flex-column justify-content-around pos {% if '/order/' in request.path %} text-primary {%else%} text-light{% endif %}"
+
+        <i class="bi bi-cart2 h2 pos"> <p class="counttt2">{{ data }}</p></i>
+
+        <a
+          class="text-decoration-none text-light"
+          href="{% url 'shoping_cart' %}"
         >
-          <p class="counttt">{{ data }}</p>
-          <i class="bi bi-cart2 h3"></i>
-          <a
-            class="text-light text-decoration-none d-flex justify-content-around"
-            href="{% url 'shoping_cart' %}"
-            >cart
-          </a>
-        </li>
+          shopping cart
+        </a>
         {% else %}
-        <li class="d-flex flex-column justify-content-around">
-          <i class="bi bi-cart2 h3"></i>
-          <a class="text-light text-decoration-none" href="{% url 'login_page' %}"
-            >cart</a
-          >
-        </li>
+        <i class="bi bi-cart2 h2"></i>
+        <a
+          class="text-decoration-none text-light"
+          href="{% url 'login_page' %}"
+        >
+          shopping cart
+        </a>
         {% endif %}
-  
-        <li
-          class="d-flex flex-column justify-content-around {% if request.path == '/'%} text-primary {%else%} {% endif %}"
-        >
-          <i class="bi bi-house-door mx-1 icon"></i>
-          <a class="text-light text-decoration-none" href="{% url 'home_pgae' %}"
-            >home</a
-          >
-        </li>
-  
-        <li class="d-flex flex-column justify-content-around">
-          <i
-            class="bi bi-search mx-1 h4 {% if request.path == '/search'%} text-primary {%else%} {% endif %}"
-          ></i>
-          <button
-            class="text-light text-decoration-none bt"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-          >
-            search
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">search box</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <form action="{% url 'search' %}" method="post">
-          <div class="modal-body">
+      </div>
+      {% if user.is_authenticated %} {# profile#}
+      <div class="d-flex align-items-center justify-content-evenly prof2">
+        <i class="bi bi-person-circle h2 text-light my-2"></i>
+        <a href="{% url 'profile' %}" class="text-decoration-none text-light"
+          >profile
+        </a>
+      </div>
+
+      {% else %} {# login#}
+      <a href="{% url 'sign_up' %}" class="btn btn-warning me-3 text-light">
+        login/signup</a
+      >
+      {% endif %} {# search#}
+      <div>
+        <div class="input-group">
+          <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+
             <div class="input-group">
-              {% csrf_token %}
               <input
                 type="search"
                 class="form-control rounded"
@@ -216,20 +60,175 @@
               />
               <button
                 type="submit"
-                class="btn btn-outline-primary"
+                class="btn btn-outline-warning"
                 data-mdb-ripple-init
               >
-                search
+                <i class="bi bi-search"></i>
               </button>
             </div>
-          </div>
-        </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
+          </form>
         </div>
       </div>
     </div>
+
+    <p class="text-primary my-3">
+      <!-- account module path -->
+      {% if request.path == '/user/profile' %}
+      <a href="{% url 'home_pgae'%}"> home /</a> <a>user profile</a> 
+
+      
+      {%elif request.path == '/user/login/'%} <a href="{% url 'home_pgae'%}"> home /</a> <a >login</a>
+
+      {%elif request.path == '/user/signup'%}
+      <a href="{% url 'home_pgae'%}"> home /</a> <a> signup</a> 
+      
+      {%elif request.path == '/user/forget-pass/'%}
+      <a href="{% url 'home_pgae'%}"> home /</a> <a> forgot assword</a>
+
+      <!-- main module path -->
+
+      {% elif 'category/' in request.path %}
+      <a href="{% url 'home_pgae' %}">home</a> / <a>category</a>
+      {% elif request.path == '/all' %}
+      <a href="{% url 'home_pgae' %}">home</a> /
+      <a href="{% url 'all_products_pgae' %}">all products</a>
+      {% elif 'products/' in request.path %}
+      <a href="{% url 'home_pgae' %}">home</a> / <a>product</a>
+     
+      {% elif 'contact' in request.path %}
+      <a href="{% url 'home_pgae' %}">home</a> / <a>contact</a>
+      {% elif 'search' in request.path %}
+      <a href="{% url 'home_pgae' %}">home</a> / <a>search</a>
+
+
+
+        <!-- order module apth -->
+        {% elif request.path == '/order/shoping-cart'   %}
+      <a href="{% url 'home_pgae' %}">home / </a> <a href="{% url 'profile'%}"> user / </a>  <a>shoping-cart</a>
+
+      {% endif %}
+    </p>
+  </nav>
+
+  <nav
+    class="w-75 nav d-lg-none fixed-bottom mx-auto my-2 color-nav border-read"
+  >
+    <ul
+      class="hover-links container d-flex justify-content-evenly align-items-center my-3 h-auto px-4"
+    >
+      {% if user.is_authenticated %}
+      <li class="d-flex flex-column justify-content-around">
+        <i
+          class="bi bi-person mx-1 icon {% if '/user' in request.path %} text-primary {% endif %}"
+        ></i>
+
+        <a class="text-light text-decoration-none" href="{% url 'profile' %}"
+          >profile</a
+        >
+      </li>
+      {% else %}
+      <li class="d-flex flex-column justify-content-around">
+        <i
+          class="bi bi-person mx-1 icon {% if '/user/' in request.path %} text-primary {%else%} text-light {% endif %}"
+        ></i>
+
+        <a class="text-light text-decoration-none" href="{% url 'login_page' %}"
+          >profile</a
+        >
+      </li>
+      {% endif %} {% if user.is_authenticated %}
+      <li
+        class="d-flex flex-column justify-content-around pos {% if '/order/' in request.path %} text-primary {%else%} text-light{% endif %}"
+      >
+        <p class="counttt">{{ data }}</p>
+        <i class="bi bi-cart2 h3"></i>
+        <a
+          class="text-light text-decoration-none d-flex justify-content-around"
+          href="{% url 'shoping_cart' %}"
+          >cart
+        </a>
+      </li>
+      {% else %}
+      <li class="d-flex flex-column justify-content-around">
+        <i class="bi bi-cart2 h3"></i>
+        <a class="text-light text-decoration-none" href="{% url 'login_page' %}"
+          >cart</a
+        >
+      </li>
+      {% endif %}
+
+      <li
+        class="d-flex flex-column justify-content-around {% if request.path == '/'%} text-primary {%else%} {% endif %}"
+      >
+        <i class="bi bi-house-door mx-1 icon"></i>
+        <a class="text-light text-decoration-none" href="{% url 'home_pgae' %}"
+          >home</a
+        >
+      </li>
+
+      <li class="d-flex flex-column justify-content-around">
+        <i
+          class="bi bi-search mx-1 h4 {% if request.path == '/search'%} text-primary {%else%} {% endif %}"
+        ></i>
+        <button
+          class="text-light text-decoration-none bt"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          search
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">search box</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form action="{% url 'search' %}" method="post">
+        <div class="modal-body">
+          <div class="input-group">
+            {% csrf_token %}
+            <input
+              type="search"
+              class="form-control rounded"
+              name="search"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+            <button
+              type="submit"
+              class="btn btn-outline-primary"
+              data-mdb-ripple-init
+            >
+              search
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
   </div>
-  
+</div>
