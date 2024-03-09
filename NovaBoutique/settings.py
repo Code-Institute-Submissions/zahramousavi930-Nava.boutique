@@ -38,14 +38,11 @@ if os.path.isfile('env.py'):
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = [
-    'https://nova-python-shop-bcd50c116716.herokuapp.com/',
-    'nova-python-shop-bcd50c116716.herokuapp.com',
-    '8000-zahramousav-navaboutiqu-ctgcwetthpq.ws-eu108.gitpod.io'
-    ]
+ALLOWED_HOSTS = ['nova-123-90e80f3300ba.herokuapp.com']
+    
 # Application definition
 
 INSTALLED_APPS = [
