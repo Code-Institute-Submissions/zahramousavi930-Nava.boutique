@@ -41,7 +41,8 @@ SECRET_KEY = key
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['nova-123-90e80f3300ba.herokuapp.com']
+ALLOWED_HOSTS = ['nova-123-90e80f3300ba.herokuapp.com',
+'8000-zahramousav-navaboutiqu-htpxehfvy8v.ws-eu108.gitpod.io']
     
 # Application definition
 
