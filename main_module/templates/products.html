@@ -303,8 +303,8 @@
            
             
         <div class=" my-4 detail2" data-aos="zoom-in">
-            <p class="h2 text-danger">description</p>
-            <p class="main-content">
+            <p class="h2 text-danger mx-4">description</p>
+            <p class="main-content w-75 mx-4">
                 {{ selected_product.description }}
             </p>
         </div>
@@ -314,7 +314,7 @@
         <div data-aos="zoom-in"  class="main-comments-cont  d-lg-flex flex-column justify-content-around align-items-center">
         
         
-            <div data-aos="zoom-in-left" class="add-new-comments">
+            <div data-aos="zoom-in-left" class="add-new-comments mx-4">
                 <p class="h3 text-danger mx-3 my-4"> add comment</p>
                 <div class="add-comments">
                     <form id="frm" class="m-3" method="post" action="{% url 'add_comments' %}">
