@@ -200,9 +200,9 @@ header navbar {
   position: relative;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   width: 100%;
   overflow: auto;
   height: 450px;
