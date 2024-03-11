@@ -30,11 +30,20 @@
         <scheme name="gzip" dll="%Windir%\system32\inetsrv\gzip.dll" />
         <dynamicTypes>
             <add mimeType="text/html" enabled="true" />
+            <add mimeType="text/css" enabled="true" />
+            <add mimeType="application/javascript" enabled="true" />
         </dynamicTypes>
-        <staticTypes>
-            <add mimeType="text/html" enabled="true" />
-        </staticTypes>
     </httpCompression>
+    
+
+    <configuration>
+        <system.webServer>
+            <staticContent>
+                <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="365.00:00:00" />
+            </staticContent>
+        </system.webServer>
+    </configuration>
+    
     
 
     
