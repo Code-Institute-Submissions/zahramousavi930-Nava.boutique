@@ -45,6 +45,8 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
+          width="auto"
+          height="auto"
         />
       </div>
       <div class="carousel-item">
@@ -53,6 +55,8 @@
           class="img-fluid"
           loading="lazy"
           alt="shop images"
+          width="auto"
+          height="auto"
         />
       </div>
       <div class="carousel-item">
@@ -61,6 +65,8 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
+          width="auto"
+          height="auto"
         />
       </div>
       <div class="carousel-item">
@@ -69,6 +75,8 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
+          width="auto"
+          height="auto"
           />
       </div>
     </div>
@@ -101,6 +109,8 @@
     src="{% static 'assets/img/over 50.png' %}"
     alt="off"
     loading="lazy"
+    width="auto"
+    height="auto"
   />
 </div>
 <!--  all products -->
@@ -135,7 +145,8 @@
         height="200"
       />
       {%else%}
-      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" width="300" height="200" loading="lazy" />
+      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" width="300" height="200" loading="lazy"  width="auto"
+      height="auto"/>
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
@@ -162,7 +173,8 @@
     src="{% static 'assets/img/discount lable.png'  %}"
     class="size-img"
     alt=" discount"
-
+    width="auto"
+    height="auto"
     loading="lazy"
   />
 </div>
@@ -175,6 +187,8 @@
       src="{% static 'assets/img/discount.png' %}"
       alt="discount "
       loading="lazy"
+      width="auto"
+      height="auto"
     />
     
     <p class="h3 text-danger my-1 mx-2">Discounts</p>
@@ -193,7 +207,8 @@
         height="auto"
       />
       {%else%}
-      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" />
+      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo"  width="auto"
+      height="auto" />
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
