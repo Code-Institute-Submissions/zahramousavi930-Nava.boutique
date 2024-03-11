@@ -26,6 +26,17 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nova-123-90e80f3300ba.herokuapp.com">
 
+    <httpCompression>
+        <scheme name="gzip" dll="%Windir%\system32\inetsrv\gzip.dll" />
+        <dynamicTypes>
+            <add mimeType="text/html" enabled="true" />
+        </dynamicTypes>
+        <staticTypes>
+            <add mimeType="text/html" enabled="true" />
+        </staticTypes>
+    </httpCompression>
+    
+
     
     {% include 'refrences/header_refrences.html' %}
 </head>
