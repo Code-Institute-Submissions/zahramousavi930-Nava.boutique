@@ -1,6 +1,6 @@
 from django.urls import path,include
 from . import views
-
+from .views import robots_txt
 
 urlpatterns = [
     path('',views.Home_page.as_view(), name='home_pgae' ),
@@ -14,10 +14,8 @@ urlpatterns = [
     path('save-contact',views.save_contact_us,name='save_contact'),
     path('order/',include('order_module.urls')),
     path('search',views.search,name='search'),
+    path('robots.txt', robots_txt, name='robots_txt'),
     
-    
-
-
 
 
 

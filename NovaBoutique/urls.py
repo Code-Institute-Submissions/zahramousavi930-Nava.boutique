@@ -15,5 +15,5 @@ urlpatterns = [
     path('user/', include('account_module.urls')),
     path('', include('main_module.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type='text/plain'), name="robots.txt"),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,6 +7,20 @@ from . import forms
 import json
 import random
 from order_module.models import OrderDetail
+from django.http import HttpResponse
+
+
+
+
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /user/profile
+Disallow: /user/activate-account
+Disallow: /user/stripe"""
+    return HttpResponse(content, content_type='text/plain')
+
 
 
 

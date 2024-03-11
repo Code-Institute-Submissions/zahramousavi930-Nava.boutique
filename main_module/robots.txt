@@ -1,8 +1,0 @@
-User-agent: *
-Allow : /
-Disallow: /admin/
-Disallow: /user/profile
-Disallow: /user/activate-account
-Disallow: /user/stripe
-
-

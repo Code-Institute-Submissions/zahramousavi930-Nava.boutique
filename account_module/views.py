@@ -22,6 +22,12 @@ from account_module.models import User
 import random
 
 
+
+
+
+
+
+
 class Profile(View):
 
     def get(self,request):
