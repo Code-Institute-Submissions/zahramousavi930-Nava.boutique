@@ -198,20 +198,44 @@ class ForgetPasswordView(View):
         return render(request, 'forget_password.html', context)
 
     def post(self, request):
-        forget_pass_form = forms.ForgotPasswordForm(request.POST)
-        if forget_pass_form.is_valid():
-            user_email = forget_pass_form.cleaned_data.get('email')
-            user = models.User.objects.filter(email__iexact=user_email).first()
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        email = body['user_email']
+        
+       
+        
+        user = models.User.objects.filter(email__iexact=email).first()
+        
+        print(user)
+        
 
-            if user is None:
-                forget_pass_form.add_error('email', 'email is not correct.')
+        if user is None:
+            return JsonResponse({
+                'status':'user_not_exist',
+                'message':'email is not correct ot not register'
+                })
 
-            if user is not None:
+        if user is not None:
+            try:
                 send_email(' reset password', user.email, {'user': user}, 'email_part/forgot_password.html')
-                return redirect(reverse('home_pgae'))
+                print('awe')
+                return JsonResponse({
+                    'status':'ok',
+                    'message':'check your email for reset password'
+                    })
+            except:
+                return JsonResponse({
+                 'status':'error',
+                 'message':'an error has occured'
+                 })
+            
+        else:
+            return JsonResponse({
+                 'status':'error',
+                 'message':'an error has occured'
+                 })
+            
 
-        context = {'forget_pass_form': forget_pass_form}
-        return render(request, 'forget_password.html', context)
 
 
 
