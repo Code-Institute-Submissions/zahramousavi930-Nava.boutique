@@ -41,12 +41,12 @@ SECRET_KEY = key
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['nova-123-90e80f3300ba.herokuapp.com',
-'https://nova-123-90e80f3300ba.herokuapp.com',
-'http://nova-123-90e80f3300ba.herokuapp.com',
-'www.nova-123-90e80f3300ba.herokuapp.com',
-'8000-zahramousav-navaboutiqu-htpxehfvy8v.ws-eu110.gitpod.io',
-'8000-zahramousav-navaboutiqu-yuyktzw6g89.ws-us110.gitpod.io'
+ALLOWED_HOSTS = [
+    'https://nova-shop-ea4ad33fa8c5.herokuapp.com',
+    'http://nova-shop-ea4ad33fa8c5.herokuapp.com',
+    'nova-shop-ea4ad33fa8c5.herokuapp.com',
+    'www.nova-shop-ea4ad33fa8c5.herokuapp.com'
+
 
 ]
     
