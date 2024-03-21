@@ -141,8 +141,8 @@
         class="card-img-top"
         loading="lazy"
         alt="{{ product.name }}"
-        width="300"
-        height="200"
+        width="auto"
+       
       />
       {%else%}
       <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" width="300" height="200" loading="lazy"  width="auto"
@@ -204,7 +204,7 @@
         alt="{{ product.name }}"
         loading="lazy"
         width="auto"
-        height="auto"
+        
       />
       {%else%}
       <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo"  width="auto"
