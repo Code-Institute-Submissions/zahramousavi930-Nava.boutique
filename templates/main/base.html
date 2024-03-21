@@ -1,58 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-{% load static %}
+  {% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
-    <title>
-        {% block title %}
-        home page
-        {% endblock %}
-    </title>
-    <meta name="description" content="Discover a world of endless shopping possibilities at our online store. From fashion to electronics, we offer the latest trends and unbeatable deals for all your needs.">
-    <meta name="keywords" content="clothes,pants,shirt,shoes,T-shirt">
-    <meta name="author" content="Nova">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="google" content="notranslate">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <link rel="canonical" href="https://nova-123-90e80f3300ba.herokuapp.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'assets/favicon.png' %}"
+    />
+    <title>{% block title %} home page {% endblock %}</title>
+    <meta
+      name="description"
+      content="Discover a world of endless shopping possibilities at our online store. From fashion to electronics, we offer the latest trends and unbeatable deals for all your needs."
+    />
+    <meta name="keywords" content="clothes,pants,shirt,shoes,T-shirt" />
+    <meta name="author" content="Nova" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta
+      name="robots"
+      content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <meta name="google" content="notranslate" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="canonical" href="https://nova-123-90e80f3300ba.herokuapp.com" />
 
-  
-    <meta property="og:title" content="Your Website Title">
-    <meta property="og:description" content="Discover a world of endless shopping possibilities at our online store. From fashion to electronics, we offer the latest trends and unbeatable deals for all your needs.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nova-123-90e80f3300ba.herokuapp.com">
+    <meta property="og:title" content="Your Website Title" />
+    <meta
+      property="og:description"
+      content="Discover a world of endless shopping possibilities at our online store. From fashion to electronics, we offer the latest trends and unbeatable deals for all your needs."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://nova-123-90e80f3300ba.herokuapp.com"
+    />
 
-  
-
-    
-
-    
     {% include 'refrences/header_refrences.html' %}
-</head>
+  </head>
 
-
-
-
-<body>
-{% include 'main/header.html' %}
-
-{% block contect %}
-
-{% endblock %}
-
-{% include 'main/footer.html' %}
-<script src="https://js.stripe.com/v3/"></script>
-{% include 'refrences/footer_refrences.html' %}
-
-{% block postloadjs %}
-
-{% endblock %}
-
-</body>
+  <body>
+    {% include 'main/header.html' %} {% block contect %} {% endblock %} {%
+    include 'main/footer.html' %}
+    <script src="https://js.stripe.com/v3/"></script>
+    {% include 'refrences/footer_refrences.html' %} {% block postloadjs %} {%
+    endblock %}
+  </body>
 </html>

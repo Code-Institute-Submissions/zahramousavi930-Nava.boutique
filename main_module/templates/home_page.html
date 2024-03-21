@@ -8,8 +8,7 @@
   <div
     id="carouselExampleIndicators"
     class="carousel slide"
-    data-bs-ride="carousel"
-  >
+    data-bs-ride="carousel" >
     <div class="carousel-indicators">
       <button
         type="button"
@@ -38,6 +37,7 @@
         aria-label="Slide 4"
       ></button>
     </div>
+
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img
@@ -45,8 +45,6 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
-         
-         
         />
       </div>
       <div class="carousel-item">
@@ -55,8 +53,6 @@
           class="img-fluid"
           loading="lazy"
           alt="shop images"
-         
-         
         />
       </div>
       <div class="carousel-item">
@@ -65,8 +61,6 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
-        
-          
         />
       </div>
       <div class="carousel-item">
@@ -75,14 +69,16 @@
           class="img-fluid"
           alt="shop images"
           loading="lazy"
-        
-         
-          />
-      </div>
+        />
+     </div>
     </div>
+
 
   </div>
 </section>
+
+
+
 
 <!-- scroll coolections -->
 <section id="my-scroll" class="scroll">
@@ -93,8 +89,12 @@
       class="text-decoration-none link-dark"
     >
       {% if fooo.image %}
-      <img src="{{ fooo.image.url }}" alt="{{ fooo.categoryy }}" loading="lazy"   />
-     
+      <img
+        src="{{ fooo.image.url }}"
+        alt="{{ fooo.categoryy }}"
+        loading="lazy"
+      />
+
       {% endif %}
       <h5 class="user-select-none my-2">{{ fooo.categoryy }}</h5>
     </a>
@@ -109,13 +109,13 @@
     src="{% static 'assets/img/over 50.png' %}"
     alt="off"
     loading="lazy"
-    
-   
   />
 </div>
 <!--  all products -->
 <section class="more-sell">
-  <div class="detial-data d-flex justify-content-between align-items-center m-1">
+  <div
+    class="detial-data d-flex justify-content-between align-items-center m-1"
+  >
     <img
       class="lable_img my-1 mx-2"
       src="{% static 'assets/img/products.png' %}"
@@ -141,12 +141,15 @@
         class="card-img-top"
         loading="lazy"
         alt="{{ product.name }}"
-     
-       
       />
       {%else%}
-      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" width="300" height="200" loading="lazy" 
-/>
+      <img
+        src="{ %static 'assets/empty.jpg' %}"
+        alt="empty photo"
+        width="300"
+        height="200"
+        loading="lazy"
+      />
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
@@ -166,15 +169,12 @@
   </div>
 </section>
 
-
 <!-- second photo of discount -->
 <div class="photo-container my-4">
   <img
     src="{% static 'assets/img/discount lable.png'  %}"
     class="size-img"
     alt=" discount"
-
-   
     loading="lazy"
   />
 </div>
@@ -187,12 +187,9 @@
       src="{% static 'assets/img/discount.png' %}"
       alt="discount "
       loading="lazy"
-     
- 
     />
-    
+
     <p class="h3 text-danger my-1 mx-2">Discounts</p>
-    
   </div>
   <div class="discount-container">
     {% for product in products_discount %}
@@ -203,12 +200,9 @@
         class="card-img-top"
         alt="{{ product.name }}"
         loading="lazy"
-       
-        
       />
       {%else%}
-      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo"  
-       />
+      <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" />
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
