@@ -40,7 +40,7 @@
       </div>
 
       {% else %} {# login#}
-      <a href="{% url 'sign_up' %}" class="btn btn-warning me-3">
+      <a href="{% url 'sign_up' %}" class="btn btn-warning me-3 ">
         login/signup</a
       >
       {% endif %} {# search#}
@@ -48,7 +48,7 @@
         <div class="input-group">
           <form action="{% url 'search' %}" method="post">
             {% csrf_token %}
-
+      
             <div class="input-group">
               <input
                 type="search"
@@ -69,52 +69,44 @@
           </form>
         </div>
       </div>
+      
+      </div>
     </div>
 
     <p class="text-warning my-3">
       <!-- account module path -->
       {% if request.path == '/user/profile' %}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a>
-      <a>user profile</a>
+      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a>user profile</a> 
 
-      {%elif request.path == '/user/login/'%}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a>
-      <a>login</a>
+      
+      {%elif request.path == '/user/login/'%} <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a >login</a>
 
       {%elif request.path == '/user/signup'%}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a>
-      <a> signup</a>
-
+      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a> signup</a> 
+      
       {%elif request.path == '/user/forget-pass/'%}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a>
-      <a> forgot assword</a>
+      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a> forgot assword</a>
 
       <!-- main module path -->
 
       {% elif 'category/' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a>category</a>
+      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>category</a>
       {% elif request.path == '/all' %}
       <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a class="text-warning" href="{% url 'all_products_pgae' %}"
-        >all products</a
-      >
+      <a class="text-warning" href="{% url 'all_products_pgae' %}">all products</a>
       {% elif 'products/' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a>product</a>
-
+      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>product</a>
+     
       {% elif 'contact' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a>contact</a>
+      <a class="text-warning"  href="{% url 'home_pgae' %}">home</a> / <a>contact</a>
       {% elif 'search' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a>search</a>
+      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>search</a>
 
-      <!-- order module apth -->
-      {% elif request.path == '/order/shoping-cart' %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home / </a>
-      <a class="text-warning" href="{% url 'profile'%}"> user / </a>
-      <a>shoping-cart</a>
+
+
+        <!-- order module apth -->
+        {% elif request.path == '/order/shoping-cart'   %}
+      <a class="text-warning" href="{% url 'home_pgae' %}">home / </a> <a class="text-warning" href="{% url 'profile'%}"> user / </a>  <a>shoping-cart</a>
 
       {% endif %}
     </p>
@@ -235,12 +227,7 @@
         </div>
       </form>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          aria-label="models search"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="models search">
           Close
         </button>
       </div>
