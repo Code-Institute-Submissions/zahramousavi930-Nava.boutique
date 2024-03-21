@@ -46,7 +46,7 @@
           alt="shop images"
           loading="lazy"
           width="auto"
-          height="auto"
+         
         />
       </div>
       <div class="carousel-item">
@@ -56,7 +56,7 @@
           loading="lazy"
           alt="shop images"
           width="auto"
-          height="auto"
+         
         />
       </div>
       <div class="carousel-item">
@@ -66,7 +66,7 @@
           alt="shop images"
           loading="lazy"
           width="auto"
-          height="auto"
+          
         />
       </div>
       <div class="carousel-item">
@@ -76,7 +76,7 @@
           alt="shop images"
           loading="lazy"
           width="auto"
-          height="auto"
+         
           />
       </div>
     </div>
@@ -93,7 +93,7 @@
       class="text-decoration-none link-dark"
     >
       {% if fooo.image %}
-      <img src="{{ fooo.image.url }}" alt="{{ fooo.categoryy }}" loading="lazy" width="auto"  height="auto"/>
+      <img src="{{ fooo.image.url }}" alt="{{ fooo.categoryy }}" loading="lazy" width="auto"  />
      
       {% endif %}
       <h5 class="user-select-none my-2">{{ fooo.categoryy }}</h5>
@@ -110,7 +110,7 @@
     alt="off"
     loading="lazy"
     width="auto"
-    height="auto"
+   
   />
 </div>
 <!--  all products -->
@@ -146,7 +146,7 @@
       />
       {%else%}
       <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo" width="300" height="200" loading="lazy"  width="auto"
-      height="auto"/>
+/>
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
@@ -174,7 +174,7 @@
     class="size-img"
     alt=" discount"
     width="auto"
-    height="auto"
+   
     loading="lazy"
   />
 </div>
@@ -188,7 +188,7 @@
       alt="discount "
       loading="lazy"
       width="auto"
-      height="auto"
+ 
     />
     
     <p class="h3 text-danger my-1 mx-2">Discounts</p>
@@ -208,7 +208,7 @@
       />
       {%else%}
       <img src="{ %static 'assets/empty.jpg' %}" alt="empty photo"  width="auto"
-      height="auto" />
+       />
       {% endif %}
       <div
         class="card-body text-dark d-flex justify-content-around flex-column"
