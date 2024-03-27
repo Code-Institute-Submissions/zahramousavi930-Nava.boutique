@@ -90,8 +90,8 @@ class Shoping_cart(View):
 
                 },
                 mode='payment',
-                success_url='https://nova-123-90e80f3300ba.herokuapp.com/user/profile',
-                cancel_url='https://nova-123-90e80f3300ba.herokuapp.com/order/shoping-cart',
+                success_url='https://nova-shop-ea4ad33fa8c5.herokuapp.com/user/profile',
+                cancel_url='https://nova-shop-ea4ad33fa8c5.herokuapp.com/order/shoping-cart',
             )
 
 

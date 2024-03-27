@@ -50,7 +50,8 @@
 
 
         {% for foo in fav %}
-            <div class="cards-container">
+        <div class="cards-container d-flex flex-column align-items-start">
+            <p class="btn btn-outline-info ">favourite products</p>
                 <div class="card m-2 shadow" data-aos="zoom-in" data-aos-delay="100">
                     <img
                             src="{{ foo.image.url }}"

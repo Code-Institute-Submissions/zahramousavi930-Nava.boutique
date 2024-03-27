@@ -135,7 +135,7 @@
                     <form action="{% url 'favorite' selected_product.pk %} " method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">
-                            add to favorit
+                            add to favourite
                         </button>
                     </form>
                 </div>
@@ -347,6 +347,7 @@
     
     
     </div>
+    {% if comments%}
     <div class=" my-5 mx-auto w-50 bg-secondary p-3 rounded-2 d-flex g-2 flex-column h-auto">
         {% for comment in comments %}
             <div class="h-75 border-bottom my-3 bg-col">
@@ -371,6 +372,7 @@
 
 
     </div>
+    {% endif %}
     </main>
 {% endblock %}
 

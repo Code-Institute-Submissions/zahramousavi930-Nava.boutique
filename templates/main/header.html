@@ -76,37 +76,37 @@
     <p class="text-warning my-3">
       <!-- account module path -->
       {% if request.path == '/user/profile' %}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a>user profile</a> 
+      <a class="text-warning mx-3" href="{% url 'home_pgae'%}"> home </a> <a class="mx-3 text-warning ">user profile</a> 
 
       
-      {%elif request.path == '/user/login/'%} <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a >login</a>
+      {%elif request.path == '/user/login/'%} <a class="text-warning mx-3" href="{% url 'home_pgae'%}"> home </a> <a  class=" text-warning mx-3" >login</a>
 
       {%elif request.path == '/user/signup'%}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a> signup</a> 
+      <a class="text-warning mx-3" href="{% url 'home_pgae'%}"> home </a> <a  class="mx-3 text-warning"> signup</a> 
       
       {%elif request.path == '/user/forget-pass/'%}
-      <a class="text-warning" href="{% url 'home_pgae'%}"> home /</a> <a> forgot assword</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae'%}"> home </a> <a  class="mx-3 text-warning"> forgot assword</a>
 
       <!-- main module path -->
 
       {% elif 'category/' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>category</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae' %}">home</a> <a  class="mx-3 text-warning">category</a>
       {% elif request.path == '/all' %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> /
-      <a class="text-warning" href="{% url 'all_products_pgae' %}">all products</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae' %}">home</a> 
+      <a class="text-warningmx-3" href="{% url 'all_products_pgae' %}">all products</a>
       {% elif 'products/' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>product</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae' %}">home</a>  <a  class="mx-3 text-warning">product</a>
      
       {% elif 'contact' in request.path %}
-      <a class="text-warning"  href="{% url 'home_pgae' %}">home</a> / <a>contact</a>
+      <a class="text-warning mx-3"  href="{% url 'home_pgae' %}">home</a>  <a  class="mx-3 text-warning">contact</a>
       {% elif 'search' in request.path %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home</a> / <a>search</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae' %}">home</a>  <a  class="mx-3 text-warning">search</a>
 
 
 
         <!-- order module apth -->
         {% elif request.path == '/order/shoping-cart'   %}
-      <a class="text-warning" href="{% url 'home_pgae' %}">home / </a> <a class="text-warning" href="{% url 'profile'%}"> user / </a>  <a>shoping-cart</a>
+      <a class="text-warning mx-3" href="{% url 'home_pgae' %}">home  </a> <a class="text-warning mx-3" href="{% url 'profile'%}"> user  </a>  <a  class="mx-3 text-warning">shoping-cart</a>
 
       {% endif %}
     </p>
