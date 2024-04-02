@@ -10,7 +10,7 @@ Happy shopping at Nava Boutique Online Shop!
 
 ## Visit the Live Site
 
-Experience the Nava Boutique magic by visiting our live site deployed on Heroku. Click [here](https://nova-python-shop-bcd50c116716.herokuapp.com/) to explore the latest trends and shop with ease.
+Experience the Nava Boutique magic by visiting our live site deployed on Heroku. Click [here](https://nova-shop-ea4ad33fa8c5.herokuapp.com/) to explore the latest trends and shop with ease.
 
 ## Features
 
@@ -20,7 +20,7 @@ Experience the Nava Boutique magic by visiting our live site deployed on Heroku.
 
 ## Table of Contents
 
-- [Live Site](https://nova-python-shop-bcd50c116716.herokuapp.com/)
+- [Live Site](https://nova-shop-ea4ad33fa8c5.herokuapp.com/)
 - [Overview](#overview)
 - [Key Features](#key-features)
 - [User Stories](#user-stories)
@@ -214,7 +214,7 @@ All parts of views and forms were tested using the inner framework of Django tes
 
 - #### Home Page Validation
 
-  - [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fnova-python-shop-bcd50c116716.herokuapp.com%2F)
+  - [Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fnova-shop-ea4ad33fa8c5.herokuapp.com)
 
   ![Home Page Validation Image](img/html%20test.png)
 
