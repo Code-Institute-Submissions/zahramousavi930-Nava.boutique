@@ -291,7 +291,7 @@ All parts of views and forms were tested using the inner framework of Django tes
 
 - Lighthouse, using Chrome Dev Tools, was used to ensure best practices were followed on the site.
 
-  ![Lighthouse Test Image](img/lighthousetest%20.png)
+  ![Lighthouse Test Image](img/seo.png)
 
 
 ## Contributing
