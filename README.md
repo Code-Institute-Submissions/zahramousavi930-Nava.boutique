@@ -109,7 +109,7 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
 
 - ### Fonts
 
-  The [Roboto](https://fonts.google.com/specimen/Roboto) font from Google Fonts is used throughout the site on all content.
+  The [Verdana](https://www.cufonfonts.com/font/verdana) font from Google Fonts is used throughout the site on all content.
 
   This font was chosen due to its readability, popularity, and familiarity, with it being the chosen font for some products produced by Google.
 
