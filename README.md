@@ -105,7 +105,7 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
 
   This is due to cakes and confectionary being inherently colorful. Reducing the color palette to the most basic possible helps draw attention to the products displayed, and the colors within.
 
-  ![Colours Image](readme_content/colours.png)
+  ![Colours Image](img/colours.png)
 
 - ### Fonts
 
@@ -113,13 +113,6 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
 
   This font was chosen due to its readability, popularity, and familiarity, with it being the chosen font for some products produced by Google.
 
-- ### Images
-
-  All product images have been taken from the current website for [Nibble Kitchen](https://nibblekitchen.co.uk/), with permission from the owner.
-
-  Other images used throughout the site were chosen from the website [Unsplash](https://unsplash.com/) and were chosen to fit the overall theme of the website.
-
-  Image credits can be found in the [Media](#media) section of this Readme.
 
 - ### Wireframes
 
@@ -127,9 +120,9 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
 
   The database schema for the project was:
 
-  ![Database Schema](readme_content/schema.png)
+  ![Database Schema](img/schema.png)
 
-  The full image can be viewed [here](readme_content/schema.png)
+  The full image can be viewed [here](img/schema.png)
 
 #
 ## Features
