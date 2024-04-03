@@ -462,7 +462,6 @@ To use Postgres with Django, additional tools are required, and can be installed
 
         `git push heroku main'
 
-[Back to top ⇧](#nibble-kitchen)
 
 ### AWS
 
