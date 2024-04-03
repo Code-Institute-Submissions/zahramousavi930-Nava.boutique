@@ -49,14 +49,53 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
 - **Responsive Design**: Access the site seamlessly on desktops, tablets, and mobile devices.
 - **User-Friendly Interface**: Navigate through our platform effortlessly, ensuring a hassle-free shopping process.
 
-## User Stories
+## User Experience (UX)
 
-- As a **customer**, I want to easily browse products, read detailed descriptions, and place orders securely.
-- As a **registered user**, I want the ability to create an account, log in, and manage my orders and preferences.
-- As a **fashion enthusiast**, I want to explore a visually appealing product catalog with rich descriptions and high-quality images.
-- As a **busy professional**, I want a quick and efficient checkout process for online purchases.
-- As a **store manager**, I want to manage product listings, view and fulfill customer orders efficiently.
-- As a **mobile user**, I want the site to be responsive, allowing me to shop on the go.
+### User Stories
+
+- #### Navigation
+
+  - As a user, I want to navigate around the site easily to locate the products I want.
+  - As a user, I want to view a list of all available products.
+  - As a user, I want to be able to view more details on a product, such as price, ingredients, and reviews.
+  - As a user, I want to be able to refine my search with categories.
+  - As a user, I want to be able to sort products by price, review, or name.
+  - As a user, I want to be able to easily contact the site owner if needed.
+  - As a user, I want to be able to see all ingredients contained within the product, including any allergens.
+
+- #### Accounts
+
+  - As a user, I want the option to register for an account, allowing me to save my details and see previous orders.
+  - As a user, I want to receive confirmation emails to confirm my registration.
+  - As a user, I want the ability to be able to log in and out and be able to easily work out my current login status.
+  - As a user, I want to be able to recover my account information in the event that I forget it.
+
+
+- #### Admin
+
+  - As an admin, I want to be able to add products easily in a format consistent with the rest of the site.
+  - As an admin, I want to be able to edit products easily to ensure the customer is being shown the most up-to-date information
+  - As an admin, I want to be able to delete discontinued products or mark seasonal products out of stock when not available.
+  - As an admin, I want to be able to easily manage the images in the gallery, and update the site policies.
+  - As an admin, I want to be able to add and update the ingredients for products and mark any allergens appropriately.
+
+- #### Purchasing
+
+  - As a user, I want to be able to add items to my cart, allowing me to store things until I'm ready to complete my purchase.
+  - As a user, I want to be able to view my cart so I can see the current running total of my potential purchases.
+  - As a user, I want the ability to update the quantity of the items in my cart easily.
+  - As a user, I want an easily viewable total to allow me to monitor my overall spending.
+  - As a user, I want to be able to complete the purchasing journey, without the need to register if I do not wish to.
+  - As a user, I want to receive confirmation of my order so I know my order was placed successfully.
+  - As a user, I want to be able to view my order history so I can review past purchases.
+
+- #### Interaction
+
+  - As a user, I want to be able to leave a review of products to share my experience with other customers
+  - As a user, I want to be able to easily connect to the business's social media pages to keep up to date.
+  - As a user, I want to be able to easily contact the site owner if needed.
+
+#
 
 ## Features
 
