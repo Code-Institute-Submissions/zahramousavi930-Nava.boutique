@@ -43,10 +43,6 @@ Experience the Nava Boutique magic by visiting our live site deployed on Heroku.
   - [Heroku](#heroku)
   - [AWS](#clone)
   - [Stripe](#Stripe)
-
-- [Credits](#credits)
-
-  - [Media](#media)
   - [Languages](#languages)
   - [Libraries, Frameworks & Tools](#libraries-frameworks-and-tools)
 
