@@ -36,8 +36,19 @@ Experience the Nava Boutique magic by visiting our live site deployed on Heroku.
 - [Deployment](#deployment)
 - [Testing](#testing)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+- [Deployment](#deployment)
+
+  - [Github](#github)
+  - [Django](#django)
+  - [Heroku](#heroku)
+  - [AWS](#clone)
+  - [Stripe](#Stripe)
+
+- [Credits](#credits)
+
+  - [Media](#media)
+  - [Languages](#languages)
+  - [Libraries, Frameworks & Tools](#libraries-frameworks-and-tools)
 
 ## Overview
 
