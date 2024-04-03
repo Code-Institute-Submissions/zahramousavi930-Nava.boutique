@@ -23,7 +23,8 @@ Experience the Nava Boutique magic by visiting our live site deployed on Heroku.
 - [Live Site](https://nova-shop-ea4ad33fa8c5.herokuapp.com/)
 - [Overview](#overview)
 - [Key Features](#key-features)
-- [User Stories](#user-stories)
+- [User Experience (UX)](#user-experience-ux)
+  - [User Stories](#user-stories)
 - [Features](#features)
 - [Product Catalog](#product-catalog)
 - [Design](#design)
@@ -96,7 +97,41 @@ Nava Boutique Online Shop is a fashion-forward platform built on the Django fram
   - As a user, I want to be able to easily contact the site owner if needed.
 
 #
+## Design
 
+- ### Colours
+
+  The decision was made to keep the colors as simple as possible for the website, with the main content being either black text on a white background, or vice versa.
+
+  This is due to cakes and confectionary being inherently colorful. Reducing the color palette to the most basic possible helps draw attention to the products displayed, and the colors within.
+
+  ![Colours Image](readme_content/colours.png)
+
+- ### Fonts
+
+  The [Roboto](https://fonts.google.com/specimen/Roboto) font from Google Fonts is used throughout the site on all content.
+
+  This font was chosen due to its readability, popularity, and familiarity, with it being the chosen font for some products produced by Google.
+
+- ### Images
+
+  All product images have been taken from the current website for [Nibble Kitchen](https://nibblekitchen.co.uk/), with permission from the owner.
+
+  Other images used throughout the site were chosen from the website [Unsplash](https://unsplash.com/) and were chosen to fit the overall theme of the website.
+
+  Image credits can be found in the [Media](#media) section of this Readme.
+
+- ### Wireframes
+
+- ### Database Schema
+
+  The database schema for the project was:
+
+  ![Database Schema](readme_content/schema.png)
+
+  The full image can be viewed [here](readme_content/schema.png)
+
+#
 ## Features
 
 ### User Authentication and Account Management
